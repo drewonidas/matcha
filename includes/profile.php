@@ -7,7 +7,7 @@
 @License: maDezynIzM.E. 2016
 -->
 
-<div class="md_container md_full_size md_float_mid page" id="profile">
+<div class="md_container md_full_size md_float_mid page" id="profile_page">
     <div class="md_col_container column" id="left_side">
         <div class="md_container left_section">
             <img src="imgs/app/user.svg" alt="#" id="profile_img" />

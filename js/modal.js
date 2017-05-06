@@ -9,16 +9,16 @@
 */
 
 // click events
-$(function() {
-    $("#sign_up_form").hide();
-    $("#sign_up_btn").click(function() {
-        $("#sign_up_form").show();
-        $("#sign_in_form").hide();
-    });
-    $("#sign_in_btn").click(function() {
-        $("#sign_in_form").show();
-        $("#sign_up_form").hide();
-    });
+$(document).ready(function() {
+    // $("#sign_up_form").hide();
+    // $("#sign_up_btn").click(function() {
+    //     $("#sign_up_form").show();
+    //     $("#sign_in_form").hide();
+    // });
+    // $("#sign_in_btn").click(function() {
+    //     $("#sign_in_form").show();
+    //     $("#sign_up_form").hide();
+    // });
     //$("#profile_btn").click(function() {
     //    $("#profile").toggle();
     $("#sign_out_btn").click(function() {
@@ -74,11 +74,12 @@ $(function() {
             success: function(response) {
                 console.log(response);
                 if (response == 'TRUE') {
-                    $("#sign_in").fadeIn(1000);
-                    $("#sign_up").fadeOut(1000);
+                  $("#response").html("SUCCESS!!!");
+                    // $("#sign_in").fadeIn(1000);
+                    // $("#sign_up").fadeOut(1000);
                 } else {
-                    console.log("jj");
-                    $("#response").html("wrong data name");
+                  console.log("jj");
+                  $("#response").html("wrong data name");
                 }
             }
         });

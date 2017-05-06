@@ -7,7 +7,7 @@
 @License: maDezynIzM.E. 2016
 -->
 
-<div class="md_col_container md_full_size md_float_mid page" id="sign_in">
+<div class="md_col_container md_full_size md_float_mid page" id="access_page">
     <div class="md_col_container">
         <h1>Matcha</h1>
     </div>
@@ -30,8 +30,8 @@
         <div class="md_options md_container">
             <a>uhm...I dont have an account!</a>
             <a>haha..I forgot my password!</a>
-        </form>
         </div>
+    </form>
         <!--
 			registration form
 		-->
@@ -45,7 +45,7 @@
 				<p>First name:</p>
 				<input type="text" name="fname" id="fname" required>
 			</div>
-            <div class="md_input_wrapper">
+      <div class="md_input_wrapper">
 				<p>Last name:</p>
 				<input type="text" name="lname" id="lname" required>
 			</div>
@@ -68,9 +68,5 @@
 				<a>uhm...I have an account!</a>
 			</div>
 		</form>
-        <div class="md_col_container" id="buttons">
-            <button type="button" name="button" id="sign_in_btn">Sign-in</button>
-            <button type="button" name="button" id="sign_up_btn">Sign-up</button>
-        </div>
     <p id="response">blah blah blah</p>
 </div>

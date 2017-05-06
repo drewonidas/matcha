@@ -1,0 +1,26 @@
+html, body {height: 100%; width: 100%;}
+* {margin: auto;}
+header, #main_content, footer {width: 100%}
+header {min-height: 20%; background-color: rgba(0,0,0,0.1); top: 0;}
+#main_content {min-height: 60%; background-color: white;}
+footer {min-height: 20%; background-color: black; bottom: 0;}
+footer h1 {color: white;}
+
+/*#access_page {display: none;}*/
+#profile_page {display: none;}
+#sign_in_form {display: none;}
+
+#navigation_bar {
+	jusitfy-content: space-between;
+	-moz-justify-content: space-between;
+	-webkit-justify-content: space-between;
+}
+
+.flex_container {
+	display: flex;
+	display: -moz-flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+}

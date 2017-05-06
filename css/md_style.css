@@ -32,7 +32,6 @@
 .md_inner_cont, .md_nav_bar {width:100%;}
 .md_nav_bar {
 	flex: 1;
-	background-color: yellow;
 	jusitfy-content: space-between;
 	-moz-justify-content: space-between;
 	-webkit-justify-content: space-between;
