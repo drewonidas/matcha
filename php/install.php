@@ -15,7 +15,7 @@
     $db_handler = null;
     $db_name = 'matcha_db';
     try {
-        $db_handler = new PDO("mysql:host=$servername;port=81", $DB_USER, $DB_PASSWORD);
+        $db_handler = new PDO("mysql:host=$servername", $DB_USER, $DB_PASSWORD);
         $db_handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo 'Connection to server successfull<br/>';
         // create the database

@@ -23,15 +23,15 @@
                     password VARCHAR(8) NOT NULL,
                     first_name VARCHAR(30) NOT NULL,
                     last_name VARCHAR(30) NOT NULL,
-                    gender ENUM(male, female),
+                    gender ENUM('male', 'female'),
                     sexual_pref ENUM('males', 'females', 'both'),
                     bio TEXT,
                     interests TEXT,
-                    reg_date DATETIME() NOT NULL,
+                    reg_date DATETIME NOT NULL,
                     location VARCHAR(500) NOT NULL,
                     verified BOOLEAN DEFAULT FALSE,
-                    last_on DATETIME(),
-                    rating INT(5),
+                    last_on DATETIME,
+                    rating INT(5) UNSIGNED,
                     profile_pic_id INT(6) UNSIGNED)";
 
             $conn->exec($sql);
@@ -40,7 +40,7 @@
             $sql = "CREATE TABLE IF NOT EXISTS images (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                     img_path VARCHAR(128) NOT NULL,
-                    img_date DATETIME(),
+                    img_date DATETIME,
                     user_id INT(6) UNSIGNED NOT NULL)";
 
             $conn->exec($sql);
@@ -50,7 +50,7 @@
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                     type ENUM('like', 'comment'),
                     comm_text VARCHAR(4) NOT NULL,
-                    comm_date DATETIME(),
+                    comm_date DATETIME,
                     user_id INT(6) UNSIGNED NOT NULL,
                     img_id INT(6) UNSIGNED NOT NULL)";
 

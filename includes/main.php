@@ -8,9 +8,6 @@
 -->
 
 <div class="md_col_container md_full_size md_float_mid page" id="access_page">
-    <div class="md_col_container">
-        <h1>Matcha</h1>
-    </div>
     <!--
         login form
     -->

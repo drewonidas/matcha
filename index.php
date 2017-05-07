@@ -23,7 +23,7 @@
         </header>
         <?php require_once('includes/main.php'); ?>
         <?php require_once('includes/profile.php'); ?>
-        <section id="main_content">
+        <sectionec id="main_content">
             <!-- <h1>I am the main content</h1> -->
         </section>
         <footer>

@@ -19,7 +19,7 @@ $(document).ready(function() {
     //     $("#sign_in_form").show();
     //     $("#sign_up_form").hide();
     // });
-    //$("#profile_btn").click(function() {
+    // $("#profile_btn").click(function() {
     //    $("#profile").toggle();
     $("#sign_out_btn").click(function() {
         $.ajax({
@@ -71,16 +71,17 @@ $(document).ready(function() {
             url: "php/register.php",
             data: user_info,
             dataType: "text",
-            success: function(response) {
-                console.log(response);
-                if (response == 'TRUE') {
-                  $("#response").html("SUCCESS!!!");
-                    // $("#sign_in").fadeIn(1000);
-                    // $("#sign_up").fadeOut(1000);
-                } else {
-                  console.log("jj");
-                  $("#response").html("wrong data name");
-                }
+            success: function(response)
+                $("#response").html(response);
+                // console.log(response);
+                // if (response == 'TRUE') {
+                //
+                //     // $("#sign_in").fadeIn(1000);
+                //     // $("#sign_up").fadeOut(1000);
+                // } else {
+                //   console.log("jj");
+                //   $("#response").html("wrong data name");
+                // }
             }
         });
     });
