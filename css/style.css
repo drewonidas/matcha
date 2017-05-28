@@ -1,16 +1,33 @@
 html, body {height: 100%; width: 100%;}
 * {margin: auto;}
-header, #main_content, footer {width: 100%}
-header {min-height: 20%; background-color: rgba(0,0,0,0.1); top: 0;}
-#main_content {min-height: 60%; background-color: white;}
+header, #main_content, footer {width: 100%;}
+header {min-height: 10%; background-color: rgba(0,0,0,0.1); top: 0;}
+#main_content {min-height: 70%; background-color: white;}
 footer {min-height: 20%; background-color: black; bottom: 0;}
 footer h1 {color: white;}
 
 /*#access_page {display: none;}*/
 #profile_page {display: none;}
 #sign_in_form {display: none;}
+#access_page {
+	/*display: none;*/
+	position: fixed;
+	/*display: none;*/
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 255, 0.5);
+}
+
+.show_page {display: flex;}
+
+.floating_page {
+	width: 80%;
+	height: 80%;
+	z-index: 5;
+}
 
 #navigation_bar {
+	z-index: 1;
 	jusitfy-content: space-between;
 	-moz-justify-content: space-between;
 	-webkit-justify-content: space-between;

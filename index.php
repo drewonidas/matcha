@@ -6,7 +6,9 @@
         <link rel="stylesheet" href="css/md_style.css" media="screen">
         <link rel="stylesheet" href="css/style.css" media="screen">
         <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/modal.js"></script>
+<!--        <script type="text/javascript" src="js/modal.js"></script>-->
+        <script type="text/javascript" src="js/funcs.js"></script>
+        <script type="text/javascript" src="js/matcha.js"></script>
         <title>Matcha</title>
     </head>
     <body>
@@ -21,17 +23,17 @@
                 </div>
             </div>
         </header>
-        <?php require_once('includes/main.php'); ?>
+        <?php require_once('includes/userAccess.php'); ?>
         <?php require_once('includes/profile.php'); ?>
-        <sectionec id="main_content">
+        <section id="main_content">
             <!-- <h1>I am the main content</h1> -->
         </section>
         <footer>
             <h1>someone has to give them a kick every once in a while</h1>
         </footer>
         <!--
-        <script type="text/javascript" src="js/funcs.js"></script>
-        <script type="text/javascript" src="js/matcha.js"></script>
+
          -->
     </body>
 </html>
+/

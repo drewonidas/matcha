@@ -71,7 +71,7 @@ $(document).ready(function() {
             url: "php/register.php",
             data: user_info,
             dataType: "text",
-            success: function(response)
+            success: function(response) {
                 $("#response").html(response);
                 // console.log(response);
                 // if (response == 'TRUE') {

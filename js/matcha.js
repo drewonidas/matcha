@@ -15,3 +15,41 @@ $(function() {
     //render('');
 
 });
+
+function render(url) {
+    //var url = decodeURI(window.location);
+    var tmp = url.split('/')[1];
+    var res = '';
+
+    // $('#access_page').hide();
+    var appPages = {
+        // homepage
+        '': function() {
+            // $('#home').addClass('visible');
+            $('.floating_page').hide();
+        },
+        // renderSignupPage
+        'access': function() {
+            //var index = url.split('#sign-up/')[1];
+            $('#access_page').show();
+            // $('#access_page').show();
+        }/*,
+        'myprofile': function() {
+            //var index = url.split('#profile/')[1];
+            $('#profile').addClass('visible');
+        }*/
+    };
+    // console.log(appPages[tmp]);
+    if (appPages[tmp]) {
+        //res = isSignedIn();
+        res = 'FALSE';
+        if (res == 'FALSE') {
+            tmp = 'access';
+            window.location.hash = '/' + tmp;
+        }
+            console.log('jeeeeeeeeeez');
+        appPages[tmp]();
+    } /*else {
+        $('#error_page').addClass('visible');
+    }*/
+}

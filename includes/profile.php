@@ -12,11 +12,6 @@
         <div class="md_container left_section">
             <img src="imgs/app/user.svg" alt="#" id="profile_img" />
             <p>
-                <?php
-                if ($_SESSION) {
-                    echo $_SESSION['uname'];
-                }
-                ?>
             </p>
             <p> </p>
         </div>
