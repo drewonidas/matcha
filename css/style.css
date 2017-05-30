@@ -7,8 +7,8 @@ footer {min-height: 20%; background-color: black; bottom: 0;}
 footer h1 {color: white;}
 
 /*#access_page {display: none;}*/
-#profile_page {display: none;}
-#sign_in_form {display: none;}
+/*#profile_page {display: none;}*/
+/*#sign_in_form {display: none;}*/
 #access_page {
 	/*display: none;*/
 	position: fixed;

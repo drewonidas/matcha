@@ -7,7 +7,7 @@
 @Last modified time: Thursday, November 10, 2016 2:35 AM
 @License: maDezynIzM.E. 2016
 */
-    require('database.php');
+    require('../config/database.php');
 
     class Modal {
         private $_connection;
@@ -35,11 +35,18 @@
             $sql = '';
             switch ($data_set) {
                 case 'get_user':
-                    $sql = "SELECT * FROM users
-                            WHERE username = ?";
+                    $sql = 'SELECT id, username, email, first_name, last_name,
+                            gender, sexual_pref, bio, interests, location,
+                            last_in, rating, image_id
+                            FROM users
+                            WHERE username = ?
+                            AND password = ?';
                     break;
-                case 'get_all_user':
-                    $sql = 'SELECT * FROM users';
+                case 'get_all_users':
+                    $sql = 'SELECT username, first_name, last_name, gender,
+                            sexual_pref, bio, interests, location, last_in,
+                            rating, image_id
+                            FROM users';
                     break;
                 case 'get_comm':
                     $sql = 'SELECT * FROM comments
@@ -62,8 +69,8 @@
                             VALUES (?, ?, ?)';
                     break;
                 case 'new_user':
-                    $sql = 'INSERT INTO users (username, f_name, l_name, email, password, location)
-                            VALUES (:u, :f, :l, :e, :p, "g")';
+                    $sql = 'INSERT INTO users (username, email, password)
+                            VALUES (?, ?, ?)';
                     break;
                 case 'new_comm':
                     $sql = 'INSERT INTO comments (comm_text, type, user_id, img_id)
@@ -81,7 +88,13 @@
                     $sql = 'DELETE FROM comments
                             WHERE id = ?';
                     break;
-                case 'ch_pwd':
+                case 'edit_profile':
+                    $sql = 'UPDATE users
+                            SET username=?, email=? first_name=?, last_name=?,
+                            gender=?, sexual_pref=?, bio=?, interests=?,
+                            location=?, image_id=?
+                            WHERE id';
+                case 'edit_password':
                     $sql = 'UPDATE users SET password = ?
                             WHERE id = ?';
                     break;

@@ -10,27 +10,33 @@
 
 // click events
 $(document).ready(function() {
-    // $("#sign_up_form").hide();
-    // $("#sign_up_btn").click(function() {
-    //     $("#sign_up_form").show();
-    //     $("#sign_in_form").hide();
-    // });
-    // $("#sign_in_btn").click(function() {
-    //     $("#sign_in_form").show();
-    //     $("#sign_up_form").hide();
-    // });
-    // $("#profile_btn").click(function() {
-    //    $("#profile").toggle();
+    $("#access_page").hide();
+    $("#profile_page").hide();
+    $("#sign_up_form").hide();
+    $("#sign_up_btn").click(function() {
+        $("#sign_up_form").show();
+        $("#sign_in_form").hide();
+    });
+    $("#sign_in_btn").click(function() {
+        $("#sign_in_form").show();
+        $("#sign_up_form").hide();
+    });
+    // console.log("fuuuuuck!!!!");
+    var data = null;
+    $("#profile_btn").click(function() {
+      var status = sendRequest("reqType=status");
+      console.log(data);
+      if (data === 0) {
+        $("#access_page").toggle();
+      }
+      else {
+        $("#profile_page").toggle();
+      }
+      //  console.log("biiiiiiitch!!!!");
+    });
+    // $("#access_page").show();
     $("#sign_out_btn").click(function() {
-        $.ajax({
-            type: "POST",
-            url: "php/logout.php",
-            data: "",
-            dataType: "text",
-            success: function(user_data) {
-                render('#sign-up');
-            }
-        });
+        console.log(sendRequest("reqType=logout"));
     });
     /*
         user login
@@ -39,18 +45,8 @@ $(document).ready(function() {
         var name = $("#uname").val();
         var pwd = $("#password").val();
         //var data = $(this).serialize();
-        //console.log("blck");
-        $.get("php/login.php",
-            "uname=" + name + "&upwd=" + pwd,
-            function(result) {
-                console.log(result);
-                if (result[0] != 'FALSE') {
-                    render('');
-                    //console.log(result);
-                } else {
-                    console.log("jj");
-                }
-            });
+        var args = "reqType=login" + "&username=" + name + "&pwd=" + pwd;
+        console.log(sendRequest(args));
     });
     /*
         user registration
@@ -62,27 +58,18 @@ $(document).ready(function() {
         var email = $("#email").val();
         var pwd1 = $("#password1").val();
         var pwd2 = $("#password2").val();
-        var user_info = "uname=" + uname + "&fname=" + fname +
+        var args = "reqType=register" + "&username=" + uname + "&fname=" + fname +
                      "&lname=" + lname + "&email=" + email +
                       "&pwd=" + pwd1;
         //var data = $(this).serialize();
-        $.ajax({
-            type: "POST",
-            url: "php/register.php",
-            data: user_info,
-            dataType: "text",
-            success: function(response) {
-                $("#response").html(response);
-                // console.log(response);
-                // if (response == 'TRUE') {
-                //
-                //     // $("#sign_in").fadeIn(1000);
-                //     // $("#sign_up").fadeOut(1000);
-                // } else {
-                //   console.log("jj");
-                //   $("#response").html("wrong data name");
-                // }
-            }
-        });
+        console.log(sendRequest(args));
     });
+
+    function sendRequest(args) {
+      $.post("php/RequestServiceController.php", args,
+        function(response) {
+            data = JSON.parse(response);
+            //return response;
+        }, "json");
+    }
 });

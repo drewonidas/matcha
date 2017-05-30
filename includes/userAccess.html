@@ -25,14 +25,14 @@
             <input type="button" name="submit_login" id="submit_login" value="Sign-in">
         </div>
         <div class="md_options md_container">
-            <a>uhm...I dont have an account!</a>
+            <a id="sign_up_btn">uhm...I dont have an account!</a>
             <a>haha..I forgot my password!</a>
         </div>
     </form>
         <!--
 			registration form
 		-->
-    <form class="md_card floating_page" method="post" id="sign_up_form">
+    <form class="md_card" method="POST" id="sign_up_form">
         <h1 class="card_title">Register</h1>
         <div class="md_input_wrapper">
             <p>Username:</p>
@@ -42,7 +42,7 @@
             <p>First name:</p>
             <input type="text" name="fname" id="fname" required>
         </div>
-  <div class="md_input_wrapper">
+        <div class="md_input_wrapper">
             <p>Last name:</p>
             <input type="text" name="lname" id="lname" required>
         </div>
@@ -62,7 +62,7 @@
             <input type="button" name="submit_reg" id="submit_reg" value="Sign-up">
         </div>
         <div class="md_options md_container">
-            <a>uhm...I have an account!</a>
+            <a id="sign_in_btn">uhm...I have an account!</a>
         </div>
     </form>
     <p id="response">blah blah blah</p>

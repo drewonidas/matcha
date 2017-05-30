@@ -85,7 +85,7 @@
             $conn->exec($sql);
             echo 'Table notifications created<br/>' . PHP_EOL;
             echo 'Matcha database created successfully<br/>' . PHP_EOL;
-            echo '<a href="/web/matcha/index.php">Run app</a>';
+            echo '<a href="/web/matcha/index.html">Run app</a>';
             $conn = null;
         }
         catch(PDOException $e) {
