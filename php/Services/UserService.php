@@ -2,13 +2,6 @@
 
 require("classes/Modal.class.php");
 
-//getUser('Drew', 'password');
-// addNewUser("Drew", "dlaminiandrew@gmail.com", "password");
-// addNewUser("John", "john@gmail.com", "password");
-// addNewUser("Funk", "funk@gmail.com", "password");
-// addNewUser("Mary", "Mary@gmail.com", "password");
-// addNewUser("Jenny", "jenny@gmail.com", "password");
-
 function getUser($username, $password) {
   $modal = new Modal();
   $args = array($username, $password);
@@ -22,8 +15,7 @@ function getAllUsers() {
   $modal = new Modal();
   $sql = Modal::generate_sql('get_all_users');
   $data = $modal->get_db_data($sql, null);
-  $users = json_encode($data);
-  print_r($users);
+  return ($data);
 }
 
 function addNewUser($username, $email, $password) {

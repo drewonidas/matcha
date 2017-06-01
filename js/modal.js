@@ -10,9 +10,38 @@
 
 // click events
 $(document).ready(function() {
-    $("#access_page").hide();
     $("#profile_page").hide();
     $("#sign_up_form").hide();
+    sendRequest("status", "");
+
+    function sendRequest(reqType, args) {
+      $.post("php/RequestServiceController.php",
+        "reqType=" + reqType + "&args=" + args,
+        function(response) {
+            switch (reqType) {
+              case "login":
+                var profiles = JSON.parse(response);
+                console.log(profiles);
+                if (profiles.length > 0)
+                  response = "ok";
+                else {
+                  $("#response").text("Incorrect details. Please try again");
+                }
+              case "status":
+                if (response == "ok") {
+                  $("#access_page").hide();
+                } else {
+                  $("#access_page").show();
+                }
+                break;
+              case "logout":
+                $("#access_page").show();
+                break;
+              default:
+                break;
+            }
+        });
+    }
     $("#sign_up_btn").click(function() {
         $("#sign_up_form").show();
         $("#sign_in_form").hide();
@@ -22,21 +51,11 @@ $(document).ready(function() {
         $("#sign_up_form").hide();
     });
     // console.log("fuuuuuck!!!!");
-    var data = null;
     $("#profile_btn").click(function() {
-      var status = sendRequest("reqType=status");
-      console.log(data);
-      if (data === 0) {
-        $("#access_page").toggle();
-      }
-      else {
         $("#profile_page").toggle();
-      }
-      //  console.log("biiiiiiitch!!!!");
     });
-    // $("#access_page").show();
     $("#sign_out_btn").click(function() {
-        console.log(sendRequest("reqType=logout"));
+        sendRequest("logout", "");
     });
     /*
         user login
@@ -45,8 +64,9 @@ $(document).ready(function() {
         var name = $("#uname").val();
         var pwd = $("#password").val();
         //var data = $(this).serialize();
-        var args = "reqType=login" + "&username=" + name + "&pwd=" + pwd;
-        console.log(sendRequest(args));
+        var args = {"username" : name, "pwd" : pwd};
+        sendRequest("login", JSON.stringify(args));
+        //console.log(response);
     });
     /*
         user registration
@@ -58,18 +78,9 @@ $(document).ready(function() {
         var email = $("#email").val();
         var pwd1 = $("#password1").val();
         var pwd2 = $("#password2").val();
-        var args = "reqType=register" + "&username=" + uname + "&fname=" + fname +
-                     "&lname=" + lname + "&email=" + email +
-                      "&pwd=" + pwd1;
+        var args = {"username" : uname, "fname" : fname, "lname" : lname,
+                    "email" : email, "pwd" : pwd1};
         //var data = $(this).serialize();
-        console.log(sendRequest(args));
+        sendRequest("register", JSON.stringify(args));
     });
-
-    function sendRequest(args) {
-      $.post("php/RequestServiceController.php", args,
-        function(response) {
-            data = JSON.parse(response);
-            //return response;
-        }, "json");
-    }
 });

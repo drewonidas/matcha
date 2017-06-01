@@ -9,14 +9,20 @@
     require('Services/UserService.php');
     session_start();
 
+    //print_r($_POST);
+    $args = json_decode($_POST['args'], true);
     switch ($_POST['reqType']) {
       case 'login':
-        $username = $_POST['username'];
-        $password = $_POST['pwd'];
+        $username = $args['username'];
+        $password = $args['pwd'];
         $userData = getUser($username, $password);
-        if ($userData[0]['username'])
+        $profiles = "";
+      //print_r($userData);
+        if (count($userData) > 0) {
           $_SESSION['id'] = $userData[0]['id'];
-        echo json_encode($userData);
+          $profiles = getAllUsers();
+        }
+        echo json_encode($profiles);
         break;
       case 'register':
         $username = $_POST['username'];
@@ -27,9 +33,9 @@
         break;
       case 'status':
         if ($_SESSION && array_key_exists('id', $_SESSION))
-          echo json_encode('1');
+          echo 'ok';
         else
-          echo json_encode('0');
+          echo 'nope';
         break;
       case 'logout':
           session_destroy();
