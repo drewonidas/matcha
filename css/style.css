@@ -1,14 +1,11 @@
-html, body {height: 100%; width: 100%;}
+html, body {height: 100%; width: 100%; max-height: 100%;}
 * {margin: auto;}
 header, #main_content, footer {width: 100%;}
 header {min-height: 10%; background-color: rgba(0,0,0,0.1); top: 0;}
-#main_content {min-height: 70%; background-color: white;}
+#main_content {min-height: 70%; max-height: 70%; background-color: white;}
 footer {min-height: 20%; background-color: black; bottom: 0;}
 footer h1 {color: white;}
 
-/*#access_page {display: none;}*/
-/*#profile_page {display: none;}*/
-/*#sign_in_form {display: none;}*/
 #access_page {
 	/*display: none;*/
 	position: fixed;
@@ -18,7 +15,24 @@ footer h1 {color: white;}
 	background-color: rgba(0, 0, 255, 0.5);
 }
 
-.show_page {display: flex;}
+#browser_page {
+	height: 100%;
+	max-height: 100%;
+	width: 100%;
+	overflow-y: auto;
+}
+
+#profiles {
+	height: 80%;
+	/*max-height: 80%;*/
+	width: 100%;
+}
+
+#profiles div {
+	width: 400px;
+	height: 400px;
+	background-color: red;
+}
 
 .floating_page {
 	width: 80%;
@@ -33,11 +47,20 @@ footer h1 {color: white;}
 	-webkit-justify-content: space-between;
 }
 
-.flex_container {
+.flex_container, .flex_col_container {
 	display: flex;
 	display: -moz-flex;
 	display: -webkit-flex;
 	flex-wrap: wrap;
 	-moz-flex-wrap: wrap;
 	-webkit-flex-wrap: wrap;
+}
+
+.flex_col_container {
+	flex-direction: column;
+}
+
+/* modal dialog with background cover */
+.modal_container {
+	background-color: rgba(0, 0, 0, 0.5);
 }

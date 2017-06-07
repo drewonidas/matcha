@@ -13,20 +13,25 @@
     </head>
     <body>
         <header>
-            <div id="navigation_bar" class="flex_container">
-                <div id="left_side">
-                    <a href="#">Match me</a>
-                </div>
-                <div id="right_side">
-                    <button type="button" name="button">search</button>
-                    <button type="button" name="button" id="profile_btn">profile</button>
-                </div>
+          <div id="navigation_bar" class="flex_container">
+            <div id="left_side">
+                <a href="#">Match me</a>
             </div>
+            <div id="right_side">
+                <button type="button" name="button">search</button>
+                <button type="button" name="button" id="profile_btn">profile</button>
+            </div>
+          </div>
         </header>
-        <?php require('includes/userAccess.html');
-              require('includes/profile.html'); ?>
-        <section id="main_content">
-            <!-- <h1>I am the main content</h1> -->
+        <section id="main_content" class="flex_container">
+          <?php require('includes/userAccess.html');
+          require('includes/profile.html'); ?>
+            <div id="browser_page" class="flex_col_container">
+              <h2>Matches near you</h2>
+              <div id="profiles" class="flex_container">
+
+              </div>
+            </div>
         </section>
         <footer>
             <h1>someone has to give them a kick every once in a while</h1>

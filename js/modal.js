@@ -20,18 +20,41 @@ $(document).ready(function() {
         function(response) {
             switch (reqType) {
               case "login":
-                var profiles = JSON.parse(response);
-                console.log(profiles);
-                if (profiles.length > 0)
-                  response = "ok";
-                else {
-                  $("#response").text("Incorrect details. Please try again");
-                }
               case "status":
-                if (response == "ok") {
-                  $("#access_page").hide();
-                } else {
+                var profiles = JSON.parse(response);
+                if (profiles == "error") {
+                  $("#response").text("Incorrect details. Please try again");
                   $("#access_page").show();
+                } else {
+                  $("#access_page").hide();
+                  var currUser = profiles.pop();
+                  var username = $("<h1></h1>").text(currUser.username);
+                  var rating = $("<p></p>").text("Rating: " + currUser.rating);
+                  var lastIn = $("<p></p>").text("Last in: " + currUser.last_in);
+                  var fname = $("<p></p>").text("First names: " + currUser.first_name);
+                  var lname = $("<p></p>").text("Last name: " + currUser.last_name);
+                  var gender = $("<p></p>").text("Sex: " + currUser.gender);
+                  var sexPref = $("<p></p>").text("I Like: " + currUser.sexual_pref);
+                  var bio = $("<p></p>").text("About me: " + currUser.bio);
+                  $("#stats").append(username, rating, lastIn);
+                  $("#user_info").append(fname, lname, gender, sexPref, bio);
+
+                  var miniProfileElem;
+                  var userDataElem;
+                  var tmp;
+                    for (var i = 0; i < profiles.length; i++) {
+                      miniProfileElem = $("<div></div>");
+                      miniProfileElem.addClass("flex_col_container");
+                      $("#profiles").append(miniProfileElem);
+                         console.log(profiles[i]);
+                         tmp = null;
+                      for (tmp in profiles[i]) {
+                    //    break;
+                        userDataElem = $("<p></p>");
+                        userDataElem.text(tmp + ": " + profiles[i][tmp]);
+                        miniProfileElem.append(userDataElem);
+                      }
+                    }
                 }
                 break;
               case "logout":
@@ -50,9 +73,9 @@ $(document).ready(function() {
         $("#sign_in_form").show();
         $("#sign_up_form").hide();
     });
-    // console.log("fuuuuuck!!!!");
     $("#profile_btn").click(function() {
         $("#profile_page").toggle();
+        $("#browser_page").toggle();
     });
     $("#sign_out_btn").click(function() {
         sendRequest("logout", "");

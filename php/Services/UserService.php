@@ -1,28 +1,27 @@
 <?php
 
 require("classes/Modal.class.php");
+$modal = new Modal();
 
 function getUser($username, $password) {
-  $modal = new Modal();
   $args = array($username, $password);
   $sql = Modal::generate_sql('get_user');
-  $data = $modal->get_db_data($sql, $args);
+  $data = $GLOBALS['modal']->get_db_data($sql, $args);
   return $data;
-  //print_r($users);
 }
 
-function getAllUsers() {
-  $modal = new Modal();
+function getAllUsers($user) {
   $sql = Modal::generate_sql('get_all_users');
-  $data = $modal->get_db_data($sql, null);
+  $args = array($user);
+  $data = $GLOBALS['modal']->get_db_data($sql, $args);
   return ($data);
 }
 
 function addNewUser($username, $email, $password) {
-  $modal = new Modal();
-  $data = array($username, $email, $password);
+  $args = array($username, $email, $password);
   $sql = Modal::generate_sql('new_user');
-  print_r($modal->change_db_data($sql, $data));
+  $data = $GLOBALS['modal']->change_db_data($sql, $args);
+  return ($data);
 }
 
 // function changeDetails($userid) {

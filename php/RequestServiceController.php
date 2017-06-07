@@ -16,12 +16,14 @@
         $username = $args['username'];
         $password = $args['pwd'];
         $userData = getUser($username, $password);
-        $profiles = "";
-      //print_r($userData);
+        $profiles = "error";
+
         if (count($userData) > 0) {
-          $_SESSION['id'] = $userData[0]['id'];
-          $profiles = getAllUsers();
+          $_SESSION['currUser'] = json_encode($userData);
+          $profiles = getAllUsers($username);
+          $profiles[count($profiles)] = $userData[0];
         }
+        //echo json_encode($userData);
         echo json_encode($profiles);
         break;
       case 'register':
@@ -32,10 +34,10 @@
         echo json_encode($response);
         break;
       case 'status':
-        if ($_SESSION && array_key_exists('id', $_SESSION))
-          echo 'ok';
+        if ($_SESSION && array_key_exists('currUser', $_SESSION))
+          echo $_SESSION['currUser'];
         else
-          echo 'nope';
+          echo json_encode('error');
         break;
       case 'logout':
           session_destroy();
