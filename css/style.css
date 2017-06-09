@@ -1,19 +1,45 @@
 html, body {height: 100%; width: 100%; max-height: 100%;}
+body {background-color: red;}
 * {margin: auto;}
 header, #main_content, footer {width: 100%;}
-header {min-height: 10%; background-color: rgba(0,0,0,0.1); top: 0;}
-#main_content {min-height: 70%; max-height: 70%; background-color: white;}
-footer {min-height: 20%; background-color: black; bottom: 0;}
+header {min-height: 10%; background-color: rgba(0,0,0,0.5); top: 0;}
+#main_content {
+	min-height: 70%;
+	max-height: 70%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+footer {
+	position: fixed;
+	min-height: 20%;
+	background-color: rgba(0,0,0,0.8);
+	bottom: 0;
+}
+
 footer h1 {color: white;}
 
+/* general styles */
+.left_side {
+	flex: 2;
+	background-color: rgba(0, 255, 0, 0.5);
+}
+
+.right_side {
+	flex: 1;
+	background-color: rgba(0, 255, 0, 0.5);
+}
+
+/* access page */
 #access_page {
 	/*display: none;*/
 	position: fixed;
 	/*display: none;*/
 	height: 100%;
 	width: 100%;
-	background-color: rgba(0, 0, 255, 0.5);
+	background-color: rgba(255, 150, 0, 1);
 }
+
+#access_page form {background-color: rgba(0, 0, 0, 0.5);}
 
 #browser_page {
 	height: 100%;
@@ -58,6 +84,10 @@ footer h1 {color: white;}
 
 .flex_col_container {
 	flex-direction: column;
+}
+
+.col {
+
 }
 
 /* modal dialog with background cover */
