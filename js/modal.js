@@ -12,59 +12,11 @@
 $(document).ready(function() {
     $("#profile_page").hide();
     $("#sign_up_form").hide();
-    sendRequest("status", "");
+    // $("#app_interface").hide();
+    location.hash = "/" + "";
+    //console.log(location.hash);
+//    sendRequest("status", "");
 
-    function sendRequest(reqType, args) {
-      $.post("php/RequestServiceController.php",
-        "reqType=" + reqType + "&args=" + args,
-        function(response) {
-            switch (reqType) {
-              case "login":
-              case "status":
-                var profiles = JSON.parse(response);
-                if (profiles == "error") {
-                  $("#response").text("Incorrect details. Please try again");
-                  $("#access_page").show();
-                } else {
-                  $("#access_page").hide();
-                  var currUser = profiles.pop();
-                  var username = $("<h1></h1>").text(currUser.username);
-                  var rating = $("<p></p>").text("Rating: " + currUser.rating);
-                  var lastIn = $("<p></p>").text("Last in: " + currUser.last_in);
-                  var fname = $("<p></p>").text("First names: " + currUser.first_name);
-                  var lname = $("<p></p>").text("Last name: " + currUser.last_name);
-                  var gender = $("<p></p>").text("Sex: " + currUser.gender);
-                  var sexPref = $("<p></p>").text("I Like: " + currUser.sexual_pref);
-                  var bio = $("<p></p>").text("About me: " + currUser.bio);
-                  $("#stats").append(username, rating, lastIn);
-                  $("#user_info").append(fname, lname, gender, sexPref, bio);
-
-                  var miniProfileElem;
-                  var userDataElem;
-                  var tmp;
-                    for (var i = 0; i < profiles.length; i++) {
-                      miniProfileElem = $("<div></div>");
-                      miniProfileElem.addClass("flex_col_container");
-                      $("#profiles").append(miniProfileElem);
-                         console.log(profiles[i]);
-                         tmp = null;
-                      for (tmp in profiles[i]) {
-                    //    break;
-                        userDataElem = $("<p></p>");
-                        userDataElem.text(tmp + ": " + profiles[i][tmp]);
-                        miniProfileElem.append(userDataElem);
-                      }
-                    }
-                }
-                break;
-              case "logout":
-                $("#access_page").show();
-                break;
-              default:
-                break;
-            }
-        });
-    }
     $("#sign_up_btn").click(function() {
         $("#sign_up_form").show();
         $("#sign_in_form").hide();
@@ -78,7 +30,7 @@ $(document).ready(function() {
         $("#browser_page").toggle();
     });
     $("#sign_out_btn").click(function() {
-        sendRequest("logout", "");
+        sendRequest("/", "logout", "");
     });
     /*
         user login
@@ -88,8 +40,7 @@ $(document).ready(function() {
         var pwd = $("#password").val();
         //var data = $(this).serialize();
         var args = {"username" : name, "pwd" : pwd};
-        sendRequest("login", JSON.stringify(args));
-        //console.log(response);
+        sendRequest("/", "login", JSON.stringify(args));
     });
     /*
         user registration
@@ -104,6 +55,6 @@ $(document).ready(function() {
         var args = {"username" : uname, "fname" : fname, "lname" : lname,
                     "email" : email, "pwd" : pwd1};
         //var data = $(this).serialize();
-        sendRequest("register", JSON.stringify(args));
+        // sendRequest("", "register", JSON.stringify(args));
     });
 });

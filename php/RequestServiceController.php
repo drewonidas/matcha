@@ -9,40 +9,33 @@
     require('Services/UserService.php');
     session_start();
 
-    //print_r($_POST);
     $args = json_decode($_POST['args'], true);
+    $response = json_encode("notFound");
     switch ($_POST['reqType']) {
       case 'login':
         $username = $args['username'];
         $password = $args['pwd'];
         $userData = getUser($username, $password);
-        $profiles = "error";
 
         if (count($userData) > 0) {
-          $_SESSION['currUser'] = json_encode($userData);
-          $profiles = getAllUsers($username);
-          $profiles[count($profiles)] = $userData[0];
+          $response = json_encode($userData);
+          $_SESSION['currUser'] = $response;
         }
-        //echo json_encode($userData);
-        echo json_encode($profiles);
         break;
       case 'register':
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['pwd'];
-        $response = addNewUser($username, $email, $password);
-        echo json_encode($response);
+        $response = json_encode(addNewUser($username, $email, $password));
         break;
       case 'status':
         if ($_SESSION && array_key_exists('currUser', $_SESSION))
-          echo $_SESSION['currUser'];
-        else
-          echo json_encode('error');
+          $response = $_SESSION['currUser'];
         break;
       case 'logout':
           session_destroy();
-          echo json_encode('1');
         break;
       default:
         break;
     }
+    echo $response;

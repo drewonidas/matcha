@@ -8,48 +8,59 @@
 */
 
 $(function() {
-    $(window).on('hashchange', function(){
-        render(decodeURI(window.location.hash));
-    });
-    // decides on page to be shown
-    //render('');
+    var home = $("#app_interface");
+    var loader = $("#loader_container");
+    var access = $("#app_access");
+    var tmpUrl = "";
 
+    tmpUrl = location.hash;
+    $(window).on('hashchange', function() {
+        sendRequest(tmpUrl, "status", "");
+    });
+    // console.log(tmpUrl);
+    //sendRequest(tmpUrl, "status", "");
+    //render('');
 });
 
-function render(url) {
-    //var url = decodeURI(window.location);
-    var tmp = url.split('/')[1];
-    var res = '';
-
-    // $('#access_page').hide();
+function render(newUrl, response) {
+    var pageUrl = newUrl.split('/')[1];
+    //console.log(newUrl);
+    var home = $("#app_interface");
+    var loader = $("#loader_container");
+    var access = $("#app_access");
+    // console.log(tmp);
     var appPages = {
-        // homepage
         '': function() {
-            // $('#home').addClass('visible');
-            $('.floating_page').hide();
-        },
-        // renderSignupPage
+            home.css("display", "block");
+            // location.hash = pageUrl;
+            },
         'access': function() {
-            //var index = url.split('#sign-up/')[1];
-            $('#access_page').show();
-            // $('#access_page').show();
-        }/*,
-        'myprofile': function() {
-            //var index = url.split('#profile/')[1];
-            $('#profile').addClass('visible');
-        }*/
-    };
-    // console.log(appPages[tmp]);
-    if (appPages[tmp]) {
-        //res = isSignedIn();
-        res = 'FALSE';
-        if (res == 'FALSE') {
-            tmp = 'access';
-            window.location.hash = '/' + tmp;
+            access.css("display", "flex");
+            // location.hash = pageUrl;
         }
-            console.log('jeeeeeeeeeez');
-        appPages[tmp]();
-    } /*else {
-        $('#error_page').addClass('visible');
-    }*/
+    };
+    if (appPages[pageUrl]) {
+        if (response === 'notFound') {
+            pageUrl = 'access';
+            location.hash = '/' + pageUrl;
+        }
+        appPages[pageUrl]();
+        loader.css("display", "none");
+    } else {
+        alert("Error 404: Page not found!");
+    }
+}
+
+function sendRequest(url, reqType, args) {
+    $("#loader_container").css("display", "block");
+    $("#app_interface").css("display", "none");
+    $("#app_access").css("display", "none");
+
+    $.post("php/RequestServiceController.php",
+        "reqType=" + reqType + "&args=" + args,
+        function (data) {
+            var response = JSON.parse(data);
+            // console.log(response);
+            render(url, response);
+        });
 }
