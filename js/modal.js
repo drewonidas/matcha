@@ -12,10 +12,9 @@
 $(document).ready(function() {
     $("#profile_page").hide();
     $("#sign_up_form").hide();
-    // $("#app_interface").hide();
-    location.hash = "/" + "";
-    //console.log(location.hash);
-//    sendRequest("status", "");
+    $("#app_ui").css("display", "block");
+    $("#app_access").css("display", "none");
+    $("#app_loader_cont").css("display", "none");
 
     $("#sign_up_btn").click(function() {
         $("#sign_up_form").show();
@@ -30,7 +29,7 @@ $(document).ready(function() {
         $("#browser_page").toggle();
     });
     $("#sign_out_btn").click(function() {
-        sendRequest("/", "logout", "");
+        // renderPage("/access", "logout", "");
     });
     /*
         user login
@@ -40,7 +39,7 @@ $(document).ready(function() {
         var pwd = $("#password").val();
         //var data = $(this).serialize();
         var args = {"username" : name, "pwd" : pwd};
-        sendRequest("/", "login", JSON.stringify(args));
+        // sendRequest("/", "login", JSON.stringify(args));
     });
     /*
         user registration

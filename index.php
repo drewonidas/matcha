@@ -12,21 +12,20 @@
     <title>Matcha</title>
   </head>
   <body>
-      <div class="flex_container" id="loader_container">
+      <div class="flex_container" id="app_loader_cont">
         <div id="loader"></div>
       </div>
       <?php require('includes/userAccess.html'); ?>
-      <div id="app_interface">
-        <header>
-            <nav id="navigation_bar" class="flex_container">
-              <div>
-                <p>Match me</p>
+      <div id="app_ui">
+        <header class="flex_container">
+            <div class="flex_container" id="logo">
+                <img src="imgs/app/bg.png" id="logo_img">
+                <h1 id="logo_text"> ATCHA</h1>
             </div>
-              <div>
-                <button type="button" name="button">search</button>
-                <button type="button" name="button" id="profile_btn">profile</button>
+            <div class="flex_container" id="nav_container">
+                <a id="search_btn" class="nav_btn">search</a>
+                <a id="profile_btn" class="nav_btn">profile</a>
             </div>
-            </nav>
         </header>
         <section id="main_content" class="flex_container">
           <?php require('includes/profile.html'); ?>
@@ -38,10 +37,8 @@
             </div>
         </section>
         <footer>
-          <div>
             <p>The Matcha Project</p>
             <p>maDezynIzM_E_ 2017</p>
-          </div>
         </footer>
       </div>
   </body>

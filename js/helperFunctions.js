@@ -45,10 +45,10 @@ function tmp(response) {
             /!*var profiles = JSON.parse(response);
              if (profiles == "error") {
              $("#app_access").show();
-             $("#app_interface").hide();
+             $("#app_ui").hide();
              } else {
              $("#app_access").hide();
-             $("#app_interface").show();
+             $("#app_ui").show();
              var currUser = profiles.pop();
              var username = $("<h1></h1>").text(currUser.username);
              var rating = $("<p></p>").text("Rating: " + currUser.rating);
@@ -65,7 +65,7 @@ function tmp(response) {
             break;
         case "logout":
             $("#app_access").show();
-            $("#app_interface").hide();
+            $("#app_ui").hide();
             break;
         default:
             break;
