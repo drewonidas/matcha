@@ -7,8 +7,8 @@
 * @License: maDezynIzM.E. 2016
 */
 
-/*
-function isSignedIn() {
+
+/*function isSignedIn() {
     var tmp = '';
 
     $.get("php/check.php",
@@ -22,9 +22,9 @@ function isSignedIn() {
 function sendRequest(reqType, args) {
     $.post("php/RequestServiceController.php",
         "reqType=" + reqType + "&args=" + args, tmp);
-}
+}*/
 // );
-function tmp(response) {
+/*function tmp(response) {
     var userData = JSON.parse(response);
     console.log(userData);
     switch (dummy) {
@@ -70,9 +70,9 @@ function tmp(response) {
         default:
             break;
     }
-}
+}*/
 
-function createProfiles(profiles) {
+/*function createProfiles(profiles) {
     var miniProfileElem;
     var userDataElem;
     var infoContainer;
@@ -96,6 +96,4 @@ function createProfiles(profiles) {
          }*!/
         miniProfileElem.append(infoContainer);
     }
-}
-
-*/
+}*/

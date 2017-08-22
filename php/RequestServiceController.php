@@ -12,30 +12,35 @@
     $args = json_decode($_POST['args'], true);
     $response = json_encode("notFound");
     switch ($_POST['reqType']) {
-      case 'login':
-        $username = $args['username'];
-        $password = $args['pwd'];
-        $userData = getUser($username, $password);
+        case 'login':
+            $username = $args['username'];
+            $password = $args['password'];
+            $userData = getUser($username, $password);
 
-        if (count($userData) > 0) {
-          $response = json_encode($userData);
-          $_SESSION['currUser'] = $response;
-        }
-        break;
-      case 'register':
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['pwd'];
-        $response = json_encode(addNewUser($username, $email, $password));
-        break;
-      case 'status':
-        if ($_SESSION && array_key_exists('currUser', $_SESSION))
-          $response = $_SESSION['currUser'];
-        break;
-      case 'logout':
+            if (count($userData) > 0) {
+              $response = json_encode($userData);
+              $_SESSION['currUser'] = $response;
+            }
+            break;
+        case 'register':
+            $username = $args['username'];
+            $email = $args['email'];
+            $password = $args['password'];
+            $response = json_encode(addNewUser($username, $email, $password));
+            break;
+        case 'status':
+            if ($_SESSION && array_key_exists('currUser', $_SESSION))
+              $response = $_SESSION['currUser'];
+            break;
+        case 'logout':
           session_destroy();
         break;
-      default:
-        break;
+        case 'profiles':
+            $user = $args['user'];
+            $userData = getAllUsers($user);
+            $response = json_encode($userData);
+            break;
+        default:
+            break;
     }
     echo $response;

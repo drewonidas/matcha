@@ -46,8 +46,7 @@ class Modal {
                 $sql = 'SELECT username, first_name, last_name, gender,
                         sexual_pref, bio, interests, location, last_in,
                         rating, image_id
-                        FROM users
-                        WHERE username != ?';
+                        FROM users';
                 break;
             case 'get_comm':
                 $sql = 'SELECT * FROM comments
@@ -132,6 +131,7 @@ class Modal {
             $tmp->execute();
             $tmp->setFetchMode(PDO::FETCH_ASSOC);
             $resultData = $tmp->fetchAll();
+            $tmp->closeCursor();
             return ($resultData);
         } catch(PDOException $e) {
             echo 'Error: ' . $e->getMessage();

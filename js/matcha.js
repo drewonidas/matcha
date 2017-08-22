@@ -7,13 +7,13 @@
 * @License: maDezynIzM.E. 2016
 */
 
-$(function() {
-    var tmpUrl = location.hash;
-    $(window).on('hashchange', function() {
-        // sendRequest(tmpUrl, "status", "");
-        //render();
-    });
-});
+/*$(function() {
+    // var tmpUrl = location.hash;
+    // sendRequest(tmpUrl, "status", "");
+    //render();
+    /!*$(window).on('hashchange', function() {
+    });*!/
+});*/
 
 var home = $("#app_ui");
 var loader = $("#app_loader_cont");
