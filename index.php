@@ -38,7 +38,7 @@
                 <h2 style="color: white">Matches near you</h2>
                 <br>
                 <div id="profiles" class="flex_container mini_profiles_view">
-                    <div class="flex_col_container padding_16 card mini_profile">
+                    <div class="flex_col_container card mini_profile">
                         <img src="imgs/app/avt.svg" alt="#" id="profile_img" />
                         <div class="flex_col_container">
                             <h3 class="profile_username"> sweet-cheeks </h3>
@@ -56,7 +56,21 @@
                 </div>
             </div>
                 <div class="modal">
-                    <img src="imgs/app/avt.svg" class="card center">
+                    <div class="card center flex_container">
+                        <div class="card flex_container half_width padding_8 margin_4">
+                            <img src="imgs/app/avt.svg" class="half_width">
+                            <div class="half_width">
+                                <h3 class="center" > Kennedy </h3>
+                            </div>
+                        </div>
+                        <div class="card flex_col_container half_width padding_8 margin_4">
+                            <p>First-name: <span> Kenneth </span></p>
+                            <p>Last-name: <span> Dean </span></p>
+                            <p>Sex: <span> Male </span></p>
+                            <p>I like: <span> Women </span></p>
+                            <p>About me: <span> Even 'blah blah' can lead to great things :) </span></p>
+                        </div>
+                    </div>
                 </div>
             </section>
             <footer>

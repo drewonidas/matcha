@@ -50,6 +50,7 @@ $(document).ready(function() {
                     cardClone = profileCard.clone(true);
                     /**> FIND AND FILL FILE INFO ELEMENTS */
                     cardClone.find('h3.profile_username').text(data[c].username);
+                    cardClone.attr("id", c);
                     /**> ADD TO PAGE */
                     contentCont.append(cardClone);
                     // cardClone.show();
