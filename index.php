@@ -4,12 +4,14 @@
     <head>
         <meta charset="utf-8">
         <!--    <link rel="stylesheet" href="css/md_style.css" media="screen">-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href='https://fonts.googleapis.com/css?family=Allura' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Astloch' rel='stylesheet'>
         <link rel="stylesheet" href="css/style.css" media="screen">
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/modal.js"></script>
         <!--     <script type="text/javascript" src="js/helperFunctions.js"></script>-->
-         <script type="text/javascript" src="js/matcha.js"></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script type="text/javascript" src="js/matcha.js"></script>
         <title>Matcha</title>
     </head>
     <body>
@@ -39,16 +41,17 @@
                 <br>
                 <div id="profiles" class="flex_container mini_profiles_view">
                     <div class="flex_col_container card mini_profile">
-                        <img src="imgs/app/avt.svg" alt="#" id="profile_img" />
-                        <div class="flex_col_container">
-                            <h3 class="profile_username"> sweet-cheeks </h3>
-                            <br>
-                            <p>Likes: <span class="profile_likes"> 19 </span></p>
-                            <p>Matches: <span class="profile_matches"> 9 </span></p>
-                            <p>Rating: <span class="profile_rating"> 7/10 </span></p>
+                        <div class="flex_container margin_8">
+                            <img src="imgs/app/avt.svg" alt="#" id="profile_img" />
+                            <div class="flex_col_container padding_16">
+                                <h3 class="profile_username"> sweet-cheeks </h3>
+                                <br>
+                                <p>Likes: <span class="profile_likes"> 19 </span></p>
+                                <p>Matches: <span class="profile_matches"> 9 </span></p>
+                                <p>Rating: <span class="profile_rating"> 7/10 </span></p>
+                            </div>
                         </div>
-                        <br>
-                        <div class="flex_container card_actions">
+                        <div class="flex_container card_actions margin_4">
                             <button class="theme_button"><i class="material-icons">favorite</button>
                             <button class="theme_button profile_info"><i class="material-icons">info</button>
                         </div>
@@ -56,19 +59,18 @@
                 </div>
             </div>
                 <div class="modal">
-                    <div class="card center flex_container">
-                        <div class="card flex_container half_width padding_8 margin_4">
-                            <img src="imgs/app/avt.svg" class="half_width">
-                            <div class="half_width">
-                                <h3 class="center" > Kennedy </h3>
-                            </div>
+                    <div class="flex_container modal_content">
+                        <div class="flex_col_container padding_8">
+                            <img src="imgs/app/avt.svg" class="circle margin_4">
+                            <h3 class="center margin_4" > Kennedy </h3>
                         </div>
-                        <div class="card flex_col_container half_width padding_8 margin_4">
+                        <div class="card padding_8 margin_4">
                             <p>First-name: <span> Kenneth </span></p>
                             <p>Last-name: <span> Dean </span></p>
                             <p>Sex: <span> Male </span></p>
                             <p>I like: <span> Women </span></p>
-                            <p>About me: <span> Even 'blah blah' can lead to great things :) </span></p>
+                            <p>About me: <span> Even 'blah blah' can lead to great things :)
+                                </span></p>
                         </div>
                     </div>
                 </div>

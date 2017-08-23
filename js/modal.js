@@ -59,6 +59,7 @@ $(document).ready(function() {
                 /* REMOVE TEMPLATE */
                 // $("#profiles:first-child").remove();
                 $('.profile_info').click(openModalProfile);
+                $('.modal').click(closeModalProfile);
                 $("#app_loader_cont").css("display", "none");
             } catch (e) {
                 console.log(e.message);
@@ -70,6 +71,10 @@ $(document).ready(function() {
         $('.modal').show();
         var profileID = $(this).parents('div.card').attr("id");
         console.log(profileID);
+    }
+
+    function closeModalProfile() {
+        $('.modal').hide();
     }
 
     $("#sign_up_btn").click(function() {
