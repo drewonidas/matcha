@@ -25,10 +25,10 @@ class Modal {
             $new_conn = new PDO($dsn, $uname, $pwd);
             // set the PDO error mode to exception
             $new_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return ($new_conn);
         } catch(PDOException $e) {
             echo 'something went wrong:' . $e->getMessage() . '<br/>';
         }
+        return ($new_conn);
     }
 
     public static function generate_sql($data_set) {
@@ -43,7 +43,7 @@ class Modal {
                         AND password = ?';
                 break;
             case 'get_all_users':
-                $sql = 'SELECT username, first_name, last_name, gender,
+                $sql = 'SELECT id, username, first_name, last_name, gender,
                         sexual_pref, bio, interests, location, last_in,
                         rating, image_id
                         FROM users';
@@ -94,6 +94,7 @@ class Modal {
                         gender=?, sexual_pref=?, bio=?, interests=?,
                         location=?, image_id=?
                         WHERE id';
+                break;
             case 'edit_password':
                 $sql = 'UPDATE users SET password = ?
                         WHERE id = ?';
@@ -121,6 +122,7 @@ class Modal {
 
     // returns data from the sql query call
     public function get_db_data($sql, $data) {
+        $resultData = null;
         try {
             $tmp = $this->_connection->prepare($sql);
             if (!is_null($data)) {
@@ -132,14 +134,15 @@ class Modal {
             $tmp->setFetchMode(PDO::FETCH_ASSOC);
             $resultData = $tmp->fetchAll();
             $tmp->closeCursor();
-            return ($resultData);
         } catch(PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }
+        return ($resultData);
     }
 
     // executes sql query to change db data
     public function change_db_data($sql, $data) {
+        $tmp = null;
         try {
             $tmp = $this->_connection->prepare($sql);
             if (!is_null($data)) {
@@ -147,10 +150,10 @@ class Modal {
                     $tmp->bindParam((string)($c + 1), $data[$c]);
                 }
             }
-            return ($tmp->execute());
         } catch(PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }
+        return ($tmp->execute());
     }
 
     public function __destruct() {

@@ -1,61 +1,81 @@
-html, body {height: 100%; width: 100%;overflow: hidden; font-size: 14px;}
+/**!! GENERAL STYLES !!**/
+html, body {height: 100%; width: 100%;max-width: 100%;font-size: 14px;}
 html {
     background: url("../imgs/app/bg.jpg") no-repeat center fixed;
     background-size: cover;
 }
 * {margin: auto;}
-.card, .modal {font-family: 'Astloch';font-size: 22px;}
-.theme_button {color: #992030;background: none;border-bottom: 3px solid transparent;}
-.theme_button:hover {cursor: pointer; border-bottom: 3px solid #992030;}
+html, body, section {overflow: hidden;}
+/*!! ELEMENT ELEVATION ## SEE MATERIAL GUIDELINES !!**/
+.card {z-index: 2;}
+.toolbar {z-index: 4;}
+.snackbar {z-index: 6;}
+.modal {z-index: 16;}
+/**!! PRE-SET STYLE CLASSES !!**/
+.theme_button_1 {color: #992030;background: none;border-bottom: 3px solid transparent;}
+.theme_button_2 {color: white;background: #992030;border-bottom: 3px solid transparent;}
+.theme_button_1:hover {border-bottom: 3px solid #992030;}
+.theme_button_2:hover {color: #992030;background: none;}
 .padding_long {padding: 24px 8px;}
 .padding_16 {padding: 16px;}
 .padding_8 {padding: 9px;}
+.margin_tb_24 {margin: 16px auto;}
 .margin_16 {margin: 16px;}
 .margin_8 {margin: 8px;}
 .margin_4 {margin: 4px;}
 .margin_0 {margin: 0;}
 .center {margin: auto;}
 .circle {border-radius: 50%;}
-.half_width {flex: 1;}
+.half_width {width: 50%;}
+.full_width {width: 100%;}
 .flex_1 {flex: 1;}
 .flex_2 {flex: 2;}
 .flex_3 {flex: 3;}
-.full_width {width: 100%;}
+.flex_container, .flex_col_container {
+    display: flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+.flex_col_container {flex-direction: column;}
+/**!! BASIC LAYOUT STRUCTURE !!**/
 header, #main_content, footer, .modal {width: 100%;}
 header {
 	position: fixed;
 	top: 0;
 	height: 64px;
 	z-index: 1;
-	/*height: 10vw;*/
 	background-color: rgb(66, 0, 0);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 #main_content, .modal {
 	min-height: 93%;
-	overflow: auto;
+	max-height: 93%;
 	background-color: rgba(0,0,0,0.2);
-	/*padding: 5% 0;*/
 }
-
+.page {margin-top: 64px;}
 footer {
 	color: white;
 	height: 7%;
 	background-color: rgba(0,0,0,0.8);
 }
-
-/** GLOBAL STYLES **/
-/*div {margin: 5% auto;}*/
-.flex_container, .flex_col_container {
-	display: flex;
-	display: -moz-flex;
-	display: -webkit-flex;
-	flex-wrap: wrap;
-	-webkit-flex-wrap: wrap;
+/**!! GENERAL BUTTONS !!**/
+button, .nav_btn, .btn {
+	border: none;
+	background-color: #992030;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: all 0.5s;
 }
-.flex_col_container {flex-direction: column;}
-
-/** NAVIGATION BAR **/
+a i, button i {font-size: 24px;width: 24px;height: 24px;}
+a:hover, button:hover {cursor: pointer;}
+/*button span {position: relative;}
+button span:after {content: 'button';opacity: 0;}
+button:hover span:after {opacity: 1;}*/
+/**!! NAVIGATION BAR !!**/
 #logo, #nav_container {width: auto; height: 100%; max-height: 100%;}
 #logo {align-self: flex-start; margin-left: 2%;}
 #nav_container {
@@ -66,27 +86,9 @@ footer {
 }
 #logo_img {border-radius: 50%; max-height: 95%;}
 #logo_text {color: white;}
-button {border: none;}
-button, .nav_btn {
-    /*border: none;*/
-    /*border-color: #992030;*/
-    background-color: #992030;
-    color: white;
-}
-.nav_btn {
-	background-color: rgba(0,0,0,0);
-    border: none;
-	padding: 8px 16px;
-	text-align: center;
-	margin: auto;
-}
-/*.nav_btn:hover {background-color: rgba(255,122,255,0.5);}*/
-
-/*
-** MODEL DIALOG
-*/
+.nav_btn {background-color: rgba(0,0,0,0);padding: 8px 16px;margin: auto;}
+/**!! MODEL DIALOG !!**/
 .modal_container {background-color: rgba(0,0,0,0.5);}
-a:hover {cursor: pointer;}
 form {
 	margin: auto;
 	color: white;
@@ -102,13 +104,11 @@ input {
     border-radius: 4px;
 	padding: 12px 20px;
 }
-
 input[type=text], input[type=email], input[type=password], select {
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 	background-color: transparent;
 }
-
 input[type=submit] {
 	background-color: #4CAF50;
 	border: none;
@@ -116,10 +116,7 @@ input[type=submit] {
 }
 input[type=button]:hover {background-color: #45a049;}
 label, .actions {width: 60%;}
-
-/*
-** STYLES FOR 'app_access'
-*/
+/**!! STYLES FOR 'app_access' !!**/
 #app_access {
 	position: fixed;
 	height: 100%;
@@ -133,10 +130,7 @@ label, .actions {width: 60%;}
 	max-width: 600px;
 	border-radius: 8px;
 }
-
-/*
-	ALL STYLES FOR 'app_ui'
-*/
+/**!! ALL STYLES FOR 'app_ui' !!**/
 #app_ui {
 	width: 100%;
 	height: 100%;
@@ -155,41 +149,41 @@ label, .actions {width: 60%;}
 	height: 80%;
 	z-index: 5;
 }
-
-/*
-** MINI PROFILE STYLES
-*/
-.mini_profiles_view {width: 80%;overflow: auto;}
-.mini_profiles_view.card:hover {
-	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
-}
-.mini_profiles_view .card {margin: 8px;}
+/**!! MATERIAL-TYPE CARDS !!**/
+.card, .modal {font-family: 'Cinzel Decorative';font-size: 14px;}
 .card {
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-	transition: 0.3s;
-    /*width: 20%;*/
     height: auto;
-    background-color: white;
-    color: black;
-    border-radius: 2px;
+	background-color: white;
+	color: black;
+	border-radius: 2px;
+	transition: 0.3s;
 }
 .card img {width: 160px; height: 160px;}
 .card p {margin: 8px auto;}
 .container {padding: 2px 16px;}
-
+.mini_profiles_view {width: 90%;overflow: visible;max-height: 80%;}
+.mini_profiles_view .card {margin: 8px;}
+.mini_profiles_view .card:hover {
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+}
+/** MODAL **/
 .modal {
-	z-index: 5;
+	top: 0;
+	left: 0;
 	display: none;
 	padding-top: 100px;
 	position: fixed;
-	top: 0;
-	left: 0;
 	background-color: rgba(0,0,0,0.8);
 }
-.modal_content {margin: auto; width: 40%;background-color: white; padding: 8px;}
-.modal_content img { width: 100%; height: 300px; max-width: 50%;}
-.modal_content .card {width: auto; max-width: 50%;height: auto;}
-/* SIGNED-IN USER PROFILE */
+.modal_content {margin: auto; width: 50%;background-color: white;}
+.modal_content img { width: 100%; height: auto; max-width: 300px;flex-wrap: nowrap;}
+.modal_content .card {width: auto; max-width: 100%;height: auto;}
+.modal_content .card p {margin: auto;text-align: center;}
+.modal_content .modal_close {margin-right: 0; border: none;}
+.modal_content .modal_close:hover {background-color: #992030;color: white;}
+/*.modal_content .card p span {font-style: normal;}*/
+/**!! SIGNED-IN USER PROFILE !!**/
 .profile_view {
     background-color: white;
     color: black;
@@ -197,22 +191,15 @@ label, .actions {width: 60%;}
     min-height: 95%;
     padding: 16px;
 }
-.profile_view .card {
-    width: 100%;
-    height: auto;
-    /*padding: 8px;*/
-}
+.profile_view .card {width: 100%;height: auto;/*padding: 8px;*/}
 .profile_view .col {width: 40%;}
-.profile_view label {width: 30%}
-.profile_view input {border: none; color: black; width: 65%; text-wrap: normal;}
+.profile_view label {width: 30%;}
+.profile_view input {border: none;color: black;width: 65%;text-wrap: normal;}
 .profile_view form {color: black;}
 .profile_view fieldset {border: none;}
-.profile_view .profile_gallery {padding: 18px;}
 .profile_gallery img {max-width: 100px; max-height: 100px; margin: 4px;flex: 1;}
-
-	/**
-    ** LOADER
-    */
+.profile_view .profile_gallery {padding: 18px;}
+/**!! LOADER !!**/
 #app_loader_cont {
 	position: fixed;
 	width: 100%;
@@ -220,7 +207,6 @@ label, .actions {width: 60%;}
 	z-index: 1;
 	background-color: rgba(255,255,255,0.5);
 }
-
 #loader {
 	border: 16px solid #992030;
 	border-top: 16px solid rgba(0,0,0,0.5);
@@ -230,10 +216,7 @@ label, .actions {width: 60%;}
 	height: 120px;
 	animation: spin 2s linear infinite;
 }
-
-/*
-** ANIMATIONS AND TRANSITIONS
-*/
+/**!! ANIMATIONS AND TRANSITIONS !!**/
 @keyframes spin {
 	0% {transform: rotate(0deg);}
 	100% {transform: rotate(360deg);}

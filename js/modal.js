@@ -9,16 +9,13 @@
 */
 
 // click events
-$(document).ready(function() {
+$(function() {
     var appData = {userProfile: ''};
-
     $("#sign_up_form").hide();
     $("#app_ui").css("display", "none");
     $("#app_access").css("display", "none");
-
     /** LOAD COMPLETE, CHECK IF USER IS SIGNED IN **/
     sendRequest("status", "", changeAppState);
-
     function changeAppState(response) {
         var data = JSON.parse(response);
         // console.log()
@@ -29,53 +26,64 @@ $(document).ready(function() {
         } else {
             $("#app_ui").css("display", "block");
             $("#app_access").css("display", "none");
-            appData.userProfile = data[0];
+            appData.userProfile = response;
             var args = {"user" : data[0].username};
             console.log(args);
             sendRequest("profiles", args, renderPageContent);
         }
         $("#app_loader_cont").css("display", "none");
     }
-
     function renderPageContent(response, status) {
         if (status === "success") {
             try {
                 var data = JSON.parse(response);
-                /**> INITIALIZE CONTENT CARDS */
-                var contentCont = $("#profiles");
-                var profileCard = $(".mini_profile");
-                var cardClone;
-                // LOOP THROUGH RECEIVED DATA
-                for (var c = 0; c < data.length; c++) {
-                    cardClone = profileCard.clone(true);
-                    /**> FIND AND FILL FILE INFO ELEMENTS */
-                    cardClone.find('h3.profile_username').text(data[c].username);
-                    cardClone.attr("id", c);
-                    /**> ADD TO PAGE */
-                    contentCont.append(cardClone);
-                    // cardClone.show();
-                    cardClone = null;
-                }
-                /* REMOVE TEMPLATE */
-                // $("#profiles:first-child").remove();
-                $('.profile_info').click(openModalProfile);
-                $('.modal').click(closeModalProfile);
+                /**> CREATE AND ADD PROFILE CARDS */
+                renderMiniProfileCards(data);
                 $("#app_loader_cont").css("display", "none");
             } catch (e) {
                 console.log(e.message);
             }
         }
     }
-
+    function renderProfilePage() {
+        try {
+            var user = JSON.parse(appData.userProfile);
+            console.log(user);
+            $('.profile_username').text();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    function renderMiniProfileCards(data) {
+        var contentCont = $("#profiles");
+        var profileCard = $(".mini_profile");
+        var cardClone;
+        // LOOP THROUGH RECEIVED DATA
+        for (var c = 0; c < data.length; c++) {
+            cardClone = profileCard.clone(true);
+            /**> FIND AND FILL FILE INFO ELEMENTS */
+            cardClone.find('h3.profile_username').text(data[c].username);
+            cardClone.attr("id", data[c].id);
+            /**> ADD TO PAGE */
+            contentCont.append(cardClone);
+            // cardClone.show();
+            cardClone = null;
+        }
+        /* REMOVE TEMPLATE */
+        profileCard.remove();
+        // $("#profiles:first-child").remove();
+        $('.profile_info').click(openModalProfile);
+        $('.modal_close').click(closeModalProfile);
+    }
     function openModalProfile()  {
         $('.modal').show();
         var profileID = $(this).parents('div.card').attr("id");
         console.log(profileID);
     }
-
     function closeModalProfile() {
-        $('.modal').hide();
+        $('.modal_close').parents('.modal').hide();
     }
+    /**!! SET UP EVENT LISTENERS !!**/
 
     $("#sign_up_btn").click(function() {
         $("#sign_up_form").show();
@@ -87,10 +95,10 @@ $(document).ready(function() {
         $("#sign_up_form").hide();
     });
     /** PROFILE VIEW TOGGLER **/
-    $("#profile_btn").click(function() {
-        $("#profile_page").toggle();
-        $("#browser_page").toggle();
-    });
+    /*$("#profile_btn").click(function() {
+        var profilePage = $("#profile_page");
+        var browserPage = $("#browser_page");
+    });*/
     /** USER SIGN-OUT **/
     $("#sign_out_btn").click(function() {
         // renderPage("/access", "logout", "");

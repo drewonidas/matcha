@@ -35,21 +35,21 @@ var appPages = {
     }
 };
 
-function renderPage (newUrl, req, args) {
+/*function renderPage (newUrl, req, args) {
     home.css("display", "block");
     loader.css("display", "none");
     access.css("display", "none");
     var pageUrl = newUrl.split('/')[1];
     console.log(pageUrl);
-    /*if (appPages[pageUrl]) {
+    /!*if (appPages[pageUrl]) {
         // loader.css("display", "flex");
         sendRequest(req, args, appPages[pageUrl]);
         // appPages[pageUrl]();
         // loader.css("display", "none");
     } else {
         alert("Error 404: Page not found!");
-    }*/
-}
+    }*!/
+}*/
 
 function sendRequest(reqType, args, func) {
     $.post("php/RequestServiceController.php",
