@@ -28,8 +28,7 @@ $(function() {
             $("#app_access").css("display", "none");
             appData.userProfile = response;
             var args = {"user" : data[0].username};
-            console.log(args);
-            sendRequest("profiles", args, renderPageContent);
+            sendRequest("profiles", JSON.stringify(args), renderPageContent);
         }
         $("#app_loader_cont").css("display", "none");
     }
@@ -45,15 +44,14 @@ $(function() {
             }
         }
     }
-    function renderProfilePage() {
+    /*function renderProfilePage() {
         try {
             var user = JSON.parse(appData.userProfile);
             console.log(user);
-            $('.profile_username').text();
         } catch (e) {
             console.log(e);
         }
-    }
+    }*/
     function renderMiniProfileCards(data) {
         var contentCont = $("#profiles");
         var profileCard = $(".mini_profile");
@@ -76,15 +74,36 @@ $(function() {
         $('.modal_close').click(closeModalProfile);
     }
     function openModalProfile()  {
-        $('.modal').show();
         var profileID = $(this).parents('div.card').attr("id");
-        console.log(profileID);
+        // console.log(profileID);
+        var args = {"id" : profileID};
+        sendRequest("profile_info", JSON.stringify(args), function (response, status) {
+            if (status === 'success') {
+                try {
+                    var data = JSON.parse(response);
+                    var profile = data[0];
+                    console.log(profile);
+                    $('.modal').show();
+                    $('h3.info_uname').text(profile.username);
+                    $('span.info_fname').text(profile.first_name);
+                    $('span.info_lname').text(profile.last_name);
+                    $('span.info_sex').text(profile.gender);
+                    $('span.info_pref').text(profile.sexual_pref);
+                    $('textarea.info_bio').text(profile.bio);
+                } catch (e) {
+                    console.log(e.message);
+                }
+                $("#app_loader_cont").css("display", "none");
+            } else {
+                alert('Server connection error');
+            }
+        });
     }
     function closeModalProfile() {
         $('.modal_close').parents('.modal').hide();
     }
-    /**!! SET UP EVENT LISTENERS !!**/
 
+    /**!! SET UP EVENT LISTENERS !!**/
     $("#sign_up_btn").click(function() {
         $("#sign_up_form").show();
         $("#sign_in_form").hide();
@@ -95,23 +114,23 @@ $(function() {
         $("#sign_up_form").hide();
     });
     /** PROFILE VIEW TOGGLER **/
-    /*$("#profile_btn").click(function() {
+    $("#profile_btn").click(function() {
         var profilePage = $("#profile_page");
         var browserPage = $("#browser_page");
-    });*/
+        if (profilePage.css("display") === 'none') {
+            browserPage.hide();
+            profilePage.fadeIn("slow");
+            // sendRequest();
+        } else {
+            profilePage.hide();
+            browserPage.fadeIn("slow");
+        }
+    });
     /** USER SIGN-OUT **/
     $("#sign_out_btn").click(function() {
         // renderPage("/access", "logout", "");
         sendRequest("logout", "", changeAppState);
     });
-    /** USER LOGIN **/
-    /*$("#submit_login").click(function() {
-        var name = $("#uname").val();
-        var pwd = $("#password").val();
-        //var data = $(this).serialize();
-        var args = {"username" : name, "pwd" : pwd};
-        // sendRequest("/", "login", JSON.stringify(args));
-    });*/
     /** USER REGISTRATION/LOGIN **/
     $("form").submit(function(event) {
         event.preventDefault();
@@ -123,12 +142,15 @@ $(function() {
         sendRequest($(this).attr("name"), JSON.stringify(args), changeAppState);
     });
 
+    $(window).on('hashchange', function() {
+        var newPage = location.hash;
+
+        console.log(newPage);
+        // appContollers[newPage]();
+    });
+
     $(document).ajaxStart(function() {
-        $("#app_ui").css("display", "none");
-        $("#app_access").css("display", "none");
+        $('.page').hide();
         $("#app_loader_cont").show();
     });
-    /*$(document).ajaxComplete(function() {
-        $("#app_loader_cont").hide();
-    });*/
 });

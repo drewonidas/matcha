@@ -10,6 +10,13 @@ function getUser($username, $password) {
   return $data;
 }
 
+function getMemberProfile($userID) {
+    $sql = Modal::generate_sql('get_profile_info');
+    $args = array($userID);
+    $data = $GLOBALS['modal']->get_db_data($sql, $args);
+    return ($data);
+}
+
 function getAllUsers($user) {
   $sql = Modal::generate_sql('get_all_users');
   $args = array($user);

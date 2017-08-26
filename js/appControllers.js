@@ -7,19 +7,11 @@
 * @License: maDezynIzM.E. 2016
 */
 
-/*$(function() {
-    // var tmpUrl = location.hash;
-    // sendRequest(tmpUrl, "status", "");
-    //render();
-    /!*$(window).on('hashchange', function() {
-    });*!/
-});*/
-
 var home = $("#app_ui");
 var loader = $("#app_loader_cont");
 var access = $("#app_access");
-var appPages = {
-    '': function(data) {
+var appContollers = {
+    '#/': function(data) {
         var tmp = JSON.parse(data);
         if (tmp === 'notFound')
             alert("Incorrect details. Try again or reset");
@@ -35,25 +27,38 @@ var appPages = {
     }
 };
 
-/*function renderPage (newUrl, req, args) {
+function renderPage (newUrl, req, args) {
     home.css("display", "block");
     loader.css("display", "none");
     access.css("display", "none");
     var pageUrl = newUrl.split('/')[1];
     console.log(pageUrl);
-    /!*if (appPages[pageUrl]) {
+    if (appPages[pageUrl]) {
         // loader.css("display", "flex");
         sendRequest(req, args, appPages[pageUrl]);
         // appPages[pageUrl]();
         // loader.css("display", "none");
     } else {
         alert("Error 404: Page not found!");
-    }*!/
-}*/
+    }
+}
 
 function sendRequest(reqType, args, func) {
-    $.post("php/RequestServiceController.php",
+    $.post("php/requestHandler.php",
         "reqType=" + reqType + "&args=" + args,
-        func);
+        function(response, status) {
+            if (status === "success") {
+                try {
+                    var data = JSON.parse(response);
+                    console.log(data);
+                    func(response);
+                    /**> CREATE AND ADD PROFILE CARDS */
+                    // renderMiniProfileCards(data);
+                    $("#app_loader_cont").css("display", "none");
+                } catch (e) {
+                    console.log(e.message);
+                }
+            }
+        });
 }
 

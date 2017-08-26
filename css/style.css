@@ -1,21 +1,18 @@
 /**!! GENERAL STYLES !!**/
-html, body {height: 100%; width: 100%;max-width: 100%;font-size: 14px;}
+html, body {height: 100%; width: 100%;max-width: 100%;}
 html {
     background: url("../imgs/app/bg.jpg") no-repeat center fixed;
     background-size: cover;
 }
-* {margin: auto;}
 html, body, section {overflow: hidden;}
+* {margin: auto;}
+body {font-size: 14px;}
 /*!! ELEMENT ELEVATION ## SEE MATERIAL GUIDELINES !!**/
 .card {z-index: 2;}
 .toolbar {z-index: 4;}
 .snackbar {z-index: 6;}
 .modal {z-index: 16;}
 /**!! PRE-SET STYLE CLASSES !!**/
-.theme_button_1 {color: #992030;background: none;border-bottom: 3px solid transparent;}
-.theme_button_2 {color: white;background: #992030;border-bottom: 3px solid transparent;}
-.theme_button_1:hover {border-bottom: 3px solid #992030;}
-.theme_button_2:hover {color: #992030;background: none;}
 .padding_long {padding: 24px 8px;}
 .padding_16 {padding: 16px;}
 .padding_8 {padding: 9px;}
@@ -27,7 +24,7 @@ html, body, section {overflow: hidden;}
 .center {margin: auto;}
 .circle {border-radius: 50%;}
 .half_width {width: 50%;}
-.full_width {width: 100%;}
+.full_width, header, #main_content, footer, .modal {width: 100%;}
 .flex_1 {flex: 1;}
 .flex_2 {flex: 2;}
 .flex_3 {flex: 3;}
@@ -39,172 +36,112 @@ html, body, section {overflow: hidden;}
     -webkit-flex-wrap: wrap;
 }
 .flex_col_container {flex-direction: column;}
-/**!! BASIC LAYOUT STRUCTURE !!**/
-header, #main_content, footer, .modal {width: 100%;}
+.page {margin-top: 128px;}
+
+/**!! BASIC WEB-APP LAYOUT
+	> HEADER AND NAVIGATION BAR !!**/
 header {
 	position: fixed;
 	top: 0;
 	height: 64px;
-	z-index: 1;
 	background-color: rgb(66, 0, 0);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-#main_content, .modal {
-	min-height: 93%;
-	max-height: 93%;
-	background-color: rgba(0,0,0,0.2);
-}
-.page {margin-top: 64px;}
-footer {
-	color: white;
-	height: 7%;
-	background-color: rgba(0,0,0,0.8);
-}
-/**!! GENERAL BUTTONS !!**/
-button, .nav_btn, .btn {
-	border: none;
-	background-color: #992030;
-	color: white;
-	text-align: center;
-	text-transform: uppercase;
+nav {align-self: flex-end;margin-right: 2%;flex-wrap: nowrap;-webkit-flex-wrap: nowrap;}
+.branding, nav {width: auto; height: 100%; max-height: 100%;}
+.branding {align-self: flex-start; margin-left: 2%;}
+nav .brand_logo_sm {max-height: 95%;}
+#main_content, .moxbackground-color: rgba(0,0,0,0.8);}
+/**!! BASIC BUTTONS !!**/
+button, footer, .logo_text, .btn, input {color: white;}
+button, h1, h2, h3, p, .btn, a, input {text-align: center;}
+.btn, button, input, a {
 	text-decoration: none;
+	background: none;
+	outline: none;
+	border: none;
+	box-sizing: border-box;
 	transition: all 0.5s;
 }
-a i, button i {font-size: 24px;width: 24px;height: 24px;}
-a:hover, button:hover {cursor: pointer;}
-/*button span {position: relative;}
-button span:after {content: 'button';opacity: 0;}
-button:hover span:after {opacity: 1;}*/
-/**!! NAVIGATION BAR !!**/
-#logo, #nav_container {width: auto; height: 100%; max-height: 100%;}
-#logo {align-self: flex-start; margin-left: 2%;}
-#nav_container {
-	align-self: flex-end;
-	margin-right: 2%;
-	flex-wrap: nowrap;
-	-webkit-flex-wrap: nowrap;
-}
-#logo_img {border-radius: 50%; max-height: 95%;}
-#logo_text {color: white;}
-.nav_btn {background-color: rgba(0,0,0,0);padding: 8px 16px;margin: auto;}
-/**!! MODEL DIALOG !!**/
-.modal_container {background-color: rgba(0,0,0,0.5);}
-form {
-	margin: auto;
-	color: white;
-	border-radius: 6px;
-	border: 1px solid transparent;
-}
-form h1 {text-align: center;}
-form a {font-size: small; margin: auto;}
-input {
-    width: 60%;
-    margin: 8px auto;
-    color: white;
-    border-radius: 4px;
-	padding: 12px 20px;
-}
-input[type=text], input[type=email], input[type=password], select {
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-	background-color: transparent;
-}
-input[type=submit] {
-	background-color: #4CAF50;
-	border: none;
-	cursor: pointer;
-}
-input[type=button]:hover {background-color: #45a049;}
-label, .actions {width: 60%;}
-/**!! STYLES FOR 'app_access' !!**/
-#app_access {
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	/*display: none;*/
-}
-#app_access form {background-color: transparent;}
+button, .btn, .btn_round {border-radius: 2px;color: #992030;text-transform: uppercase;font-weight: bold;}
+.btn:hover, button:hover, a:hover {cursor: pointer;}
+.btn i, button i {font-size: 24px;width: 24px;height: 24px;}
+/** THEME CLASSES **/
+.theme {color: #992030;background: white;border: 2px solid transparent;}
+.theme_inverse {color: white;background: #992030;border: 2px solid transparent;}
+.theme_link {color: white;background: none;border-bottom: 2px solid transparent;}
+.theme:hover {border-color: #992030;}
+.theme_inverse:hover {color: #992030;background: none;}
+.theme_link:hover {color: #992030;background: white;}
+/** BASIC FORMS **/
+form {color: white;border-radius: 2px;background-color: transparent;}
+form .actions a {font-size: small;width: 50%;}
+input {width: 60%;margin: 8px auto;padding: 12px 20px;border-bottom: 2px solid transparent;}
+input:required:invalid {border-color: #992030;width: 57%;}
+input:required:focus {border: 1px solid white;width: 60%;}
+input:required:valid {border-color: forestgreen;width: 60%;}
+input[type=submit] {color: white;border: 1px solid #992030;}
+input[type=submit]:hover {background-color: #992030;}
+label, .account_actions {width: 60%;}
+/**!! LOGIN/REGISTRATION !!**/
+#app_access {position: fixed;height: 100%;width: 100%;}
 #app_access .col {
-	background-color: rgba(0, 0, 0, 0.5);
+	background: rgba(0,0,0,0.8);
 	width: 60%;
 	max-width: 600px;
-	border-radius: 8px;
+	border-radius: 4px;
 }
-/**!! ALL STYLES FOR 'app_ui' !!**/
-#app_ui {
-	width: 100%;
-	height: 100%;
-	display: none;
-	/*-webkit-animation: fadePage 1s;
-	animation: fadePage 1s;*/
-}
-#browser_page {
-	height: 100%;
-	max-height: 100%;
-	width: 100%;
-	overflow-y: auto;
-}
-.floating_page {
-	width: 80%;
-	height: 80%;
-	z-index: 5;
-}
-/**!! MATERIAL-TYPE CARDS !!**/
+/**!! MAIN CONTAINER !!**/
+#app_ui {width: 100%;height: 100%;display: none;}
+#browser_page {height: 100%;max-height: 100%;width: 100%;overflow-y: auto;}
+/**!! MATERIAL-DESIGN-LIKE CARDS !!**/
 .card, .modal {font-family: 'Cinzel Decorative';font-size: 14px;}
 .card {
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
     height: auto;
-	background-color: white;
 	color: black;
+	background: white;
 	border-radius: 2px;
-	transition: 0.3s;
+	transition: 0.5s;
 }
 .card img {width: 160px; height: 160px;}
 .card p {margin: 8px auto;}
-.container {padding: 2px 16px;}
-.mini_profiles_view {width: 90%;overflow: visible;max-height: 80%;}
+.mini_profiles_view {width: 90%;overflow: scroll;max-height: 80%;}
 .mini_profiles_view .card {margin: 8px;}
 .mini_profiles_view .card:hover {
 	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
 }
-/** MODAL **/
+/**!! MODAL !!**/
 .modal {
 	top: 0;
 	left: 0;
 	display: none;
-	padding-top: 100px;
 	position: fixed;
+	padding-top: 100px;
 	background-color: rgba(0,0,0,0.8);
 }
 .modal_content {margin: auto; width: 50%;background-color: white;}
-.modal_content img { width: 100%; height: auto; max-width: 300px;flex-wrap: nowrap;}
-.modal_content .card {width: auto; max-width: 100%;height: auto;}
+.modal_content img {width: 100%;height: auto;max-width: 300px;flex-wrap: nowrap;}
+.modal_content .card {width: auto;max-width: 100%;height: auto;}
 .modal_content .card p {margin: auto;text-align: center;}
-.modal_content .modal_close {margin-right: 0; border: none;}
+.modal_content .modal_close {margin-right: 0;border: none;}
 .modal_content .modal_close:hover {background-color: #992030;color: white;}
 /*.modal_content .card p span {font-style: normal;}*/
 /**!! SIGNED-IN USER PROFILE !!**/
-.profile_view {
-    background-color: white;
-    color: black;
-    width: 60%;
-    min-height: 95%;
-    padding: 16px;
-}
-.profile_view .card {width: 100%;height: auto;/*padding: 8px;*/}
+.profile_view {background: white;color: black;width: 60%;min-height: 95%;padding: 16px;}
+.profile_view .card {width: 100%;height: auto;}
 .profile_view .col {width: 40%;}
 .profile_view label {width: 30%;}
-.profile_view input {border: none;color: black;width: 65%;text-wrap: normal;}
-.profile_view form {color: black;}
+.profile_view input {border: none;width: 65%;text-wrap: normal;}
+/*.profile_view form {color: black;}*/
 .profile_view fieldset {border: none;}
-.profile_gallery img {max-width: 100px; max-height: 100px; margin: 4px;flex: 1;}
+.profile_gallery img {max-width: 100px;max-height: 100px;margin: 4px;flex: 1;}
 .profile_view .profile_gallery {padding: 18px;}
 /**!! LOADER !!**/
 #app_loader_cont {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	z-index: 1;
 	background-color: rgba(255,255,255,0.5);
 }
 #loader {

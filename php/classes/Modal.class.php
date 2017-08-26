@@ -48,6 +48,13 @@ class Modal {
                         rating, image_id
                         FROM users';
                 break;
+            case 'get_profile_info':
+                $sql = 'SELECT username, email, first_name, last_name,
+                        gender, sexual_pref, bio, interests, location,
+                        last_in, rating, image_id
+                        FROM users
+                        WHERE id = ?';
+                break;
             case 'get_comm':
                 $sql = 'SELECT * FROM comments
                         WHERE img_id = ?

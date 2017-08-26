@@ -40,6 +40,12 @@
             $userData = getAllUsers($user);
             $response = json_encode($userData);
             break;
+        case 'profile_info':
+            if ($_SESSION && array_key_exists('currUser', $_SESSION)) {
+                $userID = $args['id'];
+                $response = json_encode(getMemberProfile($userID));
+            }
+            break;
         default:
             break;
     }
