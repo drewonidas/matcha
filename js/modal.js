@@ -14,36 +14,50 @@ $(function() {
     var viewsContainer = $("#main_content");
     var loader = $("#app_loader_cont");
     var appControllers = {
-
-        home: function() {
-            /*if (data === 'notFound')
-             alert("Incorrect details. Try again or reset");
-             else {
-             /!*home.css("display", "block");
-             loader.css("display", "none");*!/
-             alert("it works!! :D");
-             }*/
-            alert("It works");
+        loadPage: function(page) {
+            var pageUrl = page.split('/')[1];
+            console.log(pageUrl);
             viewsContainer.empty();
+            switch (pageUrl) {
+                case "":
+                    this.home();
+                    break;
+                case "login":
+                case "registration":
+                    this.appAccess(pageUrl);
+                    break;
+                case "profile":
+                    this.profile();
+                    break;
+                default:
+                    break;
+            }
+        },
+        home: function(data) {
             viewsContainer.load('./views/home.html', function() {
                 alert("It works");
+                // appData.userProfile = response;
+                var args = {"user" : data[0].username};
+                sendRequest("profiles", JSON.stringify(args), renderPageContent);
                 loader.css("display", "none");
-
             });
         },
-        appAccess: function() {
-            /*access.css("display", "flex");
-             loader.css("display", "none");*/
-            viewsContainer.empty();
+        appAccess: function(page) {
             viewsContainer.load('./views/userAccess.html', function() {
                 alert("It works");
+                if (page === "login") {
+                    $("#signin_form").show();
+                    $("#signup_form").hide();
+                } else if (page === "registration") {
+                    $("#signup_form").show();
+                    $("#signin_form").hide();
+                }
                 loader.css("display", "none");
             });
         },
         profile: function() {
             /*access.css("display", "flex");
              loader.css("display", "none");*/
-            viewsContainer.empty();
             viewsContainer.load('./views/profile.html', function() {
                 alert("It works");
                 loader.css("display", "none");
@@ -51,9 +65,7 @@ $(function() {
             });
         }
     };
-/*    $("#sign_up_form").hide();
-    $("#app_ui").css("display", "none");
-    $("#app_access").css("display", "none");*/
+
     /** LOAD COMPLETE, CHECK IF USER IS SIGNED IN **/
     sendRequest("status", "", dummy);
 
@@ -63,22 +75,15 @@ $(function() {
         if (data === "notFound") {
             appControllers.appAccess();
         } else {
-            appControllers.home();
+            appControllers.home(data);
         }
     }
-/*    function changeAppState(response) {
-        var data = JSON.parse(response);
-        // console.log()
-        $("#profile_page").hide();
+    function changeAppState(data) {
         if (data === "notFound") {
-            $("#app_access").css("display", "block");
+            // $("#app_access").css("display", "block");
             alert("User input error!!");
         } else {
-            $("#app_ui").css("display", "block");
-            $("#app_access").css("display", "none");
-            appData.userProfile = response;
-            var args = {"user" : data[0].username};
-            sendRequest("profiles", JSON.stringify(args), renderPageContent);
+            appControllers.home();
         }
         $("#app_loader_cont").css("display", "none");
     }
@@ -86,7 +91,7 @@ $(function() {
         if (status === "success") {
             try {
                 var data = JSON.parse(response);
-                /!**> CREATE AND ADD PROFILE CARDS *!/
+                /**!> CREATE AND ADD PROFILE CARDS **/
                 renderMiniProfileCards(data);
                 $("#app_loader_cont").css("display", "none");
             } catch (e) {
@@ -94,14 +99,14 @@ $(function() {
             }
         }
     }
-    /!*function renderProfilePage() {
+    function renderProfilePage() {
         try {
             var user = JSON.parse(appData.userProfile);
             console.log(user);
         } catch (e) {
             console.log(e);
         }
-    }*!/
+    }
     function renderMiniProfileCards(data) {
         var contentCont = $("#profiles");
         var profileCard = $(".mini_profile");
@@ -109,15 +114,15 @@ $(function() {
         // LOOP THROUGH RECEIVED DATA
         for (var c = 0; c < data.length; c++) {
             cardClone = profileCard.clone(true);
-            /!**> FIND AND FILL FILE INFO ELEMENTS *!/
+            /**> FIND AND FILL FILE INFO ELEMENTS */
             cardClone.find('h3.profile_username').text(data[c].username);
             cardClone.attr("id", data[c].id);
-            /!**> ADD TO PAGE *!/
+            /**> ADD TO PAGE */
             contentCont.append(cardClone);
             // cardClone.show();
             cardClone = null;
         }
-        /!* REMOVE TEMPLATE *!/
+        /* REMOVE TEMPLATE */
         profileCard.remove();
         // $("#profiles:first-child").remove();
         $('.profile_info').click(openModalProfile);
@@ -151,31 +156,19 @@ $(function() {
     }
     function closeModalProfile() {
         $('.modal_close').parents('.modal').hide();
-    }*/
+    }
 
     /**!! SET UP EVENT LISTENERS !!**/
- /*   $("#sign_up_btn").click(function() {
-        $("#sign_up_form").show();
-        $("#sign_in_form").hide();
+/*    $("#sign_up_btn").click(function() {
+        $("#signup_form").show();
+        $("#signin_form").hide();
     });
 
     $("#sign_in_btn").click(function() {
-        $("#sign_in_form").show();
-        $("#sign_up_form").hide();
+        $("#signin_form").show();
+        $("#signup_form").hide();
     });*/
-    /** PROFILE VIEW TOGGLE **/
-    $("#profile_btn").click(function() {
-        var profilePage = $("#profile_page");
-        var browserPage = $("#browser_page");
-        if (profilePage.css("display") === 'none') {
-            browserPage.hide();
-            profilePage.fadeIn("slow");
-            // sendRequest();
-        } else {
-            profilePage.hide();
-            browserPage.fadeIn("slow");
-        }
-    });
+
     /** USER SIGN-OUT **/
     $("#sign_out_btn").click(function() {
         // renderPage("/access", "logout", "");
@@ -196,7 +189,7 @@ $(function() {
         var newPage = location.hash;
 
         alert(newPage);
-        appControllers.home();
+        appControllers.loadPage(newPage);
     });
 
     $(document).ajaxStart(function() {

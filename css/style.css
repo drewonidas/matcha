@@ -51,6 +51,7 @@ nav {align-self: flex-end;margin-right: 0;flex-wrap: nowrap;-webkit-flex-wrap: n
 .branding, nav {width: auto; height: 100%; max-height: 100%;}
 .branding {align-self: flex-start; margin-left: 2%;}
 .branding .brand_logo_sm {height: 95%; width: auto;}
+/**!! MAIN VIEW CONTAINER !!**/
 .views_container {height: 90%;}
 /**!! BASIC BUTTONS !!**/
 button, footer, .logo_text, .btn, input {color: white;}
@@ -76,14 +77,16 @@ button, .btn, .btn_round {color: #992030;text-transform: uppercase;font-weight: 
 .theme_link:hover {color: #992030;background: white;}
 /** BASIC FORMS **/
 form {color: white;border-radius: 2px;background-color: transparent;}
+form .actions {width: 60%;}
 form .actions a {font-size: small;width: 50%;}
 input {width: 60%;margin: 8px auto;padding: 12px 20px;border-bottom: 2px solid transparent;}
 input:required:invalid {border-color: #992030;width: 57%;}
-input:required:focus {border: 1px solid white;width: 60%;}
+input:required:focus {border: 1px dotted white;width: 60%;}
 input:required:valid {border-color: forestgreen;width: 60%;}
-input[type=submit] {color: white;border: 1px solid #992030;}
-input[type=submit]:hover {background-color: rgba(153, 32, 48, 0.81);}
+input[type=submit] {color: white;border: 2px solid #992030;background-color: rgba(153, 32, 48, 0.4);}
+input[type=submit]:hover {background-color: rgba(153, 32, 48, 1);}
 label, .account_actions {width: 60%;}
+form[name=register] {display: none;}
 /**!! LOGIN/REGISTRATION !!**/
 #app_access {position: fixed;height: 100%;width: 100%;}
 #app_access .col {
@@ -93,7 +96,6 @@ label, .account_actions {width: 60%;}
 	border-radius: 4px;
 }
 /**!! MAIN CONTAINER !!**/
-#app_ui {width: 100%;height: 100%;}
 #browser_page {height: 100%;max-height: 100%;width: 100%;overflow-y: auto;}
 /**!! MATERIAL-DESIGN-LIKE CARDS !!**/
 .card, .modal {font-family: 'Cinzel Decorative';font-size: 14px;}
