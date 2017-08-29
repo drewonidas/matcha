@@ -7,30 +7,15 @@
 * @License: maDezynIzM.E. 2016
 */
 
-var home = $("#app_ui");
-var loader = $("#app_loader_cont");
-var access = $("#app_access");
-var appContollers = {
-    '#/': function(data) {
-        var tmp = JSON.parse(data);
-        if (tmp === 'notFound')
-            alert("Incorrect details. Try again or reset");
-        else {
-            /*home.css("display", "block");
-            loader.css("display", "none");*/
-            alert("it works!! :D");
-        }
-    },
-    'login': function(data) {
-        /*access.css("display", "flex");
-         loader.css("display", "none");*/
-    }
-};
 
-function renderPage (newUrl, req, args) {
+/*var home = $("#app_ui");
+var access = $("#app_access");*/
+
+
+/*function renderPage(newUrl, req, args) {
     home.css("display", "block");
-    loader.css("display", "none");
-    access.css("display", "none");
+    /!* loader.css("display", "none");
+     access.css("display", "none");*!/
     var pageUrl = newUrl.split('/')[1];
     console.log(pageUrl);
     if (appPages[pageUrl]) {
@@ -41,7 +26,7 @@ function renderPage (newUrl, req, args) {
     } else {
         alert("Error 404: Page not found!");
     }
-}
+}*/
 
 function sendRequest(reqType, args, func) {
     $.post("php/requestHandler.php",
@@ -51,10 +36,9 @@ function sendRequest(reqType, args, func) {
                 try {
                     var data = JSON.parse(response);
                     console.log(data);
-                    func(response);
+                    func(data);
                     /**> CREATE AND ADD PROFILE CARDS */
                     // renderMiniProfileCards(data);
-                    $("#app_loader_cont").css("display", "none");
                 } catch (e) {
                     console.log(e.message);
                 }

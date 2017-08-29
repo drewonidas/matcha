@@ -11,12 +11,62 @@
 // click events
 $(function() {
     var appData = {userProfile: ''};
-    $("#sign_up_form").hide();
+    var viewsContainer = $("#main_content");
+    var loader = $("#app_loader_cont");
+    var appControllers = {
+
+        home: function() {
+            /*if (data === 'notFound')
+             alert("Incorrect details. Try again or reset");
+             else {
+             /!*home.css("display", "block");
+             loader.css("display", "none");*!/
+             alert("it works!! :D");
+             }*/
+            alert("It works");
+            viewsContainer.empty();
+            viewsContainer.load('./views/home.html', function() {
+                alert("It works");
+                loader.css("display", "none");
+
+            });
+        },
+        appAccess: function() {
+            /*access.css("display", "flex");
+             loader.css("display", "none");*/
+            viewsContainer.empty();
+            viewsContainer.load('./views/userAccess.html', function() {
+                alert("It works");
+                loader.css("display", "none");
+            });
+        },
+        profile: function() {
+            /*access.css("display", "flex");
+             loader.css("display", "none");*/
+            viewsContainer.empty();
+            viewsContainer.load('./views/profile.html', function() {
+                alert("It works");
+                loader.css("display", "none");
+
+            });
+        }
+    };
+/*    $("#sign_up_form").hide();
     $("#app_ui").css("display", "none");
-    $("#app_access").css("display", "none");
+    $("#app_access").css("display", "none");*/
     /** LOAD COMPLETE, CHECK IF USER IS SIGNED IN **/
-    sendRequest("status", "", changeAppState);
-    function changeAppState(response) {
+    sendRequest("status", "", dummy);
+
+    function dummy(data) {
+        //var data = JSON.parse(response);
+        console.log(data);
+        if (data === "notFound") {
+            appControllers.appAccess();
+        } else {
+            appControllers.home();
+        }
+    }
+/*    function changeAppState(response) {
         var data = JSON.parse(response);
         // console.log()
         $("#profile_page").hide();
@@ -36,7 +86,7 @@ $(function() {
         if (status === "success") {
             try {
                 var data = JSON.parse(response);
-                /**> CREATE AND ADD PROFILE CARDS */
+                /!**> CREATE AND ADD PROFILE CARDS *!/
                 renderMiniProfileCards(data);
                 $("#app_loader_cont").css("display", "none");
             } catch (e) {
@@ -44,14 +94,14 @@ $(function() {
             }
         }
     }
-    /*function renderProfilePage() {
+    /!*function renderProfilePage() {
         try {
             var user = JSON.parse(appData.userProfile);
             console.log(user);
         } catch (e) {
             console.log(e);
         }
-    }*/
+    }*!/
     function renderMiniProfileCards(data) {
         var contentCont = $("#profiles");
         var profileCard = $(".mini_profile");
@@ -59,15 +109,15 @@ $(function() {
         // LOOP THROUGH RECEIVED DATA
         for (var c = 0; c < data.length; c++) {
             cardClone = profileCard.clone(true);
-            /**> FIND AND FILL FILE INFO ELEMENTS */
+            /!**> FIND AND FILL FILE INFO ELEMENTS *!/
             cardClone.find('h3.profile_username').text(data[c].username);
             cardClone.attr("id", data[c].id);
-            /**> ADD TO PAGE */
+            /!**> ADD TO PAGE *!/
             contentCont.append(cardClone);
             // cardClone.show();
             cardClone = null;
         }
-        /* REMOVE TEMPLATE */
+        /!* REMOVE TEMPLATE *!/
         profileCard.remove();
         // $("#profiles:first-child").remove();
         $('.profile_info').click(openModalProfile);
@@ -101,10 +151,10 @@ $(function() {
     }
     function closeModalProfile() {
         $('.modal_close').parents('.modal').hide();
-    }
+    }*/
 
     /**!! SET UP EVENT LISTENERS !!**/
-    $("#sign_up_btn").click(function() {
+ /*   $("#sign_up_btn").click(function() {
         $("#sign_up_form").show();
         $("#sign_in_form").hide();
     });
@@ -112,8 +162,8 @@ $(function() {
     $("#sign_in_btn").click(function() {
         $("#sign_in_form").show();
         $("#sign_up_form").hide();
-    });
-    /** PROFILE VIEW TOGGLER **/
+    });*/
+    /** PROFILE VIEW TOGGLE **/
     $("#profile_btn").click(function() {
         var profilePage = $("#profile_page");
         var browserPage = $("#browser_page");
@@ -145,12 +195,12 @@ $(function() {
     $(window).on('hashchange', function() {
         var newPage = location.hash;
 
-        console.log(newPage);
-        // appContollers[newPage]();
+        alert(newPage);
+        appControllers.home();
     });
 
     $(document).ajaxStart(function() {
-        $('.page').hide();
+        // $('.page').hide();
         $("#app_loader_cont").show();
     });
 });

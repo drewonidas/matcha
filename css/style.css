@@ -47,11 +47,11 @@ header {
 	background-color: rgb(66, 0, 0);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-nav {align-self: flex-end;margin-right: 2%;flex-wrap: nowrap;-webkit-flex-wrap: nowrap;}
+nav {align-self: flex-end;margin-right: 0;flex-wrap: nowrap;-webkit-flex-wrap: nowrap;}
 .branding, nav {width: auto; height: 100%; max-height: 100%;}
 .branding {align-self: flex-start; margin-left: 2%;}
-nav .brand_logo_sm {max-height: 95%;}
-#main_content, .moxbackground-color: rgba(0,0,0,0.8);}
+.branding .brand_logo_sm {height: 95%; width: auto;}
+.views_container {height: 90%;}
 /**!! BASIC BUTTONS !!**/
 button, footer, .logo_text, .btn, input {color: white;}
 button, h1, h2, h3, p, .btn, a, input {text-align: center;}
@@ -62,8 +62,9 @@ button, h1, h2, h3, p, .btn, a, input {text-align: center;}
 	border: none;
 	box-sizing: border-box;
 	transition: all 0.5s;
+	padding: 12px 28px;
 }
-button, .btn, .btn_round {border-radius: 2px;color: #992030;text-transform: uppercase;font-weight: bold;}
+button, .btn, .btn_round {color: #992030;text-transform: uppercase;font-weight: bold;}
 .btn:hover, button:hover, a:hover {cursor: pointer;}
 .btn i, button i {font-size: 24px;width: 24px;height: 24px;}
 /** THEME CLASSES **/
@@ -81,7 +82,7 @@ input:required:invalid {border-color: #992030;width: 57%;}
 input:required:focus {border: 1px solid white;width: 60%;}
 input:required:valid {border-color: forestgreen;width: 60%;}
 input[type=submit] {color: white;border: 1px solid #992030;}
-input[type=submit]:hover {background-color: #992030;}
+input[type=submit]:hover {background-color: rgba(153, 32, 48, 0.81);}
 label, .account_actions {width: 60%;}
 /**!! LOGIN/REGISTRATION !!**/
 #app_access {position: fixed;height: 100%;width: 100%;}
@@ -92,7 +93,7 @@ label, .account_actions {width: 60%;}
 	border-radius: 4px;
 }
 /**!! MAIN CONTAINER !!**/
-#app_ui {width: 100%;height: 100%;display: none;}
+#app_ui {width: 100%;height: 100%;}
 #browser_page {height: 100%;max-height: 100%;width: 100%;overflow-y: auto;}
 /**!! MATERIAL-DESIGN-LIKE CARDS !!**/
 .card, .modal {font-family: 'Cinzel Decorative';font-size: 14px;}
