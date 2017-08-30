@@ -8,7 +8,7 @@
 @License: maDezynIzM.E. 2016
 */
 
-    $DB_DSN = 'mysql:host=localhost;port=8080;dbname=matcha_db';
+    $DB_DSN = 'mysql:host=localhost;dbname=matcha_db';
     $DB_USER = 'root';
-    $DB_PASSWORD = 'qwerty';
+    $DB_PASSWORD = '';
 ?>

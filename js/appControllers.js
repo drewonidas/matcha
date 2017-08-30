@@ -7,15 +7,14 @@
 * @License: maDezynIzM.E. 2016
 */
 
-
 /*var home = $("#app_ui");
 var access = $("#app_access");*/
 
 
 /*function renderPage(newUrl, req, args) {
-    home.css("display", "block");
-    /!* loader.css("display", "none");
-     access.css("display", "none");*!/
+    /!*home.css("display", "block");
+    loader.css("display", "none");
+    access.css("display", "none");*!/
     var pageUrl = newUrl.split('/')[1];
     console.log(pageUrl);
     if (appPages[pageUrl]) {
@@ -34,8 +33,8 @@ function sendRequest(reqType, args, func) {
         function(response, status) {
             if (status === "success") {
                 try {
+                    console.log(response);
                     var data = JSON.parse(response);
-                    console.log(data);
                     func(data);
                     /**> CREATE AND ADD PROFILE CARDS */
                     // renderMiniProfileCards(data);

@@ -49,7 +49,7 @@ class Modal {
                         FROM users';
                 break;
             case 'get_profile_info':
-                $sql = 'SELECT username, email, first_name, last_name,
+                $sql = 'SELECT username, first_name, last_name,
                         gender, sexual_pref, bio, interests, location,
                         last_in, rating, image_id
                         FROM users
@@ -76,8 +76,8 @@ class Modal {
                         VALUES (?, ?, ?)';
                 break;
             case 'new_user':
-                $sql = 'INSERT INTO users (username, email, password)
-                        VALUES (?, ?, ?)';
+                $sql = 'INSERT INTO users (username, email, password, first_name, last_name)
+                        VALUES (?, ?, ?, ?, ?)';
                 break;
             case 'new_comm':
                 $sql = 'INSERT INTO comments (comm_text, type, user_id, img_id)
@@ -97,10 +97,10 @@ class Modal {
                 break;
             case 'edit_profile':
                 $sql = 'UPDATE users
-                        SET username=?, email=? first_name=?, last_name=?,
+                        SET email=?, first_name=?, last_name=?,
                         gender=?, sexual_pref=?, bio=?, interests=?,
-                        location=?, image_id=?
-                        WHERE id';
+                        image_id=?
+                        WHERE id = ?';
                 break;
             case 'edit_password':
                 $sql = 'UPDATE users SET password = ?

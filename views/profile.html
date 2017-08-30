@@ -14,17 +14,17 @@
         <br>
         <div class="flex_container card profile_gallery" id="conn_img_gallery">
             <!-- some shit -->
-            <img src="imgs/app/avt.svg">2
+            <img src="imgs/app/avt.svg">
             <img src="imgs/app/avt.svg">
             <img src="imgs/app/avt.svg">
             <img src="imgs/app/avt.svg">
         </div>
     </div>
     <div class="flex_col_container col">
-        <div class="flex_col_container padding_16 card" id="user_info">
+        <div class="flex_col_container padding_8 card" id="user_info">
             <fieldset>
                 <legend>User information</legend>
-                <form>
+                <form name="update">
                     <label for="profile_fname">First-name : </label>
                     <input class="info_first_name" type="text" value="Sandra" id="profile_fname" disabled>
                     <br>
@@ -32,7 +32,7 @@
                     <input class="info_last_name" type="text" value="Brooks" id="profile_lname" disabled>
                     <br>
                     <label for="profile_email">E-mail : </label>
-                    <input class="info_email" type="text" value="sbrooks@mail.com" id="profile_email" disabled>
+                    <input class="info_email" type="email" value="sbrooks@mail.com" id="profile_email" disabled>
                     <br>
                     <label for="profile_gender">Gender : </label>
                     <input class="info_gender" type="text" value="Male" id="profile_gender" disabled>
@@ -43,15 +43,20 @@
                     <label for="profile_bio">About me : </label>
                     <input class="info_bio" type="text"
                            value="I value life, and believe that love is a choice" id="profile_bio" disabled>
+                    <br>
+                    <div class="flex_container edit_actions margin_8" id="edit_actions">
+                        <button class="flex_1 theme" type="submit">Save</button>
+                        <button class="flex_1 theme" type="button">Cancel</button>
+                    </div>
                 </form>
             </fieldset>
         </div>
         <br>
         <div class="flex_container padding_16 card" id="stats">
-            <div class="flex_col_container flex_1" class="account_actions">
-                <button type="button" name="edit">Edit profile</button>
-                <button type="button" name="settings">Settings</button>
-                <button type="button" name="sign_out_btn" id="sign_out_btn">Sign-out</button>
+            <div class="flex_col_container flex_1 account_actions">
+                <button type="button" name="edit" class="theme full_width" id="edit_profile_btn">Edit profile</button>
+                <button type="button" name="settings" class="theme full_width">Settings</button>
+                <button type="button" name="sign_out_btn" class="theme full_width" id="sign_out_btn">Sign-out</button>
             </div>
         </div>
     </div>
