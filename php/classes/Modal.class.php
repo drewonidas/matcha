@@ -34,18 +34,21 @@ class Modal {
     public static function generate_sql($data_set) {
         $sql = '';
         switch ($data_set) {
-            case 'get_user':
-                $sql = 'SELECT id, username, email, first_name, last_name,
-                        gender, sexual_pref, bio, interests, location,
-                        last_in, rating, image_id
+            case 'verify_user_cred':
+                $sql = 'SELECT id, username, image_id
                         FROM users
                         WHERE username = ?
                         AND password = ?';
                 break;
+            case 'get_user_profile':
+                $sql = 'SELECT username, email, first_name, last_name,
+                        gender, sexual_pref, bio, interests, location,
+                        last_in, rating, image_id
+                        FROM users
+                        WHERE id = ?';
+                break;
             case 'get_all_users':
-                $sql = 'SELECT id, username, first_name, last_name, gender,
-                        sexual_pref, bio, interests, location, last_in,
-                        rating, image_id
+                $sql = 'SELECT id, username, last_in, rating, image_id
                         FROM users';
                 break;
             case 'get_profile_info':
@@ -79,9 +82,9 @@ class Modal {
                 $sql = 'INSERT INTO users (username, email, password, first_name, last_name)
                         VALUES (?, ?, ?, ?, ?)';
                 break;
-            case 'new_comm':
-                $sql = 'INSERT INTO comments (comm_text, type, user_id, img_id)
-                        VALUES (?, ?, ?, ?)';
+            case 'new_like':
+                $sql = 'INSERT INTO likes (sender_id, recipient_id)
+                        VALUES (?, ?)';
                 break;
             case 'del_user':
                 $sql = 'DELETE FROM users
@@ -98,8 +101,7 @@ class Modal {
             case 'edit_profile':
                 $sql = 'UPDATE users
                         SET email=?, first_name=?, last_name=?,
-                        gender=?, sexual_pref=?, bio=?, interests=?,
-                        image_id=?
+                        gender=?, sexual_pref=?, bio=?
                         WHERE id = ?';
                 break;
             case 'edit_password':
@@ -117,14 +119,6 @@ class Modal {
 
     public function get_connection() {
         return ($this->_connection);
-    }
-
-    public function verify_user($user_id, $ver_code) {
-        $sql = get_sql('verify_user');
-        if ($sql) {
-            $this->change_db_data($this->_connection, $sql, null);
-        }
-        echo 'Alls Good<br/>';
     }
 
     // returns data from the sql query call

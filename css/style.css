@@ -17,6 +17,7 @@ body {font-size: 14px;}
 .padding_16 {padding: 16px;}
 .padding_8 {padding: 9px;}
 .margin_tb_24 {margin: 16px auto;}
+.margin_tb_8 {margin: 8px auto;}
 .margin_16 {margin: 16px;}
 .margin_8 {margin: 8px;}
 .margin_4 {margin: 4px;}
@@ -24,8 +25,8 @@ body {font-size: 14px;}
 .center {margin: auto;}
 .circle {border-radius: 50%;}
 .half_width {width: 50%;}
-.full_width, header, .views_container, footer, .modal {width: 100%;}
-.full_size {width: 100%; height: 100%; max-height: 100%;}
+.full_size, .full_width, header, .views_container, footer, .modal {width: 100%;}
+.full_size {height: 100%; max-height: 100%;}
 .flex_1 {flex: 1;}
 .flex_2 {flex: 2;}
 .flex_3 {flex: 3;}
@@ -37,8 +38,8 @@ body {font-size: 14px;}
     -webkit-flex-wrap: wrap;
 }
 .flex_col_container {flex-direction: column;}
-/**!! BASIC WEB-APP LAYOUT
-	> HEADER AND NAVIGATION BAR !!**/
+.hidden {display: none;}
+/**!! HEADER AND NAVIGATION BAR !!**/
 header {
 	height: 7%;
 	/*max-height: 64px;*/
@@ -46,24 +47,27 @@ header {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 header form {width: 30%;}
-header form input {text-align: left;margin: 0;}
-header form button {margin-left: 0;}
+header form input {width: 30%;text-align: left;margin: 0;border: none;}
+header form button {margin-left: 0; transition: all 1s;}
 header form input + button {display: none;}
-header form input:focus {width: 80%; background: white; color: black;}
-header form input:focus + button {display: block;}
+/*header form input:required:invalid {border-color: #992030;width: 57%;}*/
+/*header form input:required:focus {border: 1px dashed white;width: 60%;}*/
+header form input:focus {width: 80%; background: white; color: black;border: none;}
+header form input:valid + button {display: block;}
+/*header form input:focus + button {display: block;}*/
 nav {align-self: flex-end;margin-right: 0;flex-wrap: nowrap;-webkit-flex-wrap: nowrap;}
 .branding, nav {width: auto; height: 100%; max-height: 100%;}
 .branding {align-self: flex-start; margin-left: 2%;}
 .branding .brand_logo_sm {height: 95%; width: auto;}
 /**!! MAIN VIEW CONTAINER !!**/
 .views_container {height: 86%;}
-.page {height: 100%; max-height: 100%;}
+.page {height: 100%; max-height: 100%; width: 100%;}
 /**!! FOOTER !!**/
 footer {height: 7%; background: black; color: white;}
 /**!! BASIC BUTTONS !!**/
 button, footer, .logo_text, .btn, input {color: white;}
 button, h1, h2, h3, p, .btn, a, input {text-align: center;}
-.btn, button, input, a {
+.btn, button, input, a, textarea {
 	text-decoration: none;
 	background: none;
 	outline: none;
@@ -86,16 +90,17 @@ button, .btn, .btn_round {color: #992030;text-transform: uppercase;font-weight: 
 form {color: white;border-radius: 2px;background-color: transparent;}
 form .actions {width: 60%;}
 form .actions a {font-size: small;width: 50%;}
-input {width: 60%;margin: 8px auto;padding: 12px 20px;border-bottom: 2px solid transparent;}
+input, textarea {width: 60%;margin: 8px auto;padding: 12px 20px;border-bottom: 2px solid transparent;}
 input:required:invalid {border-color: #992030;width: 57%;}
 input:required:focus {border: 1px dashed white;width: 60%;}
 input:required:valid {border-color: forestgreen;width: 60%;}
 input[type=submit] {color: white;border: 2px solid #992030;background-color: rgba(153, 32, 48, 0.4);}
 input[type=submit]:hover {background-color: rgba(153, 32, 48, 1);}
 label, .account_actions {width: 60%;}
-form[name=register] {display: none;}
+textarea {width: 100%;resize: none;}
+/*form[name=register] {display: none;}*/
 /**!! LOGIN/REGISTRATION !!**/
-#app_access {position: fixed;height: 100%;width: 100%;}
+#app_access {position: fixed;}
 #app_access .col {
 	background: rgba(0,0,0,0.8);
 	width: 60%;
@@ -105,7 +110,8 @@ form[name=register] {display: none;}
 /**!! MAIN CONTAINER !!**/
 /*#browser_page {height: 100%;max-height: 100%;width: 100%;}*/
 /**!! MATERIAL-DESIGN-LIKE CARDS !!**/
-.card, .modal {font-family: 'Cinzel Decorative';font-size: 14px;}
+.card_container {width: 20%;}
+.card, .modal {/*font-family: 'Cinzel Decorative';*/font-size: 14px;}
 .card {
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
     height: auto;
@@ -114,10 +120,18 @@ form[name=register] {display: none;}
 	border-radius: 2px;
 	transition: 0.5s;
 }
-.card img {width: 160px; height: 160px;}
-.card p {margin: 8px auto;}
-.mini_profiles_view {width: 90%;overflow: auto;max-height: 80%;}
-.mini_profiles_view .card {margin: 8px;}
+.card img {width: 100%; height: auto;}
+.card .profile_username {font-size: large; font-weight: bold;}
+.filters_container {height: 10%}
+.mini_profiles_view {
+	min-height: 90%;
+	max-height: 90%;
+	/*max-height: 95%;*/
+	overflow-y: auto;
+	background-color: rgba(255,255,255,0.7);
+}
+.mini_profiles_view .card {
+	max-width: 250px;max-height: 400px;min-width: 200px;min-height: 300px;}
 .mini_profiles_view .card:hover {
 	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
 }
@@ -134,23 +148,29 @@ form[name=register] {display: none;}
 .modal_content img {width: 100%;height: auto;max-width: 300px;flex-wrap: nowrap;}
 .modal_content .card {width: auto;max-width: 100%;height: auto;}
 .modal_content .card p {margin: auto;text-align: center;}
+/*.modal_content .card  {;}*/
 .modal_content .modal_close {margin-right: 0;border: none;}
 .modal_content .modal_close:hover {background-color: #992030;color: white;}
 /*.modal_content .card p span {font-style: normal;}*/
 /**!! SIGNED-IN USER PROFILE !!**/
-.profile_view {background: white;color: black;width: 80%;min-height: 95%;padding: 16px;}
-.profile_view .card {width: 100%;height: auto;}
-.profile_view .col {width: 40%;}
+.profile_view {background: white;color: black;}
+.profile_view .card {width: auto;height: auto;padding: 8px;}
+.profile_view .card img.circle {max-width: 300px; max-height: 300px;}
 .profile_view form {color: black;}
 .profile_view label {width: 30%;font-weight: bold;}
-.profile_view input {
-	width: 60%;color: black; border-bottom: 1px solid #992030;text-align: left;}
-.profile_view input:disabled {border: none;text-wrap: normal;}
+.profile_view input, .profile_view textarea {
+	width: 60%;
+	color: black;
+	border-bottom: 1px solid #992030;
+	text-align: left;
+}
+.profile_view textarea {margin: 8px auto 0;width: 100%;resize: none;}
+.profile_view input:disabled, .profile_view textarea:disabled {border: none;}
 /*.profile_view form {color: black;}*/
 .profile_view fieldset {border: none; width: 80%}
-.profile_gallery img {max-width: 100px;max-height: 100px;margin: 4px;flex: 1;}
-.profile_view .profile_gallery {padding: 18px;}
-.profile_view .edit_actions {display: none;transition: all 0.6s;}
+.profile_gallery img {max-width: 100px;max-height: 100px;}
+.profile_view .profile_gallery {padding: 8px;}
+/*.profile_view .edit_actions {display: none;transition: all 0.6s;}*/
 /**!! LOADER !!**/
 #app_loader_cont {
 	position: fixed;

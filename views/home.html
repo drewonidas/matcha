@@ -1,41 +1,42 @@
 <div id="browser_page" class="flex_col_container page">
     <!-- PAGE TITLE -->
-    <div class="flex_container margin_tb_24">
-        <h2 class="center">Singles near you</h2>
+    <div class="flex_container full_width intro_container">
+        <h1 class="center">Singles near you</h1>
     </div>
 
     <!-- CONTAINER FOR MINI PROFILE CARDS -->
-    <div id="profiles" class="flex_container mini_profiles_view">
+    <div id="profiles" class="flex_container full_width mini_profiles_view">
         <!-- MINI PROFILE CARD TEMPLATE -->
-        <div class="flex_col_container card mini_profile center">
-            <h3 class="profile_username"> sweet-cheeks </h3>
-            <div class="flex_container margin_4">
-                <img src="imgs/app/avt.svg" alt="#" id="profile_img" />
-            </div>
-            <div class="flex_container card_actions margin_4">
-                <button class="theme btn profile_like" name="like">
-                    <i class="material-icons">favorite_outline</i>
-                </button>
-                <button class="theme btn profile_info">
-                    <i class="material-icons">info</i>
-                </button>
+        <div class="card_container mini_profile center flex_1 padding_8">
+            <div class="flex_col_container card">
+                <img src="imgs/app/avt.svg" id="profile_img"/>
+                <p class="profile_username margin_tb_8"></p>
+                <div class="flex_container card_actions padding_8">
+                    <button class="profile_like theme btn flex_1">
+                        <i class="fa fa-heart-o"></i>
+                    </button>
+                    <button class="profile_info theme btn flex_1">
+                        <i class="fa fa-info-circle"></i>
+                    </button>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 <!-- PROFILE VIEWING MODAL -->
 <div class="modal page">
     <!-- MODAL'S CONTENT CONTAINER -->
     <div class="flex_col_container modal_content">
-        <button class="theme modal_close">
-            <i class="material-icons">clear</i>
+        <button class="theme btn modal_close">
+            <i class="fa fa-close"></i>
         </button>
-        <div class="margin_8 flex_container">
-            <h3 class="center info_uname"> Kennedy </h3>
+        <div class="margin_tb_24 flex_container">
+            <h1 class="center info_uname"></h1>
         </div>
         <div class="flex_container">
-            <div class="flex_col_container padding_8 margin_8 flex_1">
-                <img src="imgs/app/avt.svg" class="circle margin_4 info_dp">
+            <div class="flex_col_container padding_8 flex_1">
+                <img src="imgs/app/avt.svg" class="circle center info_dp">
             </div>
             <div class="flex_2 flex_col_container">
                 <div class="card padding_long margin_4">
@@ -44,10 +45,7 @@
                     <p><b>Sex: </b><span class="info_sex"> Male </span></p>
                     <p><b>I like: </b><span class="info_pref"> Women </span></p>
                     <p><b>About me: </b>
-                        <span class="info_bio">
-                                        Even 'blah blah' can
-                                        lead to great things :)
-                                    </span>
+                        <textarea class="info_bio" placeholder="I 'match-ya'" disabled></textarea>
                     </p>
                 </div>
                 <div class="card padding_8 margin_4">
@@ -56,14 +54,14 @@
                     <p><b>Rating: </b><span class="profile_rating"> 7/10 </span></p>
                 </div>
                 <br>
-                <!--                                <div class="margin_8">
-                                                <button class="theme">
-                                                    <i class="material-icons">favorite</i>
-                                                </button>
-                                                <button class="theme profile_info">
-                                                    <i class="material-icons">info</i>
-                                                </button>
-                                            </div>-->
+                <div class="padding_8">
+                    <button class="theme btn">
+                        <i class="fa fa-heart"></i>
+                    </button>
+                    <!--<button class="theme btn profile_info">
+                        <i class="fa fa-info-circle"></i>
+                    </button>-->
+                </div>
             </div>
         </div>
     </div>

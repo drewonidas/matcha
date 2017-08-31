@@ -26,11 +26,11 @@
                     sexual_pref ENUM('males', 'females', 'both'),
                     bio TEXT,
                     interests TEXT,
-                    reg_date DATETIME NOT NULL,
-                    location VARCHAR(500) NOT NULL,
+                    reg_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    location VARCHAR(500),
                     verified BOOLEAN DEFAULT FALSE,
                     last_in DATETIME,
-                    rating INT(5) UNSIGNED,
+                    rating INT(5) UNSIGNED DEFAULT 1,
                     image_id INT(6) UNSIGNED)";
             $conn->exec($sql);
             echo 'Table users created<br/>';
@@ -39,7 +39,7 @@
             $sql = "CREATE TABLE IF NOT EXISTS images (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                     img_data VARCHAR(128) NOT NULL,
-                    img_date DATETIME,
+                    img_date DATETIME DEFAULT CURRENT_TIMESTAMP,
                     user_id INT(6) UNSIGNED NOT NULL)";
             $conn->exec($sql);
             echo 'Table images created<br/>' . PHP_EOL;
@@ -47,12 +47,9 @@
             // create likes table
             $sql = "CREATE TABLE IF NOT EXISTS likes (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                    like_type ENUM('like', 'comment'),
-                    Like_text VARCHAR(4) NOT NULL,
-                    Like_date DATETIME,
+                    Like_date DATETIME DEFAULT CURRENT_TIMESTAMP,
                     sender_id INT(6) UNSIGNED NOT NULL,
                     recipient_id INT(6) UNSIGNED NOT NULL)";
-            // use exec() because no results are returned
             $conn->exec($sql);
             echo 'Table comments created<br/>' . PHP_EOL;
 
@@ -68,8 +65,8 @@
             $sql = "CREATE TABLE IF NOT EXISTS messages (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                     msg_text VARCHAR(128) NOT NULL,
+                    msg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
                     chat_id INT(6) UNSIGNED NOT NULL,
-                    msg_date DATETIME,
                     sender_id INT(6) UNSIGNED NOT NULL,
                     recipient_id INT(6) UNSIGNED NOT NULL)";
             $conn->exec($sql);
@@ -80,7 +77,7 @@
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                     notification_text VARCHAR(128) NOT NULL,
                     about_id INT(6) UNSIGNED NOT NULL,
-                    notification_date DATETIME,
+                    notification_date DATETIME DEFAULT CURRENT_TIMESTAMP,
                     user_id INT(6) UNSIGNED NOT NULL)";
             $conn->exec($sql);
             echo 'Table notifications created<br/>' . PHP_EOL;

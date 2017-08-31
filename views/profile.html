@@ -1,15 +1,52 @@
 
 <div class="flex_container profile_view page" id="profile_page">
-    <div class="flex_col_container col">
-        <div class="flex_container padding_long card">
-            <img src="imgs/app/avt.svg" alt="#" id="profile_img" class="circle"/>
-            <div class="flex_col_container">
-                <h3 class="profile_username"> sweet-cheeks </h3>
-                <br>
+    <div class="flex_col_container half_width">
+        <h1 class="profile_username center padding_long"></h1>
+        <div class="flex_col_container card">
+            <img src="imgs/app/avt.svg" id="profile_img" class="circle"/>
+            <div class="flex_col_container padding_8">
                 <p>Likes: <span class="profile_likes"> 19 </span></p>
                 <p>Matches: <span class="profile_matches"> 9 </span></p>
                 <p>Rating: <span class="profile_rating"> 7/10 </span></p>
             </div>
+            <div class="flex_col_container account_actions padding_8 full_width">
+                <button type="button" name="settings" class="theme full_width">Settings</button>
+                <button type="button" name="sign_out_btn" class="theme full_width" id="sign_out_btn">Sign-out</button>
+            </div>
+        </div>
+    </div>
+    <div class="flex_col_container half_width">
+        <div class="flex_col_container padding_8 card" id="user_info">
+            <fieldset>
+                <legend><b>User Information</b></legend>
+                <form name="update">
+                    <label for="profile_fname">First-name : </label>
+                    <input class="info" type="text" name="fname" id="profile_fname" disabled>
+                    <br>
+                    <label for="profile_lname">Last-name : </label>
+                    <input class="info" type="text" name="lname" id="profile_lname" disabled>
+                    <br>
+                    <label for="profile_email">E-mail : </label>
+                    <input class="info" type="email" name="email" id="profile_email" disabled>
+                    <br>
+                    <label for="profile_gender">Gender : </label>
+                    <input class="info" type="text" name="gender" id="profile_gender" disabled>
+                    <br>
+                    <label for="profile_sex_pref">I prefer : </label>
+                    <input class="info" type="text" name="sex_pref" id="profile_sex_pref" disabled>
+                    <br>
+                    <label for="profile_bio">About me : </label>
+                    <textarea class="info" id="profile_bio" name="bio"
+                              placeholder="Searching for my match.." disabled>
+                    </textarea>
+                    <br>
+                    <div class="flex_container edit_actions margin_8" id="edit_actions">
+                        <button class="flex_1 theme" name="edit" type="button">Edit profile</button>
+                        <button class="flex_1 theme hidden" name="save" type="submit">Save</button>
+                        <button class="flex_1 theme hidden" name="cancel" type="button">Cancel</button>
+                    </div>
+                </form>
+            </fieldset>
         </div>
         <br>
         <div class="flex_container card profile_gallery" id="conn_img_gallery">
@@ -18,46 +55,6 @@
             <img src="imgs/app/avt.svg">
             <img src="imgs/app/avt.svg">
             <img src="imgs/app/avt.svg">
-        </div>
-    </div>
-    <div class="flex_col_container col">
-        <div class="flex_col_container padding_8 card" id="user_info">
-            <fieldset>
-                <legend>User information</legend>
-                <form name="update">
-                    <label for="profile_fname">First-name : </label>
-                    <input class="info_first_name" type="text" value="Sandra" id="profile_fname" disabled>
-                    <br>
-                    <label for="profile_lname">Last-name : </label>
-                    <input class="info_last_name" type="text" value="Brooks" id="profile_lname" disabled>
-                    <br>
-                    <label for="profile_email">E-mail : </label>
-                    <input class="info_email" type="email" value="sbrooks@mail.com" id="profile_email" disabled>
-                    <br>
-                    <label for="profile_gender">Gender : </label>
-                    <input class="info_gender" type="text" value="Male" id="profile_gender" disabled>
-                    <br>
-                    <label for="profile_sex_pref">I prefer : </label>
-                    <input class="info_sex_pref" type="text" value="Men, Women" id="profile_sex_pref" disabled>
-                    <br>
-                    <label for="profile_bio">About me : </label>
-                    <input class="info_bio" type="text"
-                           value="I value life, and believe that love is a choice" id="profile_bio" disabled>
-                    <br>
-                    <div class="flex_container edit_actions margin_8" id="edit_actions">
-                        <button class="flex_1 theme" type="submit">Save</button>
-                        <button class="flex_1 theme" type="button">Cancel</button>
-                    </div>
-                </form>
-            </fieldset>
-        </div>
-        <br>
-        <div class="flex_container padding_16 card" id="stats">
-            <div class="flex_col_container flex_1 account_actions">
-                <button type="button" name="edit" class="theme full_width" id="edit_profile_btn">Edit profile</button>
-                <button type="button" name="settings" class="theme full_width">Settings</button>
-                <button type="button" name="sign_out_btn" class="theme full_width" id="sign_out_btn">Sign-out</button>
-            </div>
         </div>
     </div>
 </div>

@@ -30,7 +30,6 @@ $(function() {
         loadPage: function(pageUrl) {
             /*var pageUrl = page.split('/ ')[1];
             console.log(pageUrl);*/
-            viewsContainer.empty();
             switch (pageUrl) {
                 case "":
                     this.home();
@@ -46,49 +45,83 @@ $(function() {
                     break;
             }
         },
-        home: function(data) {
+        home: function() {
+            viewsContainer.empty();
             viewsContainer.load('./views/home.html', function() {
-                var args = {"user" : data[0].username};
                 $("header").show();
                 $("footer").show();
-                sendRequest("profiles", JSON.stringify(args), renderMiniProfileCards);
-                loader.css("display", "none");
-                $("#profile_btn").click(appControllers.profile);
-                /** USER SIGN-OUT **/
+                $("#profile_btn").click(function () {
+                    $(this).find("i.fa").removeClass("fa-user");
+                    $(this).find("i.fa").addClass("fa-close");
+                    appControllers.profile();
+                });
+                $('button.profile_like').click(function () {
+                    var btn = $(this);
+                    var profileID = btn.parents('div.card_container').attr("id");
+                    var args = {"recID" : profileID};
+                    sendRequest("like_user", JSON.stringify(args), function(data) {
+                        btn.find("i.fa").removeClass("fa-heart-o");
+                        btn.find("i.fa").addClass("fa-heart");
+                        loader.hide();
+                        // console.log(data)
+                    });
+                });
+                sendRequest("mini_profiles", "", renderMiniProfileCards);
             });
         },
         appAccess: function() {
+            viewsContainer.empty();
             viewsContainer.load('./views/userAccess.html', function() {
                 var signInForm = $("#signin_form");
                 var signUpForm = $("#signup_form");
 
+                signUpForm.hide();
+                signInForm.show();
                 $("header").hide();
                 $("footer").hide();
                 $("#toggle_reg").click(function () {
-                    signUpForm.show();
-                    signInForm.hide();
+                    signInForm.hide("slow");
+                    signUpForm.show("fast");
                 });
                 $("#toggle_log").click(function () {
-                    signInForm.show();
-                    signUpForm.hide();
+                    signUpForm.hide("slow");
+                    signInForm.show("fast");
                 });
                 /** USER REGISTRATION/LOGIN **/
                 $("form").submit(submitForm);
-                loader.css("display", "none");
+                loader.hide();
             });
         },
         profile: function() {
+            viewsContainer.empty();
             viewsContainer.load('./views/profile.html', function() {
-                var args = {"id" : appData.userProfile.id};
-                // console.log(appData.userProfile.id);
-                sendRequest("profile_info", JSON.stringify(args), renderProfilePage);
-                $("#sign_out_btn").click(signOut);
-                $("#edit_profile_btn").click(function () {
-                    $("#edit_actions").show();
-                    $("input:disabled").attr("disabled", false);
+                var actions = $("#edit_actions");
+                var btnEdit = actions.find("button[name=edit]");
+                var btnSave = actions.find("button[name=save]");
+                var btnCancel = actions.find("button[name=cancel]");
+                var inputs = $(".info");
+
+                btnEdit.click(function () {
+                    inputs.attr("disabled", false);
+                    btnSave.show();
+                    btnCancel.show();
+                    $(this).hide();
                     // $("");
                 });
-                loader.css("display", "none");
+                btnCancel.click(function () {
+                    inputs.attr("disabled", true);
+                    btnSave.hide();
+                    btnEdit.show();
+                    $(this).hide();
+                });
+                $("form[name=update]").submit(updateProfile);
+                $("#sign_out_btn").click(signOut);
+                $("#profile_btn").click(function () {
+                    $(this).find("i.fa").removeClass("fa-close");
+                    $(this).find("i.fa").addClass("fa-user");
+                    appControllers.home();
+                });
+                sendRequest("user_profile", "", renderProfilePage);
             });
         }
     };
@@ -99,9 +132,9 @@ $(function() {
             // location.hash = "/";
             alert("User input error!!");
         } else {
-            appControllers.home(data);
+            appControllers.home();
         }
-        $("#app_loader_cont").css("display", "none");
+        loader.hide();
     }
     function renderMiniProfileCards(data) {
         var contentCont = $("#profiles");
@@ -111,42 +144,37 @@ $(function() {
         for (var c = 0; c < data.length; c++) {
             cardClone = profileCard.clone(true);
             /**> FIND AND FILL FILE INFO ELEMENTS */
-            cardClone.find('h3.profile_username').text(data[c].username);
+            cardClone.find('p.profile_username').text(data[c].username);
             cardClone.attr("id", data[c].id);
             /**> ADD TO PAGE */
             contentCont.append(cardClone);
-            // cardClone.show();
             cardClone = null;
         }
         /* REMOVE TEMPLATE */
         profileCard.remove();
-        // $("#profiles:first-child").remove();
         $('.profile_info').click(openModalProfile);
         $('.modal_close').click(closeModalProfile);
         $("#app_loader_cont").css("display", "none");
     }
     function renderProfilePage(data) {
-        var profile = data[0];
+        var profile = data;
         $(".profile_username").text(profile.username);
         $("#profile_fname").val(profile.first_name);
         $("#profile_lname").val(profile.last_name);
         $("#profile_email").val(profile.email);
         $("#profile_gender").val(profile.gender);
         $("#profile_sex_pref").val(profile.sexual_pref);
-        $("#profile_bio").val(profile.bio);
-
-        $("#logo").click(function () {
-            appControllers.home(data);
-        });
+        $("#profile_bio").text(profile.bio);
+        loader.hide();
     }
-    function openModalProfile()  {
-        var profileID = $(this).parents('div.card').attr("id");
+    function openModalProfile() {
+        var profileID = $(this).parents('div.card_container').attr("id");
         var args = {"id" : profileID};
-        sendRequest("profile_info", JSON.stringify(args), function (data) {
+        sendRequest("mini_profile_info", JSON.stringify(args), function (data) {
             var profile = data[0];
             console.log(profile);
             $('.modal').show();
-            $('h3.info_uname').text(profile.username);
+            $('h1.info_uname').text(profile.username);
             $('span.info_fname').text(profile.first_name);
             $('span.info_lname').text(profile.last_name);
             $('span.info_sex').text(profile.gender);
@@ -168,19 +196,27 @@ $(function() {
         console.log(args);
         sendRequest($(this).attr("name"), JSON.stringify(args), changeAppState);
     }
+    function updateProfile(event) {
+        event.preventDefault();
+        var tmp = $(this).find(".info").serializeArray();
+        var args = {};
+        $.each(tmp, function(i, field) {
+            args[field.name] = field.value;
+        });
+        console.log(args);
+        sendRequest($(this).attr("name"), JSON.stringify(args), function (data) {
+            if (data === true)
+                alert("Profile successfully changed!");
+            else
+                alert("Something went wrong. Please try again");
+
+            appControllers.profile();
+            loader.hide();
+        });
+    }
     function signOut() {
         sendRequest("logout", "", appControllers.appAccess);
     }
-    /**!! SET UP EVENT LISTENERS !!**/
-/*    $("#sign_up_btn").click(function() {
-        $("#signup_form").show();
-        $("#signin_form").hide();
-    });
-
-    $("#sign_in_btn").click(function() {
-        $("#signin_form").show();
-        $("#signup_form").hide();
-    });*/
 
     appControllers.initialize();
     $(document).ajaxStart(function() {
