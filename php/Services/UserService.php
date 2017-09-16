@@ -1,6 +1,6 @@
 <?php
 
-require("classes/Modal.class.php");
+require("Modal.class.php");
 $modal = new Modal();
 
 function verifyCredentials($username, $password) {
@@ -44,8 +44,12 @@ function changeDetails($args) {
     return ($result);
 }
 
-function likeUserProfile($args) {
-    $sql = Modal::generate_sql('new_like');
+function likeUserProfile($args, $action) {
+    if ($action == "false")
+        $sql = Modal::generate_sql('del_like');
+    else
+        $sql = Modal::generate_sql('new_like');
+
     $result = $GLOBALS['modal']->change_db_data($sql, $args);
     return ($result);
 }

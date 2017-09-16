@@ -39,8 +39,9 @@
             session_destroy();
             break;
         case 'mini_profiles':
-            $user = $args['user'];
-            $userData = getAllUsers($user);
+            $user = json_decode($_SESSION['currUser']);
+            $userID = $user->id;
+            $userData = getAllUsers($userID);
             $response = json_encode($userData);
             break;
         case 'mini_profile_info':
@@ -68,8 +69,11 @@
             $user = json_decode($_SESSION['currUser']);
             $senderID = $user->id;
             $recipientID = $args['recID'];
+//            $action = $args['action'];
+            var_dump($args);
+            exit();
             $params = array($senderID, $recipientID);
-            $response = json_encode(likeUserProfile($params));
+            $response = json_encode(likeUserProfile($params, $action));
             break;
         default:
             break;

@@ -1,4 +1,4 @@
-<div id="browser_page" class="flex_col_container page">
+<div id="browser_page" class="flex_col_container page home">
     <!-- PAGE TITLE -->
     <div class="flex_container full_width intro_container">
         <h1 class="center">Singles near you</h1>
@@ -9,23 +9,24 @@
         <!-- MINI PROFILE CARD TEMPLATE -->
         <div class="card_container mini_profile center flex_1 padding_8">
             <div class="flex_col_container card">
-                <img src="imgs/app/avt.svg" id="profile_img"/>
-                <p class="profile_username margin_tb_8"></p>
-                <div class="flex_container card_actions padding_8">
-                    <button class="profile_like theme btn flex_1">
-                        <i class="fa fa-heart-o"></i>
-                    </button>
-                    <button class="profile_info theme btn flex_1">
-                        <i class="fa fa-info-circle"></i>
-                    </button>
+                <div class="flex_col_container profile_info">
+                    <img src="imgs/app/avt.svg" id="profile_img"/>
+                    <div class="flex_container card_title center     ">
+                        <p class="profile_username center"></p>
+                    </div>
+                </div>
+                <div class="flex_container card_actions pos_right">
+                    <label class="btn theme_toggle">
+                        <input type="checkbox" name="profile_like">
+                        <i class="fa fa-heart"></i>
+                    </label>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <!-- PROFILE VIEWING MODAL -->
-<div class="modal page">
+<div class="modal full_size">
     <!-- MODAL'S CONTENT CONTAINER -->
     <div class="flex_col_container modal_content">
         <button class="theme btn modal_close">
@@ -58,9 +59,6 @@
                     <button class="theme btn">
                         <i class="fa fa-heart"></i>
                     </button>
-                    <!--<button class="theme btn profile_info">
-                        <i class="fa fa-info-circle"></i>
-                    </button>-->
                 </div>
             </div>
         </div>

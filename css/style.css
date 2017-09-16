@@ -6,7 +6,7 @@ html {
 }
 html, body, section {overflow: hidden;}
 * {margin: auto;}
-body {font-size: 14px;}
+body {margin: 0;font-size: 14px;}
 /*!! ELEMENT ELEVATION ## SEE MATERIAL GUIDELINES !!**/
 .card {z-index: 2;}
 .toolbar {z-index: 4;}
@@ -28,8 +28,8 @@ body {font-size: 14px;}
 .full_size, .full_width, header, .views_container, footer, .modal {width: 100%;}
 .full_size {height: 100%; max-height: 100%;}
 .flex_1 {flex: 1;}
-.flex_2 {flex: 2;}
 .flex_3 {flex: 3;}
+.flex_2 {flex: 2;}
 .flex_container, .flex_col_container {
     display: flex;
     display: -moz-flex;
@@ -39,81 +39,81 @@ body {font-size: 14px;}
 }
 .flex_col_container {flex-direction: column;}
 .hidden {display: none;}
+.pos_left {margin-left: 0;}
+.pos_right {margin-right: 0;}
 /**!! HEADER AND NAVIGATION BAR !!**/
 header {
 	height: 7%;
-	/*max-height: 64px;*/
 	background-color: rgb(66, 0, 0);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-header form {width: 30%;}
+/*header form {width: 30%;}
 header form input {width: 30%;text-align: left;margin: 0;border: none;}
 header form button {margin-left: 0; transition: all 1s;}
-header form input + button {display: none;}
-/*header form input:required:invalid {border-color: #992030;width: 57%;}*/
-/*header form input:required:focus {border: 1px dashed white;width: 60%;}*/
-header form input:focus {width: 80%; background: white; color: black;border: none;}
-header form input:valid + button {display: block;}
-/*header form input:focus + button {display: block;}*/
+header form input + button {display: none;}*/
+/*header form input:required:invalid {border-color: #992030;width: 57%;}
+header form input:required:focus {border: 1px dashed white;width: 60%;}*/
+/*header form input:focus {width: 80%; background: white; color: black;border: none;}
+header form input:valid + button {display: block;}*/
 nav {align-self: flex-end;margin-right: 0;flex-wrap: nowrap;-webkit-flex-wrap: nowrap;}
-.branding, nav {width: auto; height: 100%; max-height: 100%;}
 .branding {align-self: flex-start; margin-left: 2%;}
+.branding, nav {
+	width: auto;
+	height: 100%;
+	max-height: 100%;
+}
 .branding .brand_logo_sm {height: 95%; width: auto;}
 /**!! MAIN VIEW CONTAINER !!**/
+.home {background-color: rgba(255,255,255,0.7);}
 .views_container {height: 86%;}
-.page {height: 100%; max-height: 100%; width: 100%;}
+/**!! LOGIN/REGISTRATION !!**/
+.page {height: 100%;max-height: 100%;max-width: 1000px;}
 /**!! FOOTER !!**/
 footer {height: 7%; background: black; color: white;}
 /**!! BASIC BUTTONS !!**/
-button, footer, .logo_text, .btn, input {color: white;}
-button, h1, h2, h3, p, .btn, a, input {text-align: center;}
+footer, input, .logo_text {color: white;}
+button, h1, h2, h3, p, a, input, .btn {text-align: center;}
 .btn, button, input, a, textarea {
 	text-decoration: none;
-	background: none;
 	outline: none;
 	border: none;
+	padding: 12px 28px;
 	box-sizing: border-box;
 	transition: all 0.3s;
-	padding: 12px 28px;
 }
-button, .btn, .btn_round {color: #992030;text-transform: uppercase;font-weight: bold;}
-.branding:hover, .btn:hover, button:hover, a:hover {cursor: pointer;}
-.btn i, button i {font-size: 24px;width: 24px;height: 24px;}
-/** THEME CLASSES **/
-.theme {color: #992030;background: white;border: 2px solid transparent;}
-.theme_inverse {color: white;background: #992030;border: 2px solid transparent;}
-.theme_link {color: white;background: none;border-bottom: 2px solid transparent;}
-.theme:hover {background: #992030; color: white;}
-.theme_inverse:hover {color: #992030;background: none;}
-.theme_link:hover {color: #992030;background: white;}
+.btn {text-transform: uppercase;}
+button:hover, a:hover, .branding:hover, .btn:hover {cursor: pointer;}
+.btn i, button i {font-size: 24px;}
+nav .btn {padding: 16px;}
 /** BASIC FORMS **/
-form {color: white;border-radius: 2px;background-color: transparent;}
-form .actions {width: 60%;}
-form .actions a {font-size: small;width: 50%;}
-input, textarea {width: 60%;margin: 8px auto;padding: 12px 20px;border-bottom: 2px solid transparent;}
-input:required:invalid {border-color: #992030;width: 57%;}
-input:required:focus {border: 1px dashed white;width: 60%;}
-input:required:valid {border-color: forestgreen;width: 60%;}
-input[type=submit] {color: white;border: 2px solid #992030;background-color: rgba(153, 32, 48, 0.4);}
-input[type=submit]:hover {background-color: rgba(153, 32, 48, 1);}
-label, .account_actions {width: 60%;}
-textarea {width: 100%;resize: none;}
-/*form[name=register] {display: none;}*/
-/**!! LOGIN/REGISTRATION !!**/
-#app_access {position: fixed;}
-#app_access .col {
-	background: rgba(0,0,0,0.8);
-	width: 60%;
-	max-width: 600px;
-	border-radius: 4px;
+form {border-radius: 2px;background-color: transparent;}
+form.access_form {
+	color: white;
+	background-color: black;
+	width: 100%;
+	max-width: 500px;
+	height: auto;
+	margin: auto;
 }
-/**!! MAIN CONTAINER !!**/
-/*#browser_page {height: 100%;max-height: 100%;width: 100%;}*/
+form.access_form .actions {width: 90%;}
+form.access_form .actions a {font-size: small;width: 50%;}
+form.access_form input:required, form textarea {
+	width: 90%;
+	margin: 8px auto;
+	padding: 12px 20px;
+	background-color: transparent;
+	border-bottom: 1px solid transparent;
+}
+form.access_form input:required:invalid {border-color: #992030;}
+form.access_form input:required:focus {border: 1px solid white;}
+form.access_form input:required:valid {border-color: forestgreen;}
+form.access_form input[type=submit] {width: 90%;}
+form label, .account_actions {width: 60%;}
+textarea {width: 100%;resize: none;}
 /**!! MATERIAL-DESIGN-LIKE CARDS !!**/
-.card_container {width: 20%;}
-.card, .modal {/*font-family: 'Cinzel Decorative';*/font-size: 14px;}
+/*.card_container {width: 20%;}*/
+.card, .modal {font-family: 'Cinzel Decorative';font-size: 14px;}
 .card {
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
     height: auto;
 	color: black;
 	background: white;
@@ -121,20 +121,17 @@ textarea {width: 100%;resize: none;}
 	transition: 0.5s;
 }
 .card img {width: 100%; height: auto;}
-.card .profile_username {font-size: large; font-weight: bold;}
-.filters_container {height: 10%}
-.mini_profiles_view {
-	min-height: 90%;
-	max-height: 90%;
-	/*max-height: 95%;*/
-	overflow-y: auto;
-	background-color: rgba(255,255,255,0.7);
-}
+.card .profile_username {font-size: large;font-weight: bold;color: white;}
+.mini_profiles_view {min-height: 90%;max-height: 90%;overflow-y: auto;}
 .mini_profiles_view .card {
-	max-width: 250px;max-height: 400px;min-width: 200px;min-height: 300px;}
+	max-width: 250px;min-width: 200px;max-height: 400px;min-height: 300px;}
+.mini_profiles_view .card .card_title {
+    max-width: 250px;min-width: 200px;
+    position: absolute;background-color: rgba(0,0,0,0.6);}
+.mini_profiles_view .card .profile_info:hover {cursor: pointer;}
 .mini_profiles_view .card:hover {
-	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
-}
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);}
+.filters_container {height: 10%;}
 /**!! MODAL !!**/
 .modal {
 	top: 0;
@@ -148,12 +145,11 @@ textarea {width: 100%;resize: none;}
 .modal_content img {width: 100%;height: auto;max-width: 300px;flex-wrap: nowrap;}
 .modal_content .card {width: auto;max-width: 100%;height: auto;}
 .modal_content .card p {margin: auto;text-align: center;}
-/*.modal_content .card  {;}*/
 .modal_content .modal_close {margin-right: 0;border: none;}
 .modal_content .modal_close:hover {background-color: #992030;color: white;}
 /*.modal_content .card p span {font-style: normal;}*/
 /**!! SIGNED-IN USER PROFILE !!**/
-.profile_view {background: white;color: black;}
+.profile_view {background-color: rgba(255,255,255,0.9);color: black;}
 .profile_view .card {width: auto;height: auto;padding: 8px;}
 .profile_view .card img.circle {max-width: 300px; max-height: 300px;}
 .profile_view form {color: black;}
@@ -167,17 +163,11 @@ textarea {width: 100%;resize: none;}
 .profile_view textarea {margin: 8px auto 0;width: 100%;resize: none;}
 .profile_view input:disabled, .profile_view textarea:disabled {border: none;}
 /*.profile_view form {color: black;}*/
-.profile_view fieldset {border: none; width: 80%}
+.profile_view fieldset {border: none;width: 80%}
 .profile_gallery img {max-width: 100px;max-height: 100px;}
 .profile_view .profile_gallery {padding: 8px;}
 /*.profile_view .edit_actions {display: none;transition: all 0.6s;}*/
 /**!! LOADER !!**/
-#app_loader_cont {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(255,255,255,0.5);
-}
 #loader {
 	border: 16px solid #992030;
 	border-top: 16px solid rgba(0,0,0,0.5);
@@ -187,6 +177,20 @@ textarea {width: 100%;resize: none;}
 	height: 120px;
 	animation: spin 2s linear infinite;
 }
+/** THEME CLASSES **/
+/*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);*/
+.theme {color: #992030;background: white;border: 2px solid transparent;}
+.theme:hover {background: #992030; color: white;}
+.theme_link {color: white;background: none;border-bottom: 2px solid transparent;}
+.theme_link:hover {color: #992030;background: white;}
+.theme_inverse {color: white;background: #992030;border: 2px solid transparent;}
+.theme_inverse:hover {color: #992030;background: none;}
+.theme_btn {color: white;background-color: #992030;}
+.theme_btn:hover {
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);}
+.theme_toggle input[type=checkbox] + i {
+	color: slategrey;background-color: transparent;}
+.theme_toggle:hover + i, .theme_toggle input[type=checkbox]:checked + i {color: #992030;}
 /**!! ANIMATIONS AND TRANSITIONS !!**/
 @keyframes spin {
 	0% {transform: rotate(0deg);}

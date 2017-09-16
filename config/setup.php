@@ -8,7 +8,7 @@
 @License: maDezynIzM.E. 2016
 */
 
-    require('../php/classes/Modal.class.php');
+    require('../php/Services/Modal.class.php');
 
     function setupDBTables() {
         $conn = Modal::createDBConnection();
@@ -38,8 +38,8 @@
             // create IMGS table
             $sql = "CREATE TABLE IF NOT EXISTS images (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                    img_data VARCHAR(128) NOT NULL,
-                    img_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    img VARCHAR(128) NOT NULL,
+                    date DATETIME DEFAULT CURRENT_TIMESTAMP,
                     user_id INT(6) UNSIGNED NOT NULL)";
             $conn->exec($sql);
             echo 'Table images created<br/>' . PHP_EOL;

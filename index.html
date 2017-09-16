@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <!--<link href='https://fonts.googleapis.com/css?family=Cinzel Decorative' rel='stylesheet'>-->
-        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="font_awesome/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Cinzel Decorative' rel='stylesheet'>
         <link rel="stylesheet" href="css/style.css" media="screen">
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/appControllers.js"></script>
@@ -13,11 +13,11 @@
     </head>
     <body>
         <header class="flex_container toolbar">
-            <div class="flex_container branding" id="logo">
+            <div class="flex_container branding">
                 <img src="imgs/app/bg.png" class="brand_logo_sm">
                 <h1 class="logo_text"> ATCHA</h1>
             </div>
-            <nav class="flex_container" id="nav_container">
+            <nav class="flex_container">
                 <a id="profile_btn" class="btn theme_link">
                     <span><i class="fa fa-user"></i></span>
                 </a>
@@ -34,7 +34,7 @@
         </footer>
 
         <!-- LOADING ANIMATION/DISTRACTION FOR USERS -->
-        <div class="flex_container modal" id="app_loader_cont">
+        <div class="flex_container modal full_size" id="app_loader_cont">
             <div id="loader"></div>
         </div>
     </body>

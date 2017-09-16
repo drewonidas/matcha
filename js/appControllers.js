@@ -13,6 +13,7 @@ function sendRequest(reqType, args, func) {
         function(response, status) {
             if (status === "success") {
                 try {
+                    console.log(response);
                     var data = JSON.parse(response);
                     console.log(data);
                     func(data);

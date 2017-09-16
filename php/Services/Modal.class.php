@@ -48,8 +48,10 @@ class Modal {
                         WHERE id = ?';
                 break;
             case 'get_all_users':
-                $sql = 'SELECT id, username, last_in, rating, image_id
-                        FROM users';
+                $sql = 'SELECT u.id, u.username, u.last_in,
+                        u.rating, u.image_id, COUNT(likes.id) AS affections
+                        FROM users AS u
+                        LEFT JOIN likes ON likes.recipient_id = u.id';
                 break;
             case 'get_profile_info':
                 $sql = 'SELECT username, first_name, last_name,
@@ -82,13 +84,18 @@ class Modal {
                 $sql = 'INSERT INTO users (username, email, password, first_name, last_name)
                         VALUES (?, ?, ?, ?, ?)';
                 break;
+            case 'del_user':
+                $sql = 'DELETE FROM users
+                        WHERE id = ?';
+                break;
             case 'new_like':
                 $sql = 'INSERT INTO likes (sender_id, recipient_id)
                         VALUES (?, ?)';
                 break;
-            case 'del_user':
-                $sql = 'DELETE FROM users
-                        WHERE id = ?';
+            case 'del_like':
+                $sql = 'DELETE FROM likes
+                        WHERE sender_id = ?
+                        AND recipient_id = ?';
                 break;
             case 'del_img':
                 $sql = 'DELETE FROM imgs
@@ -111,7 +118,7 @@ class Modal {
             case 'verify_user':
                 $sql = 'UPDATE users SET verified = true';
                 break;
-            default :
+            default:
                 break;
         }
         return ($sql);

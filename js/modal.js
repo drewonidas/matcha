@@ -27,9 +27,9 @@ $(function() {
                 }
             });
         },
-        loadPage: function(pageUrl) {
-            /*var pageUrl = page.split('/ ')[1];
-            console.log(pageUrl);*/
+        /*loadPage: function(pageUrl) {
+            /!*var pageUrl = page.split('/ ')[1];
+            console.log(pageUrl);*!/
             switch (pageUrl) {
                 case "":
                     this.home();
@@ -44,7 +44,7 @@ $(function() {
                 default:
                     break;
             }
-        },
+        },*/
         home: function() {
             viewsContainer.empty();
             viewsContainer.load('./views/home.html', function() {
@@ -55,40 +55,29 @@ $(function() {
                     $(this).find("i.fa").addClass("fa-close");
                     appControllers.profile();
                 });
-                $('button.profile_like').click(function () {
-                    var btn = $(this);
-                    var profileID = btn.parents('div.card_container').attr("id");
-                    var args = {"recID" : profileID};
-                    sendRequest("like_user", JSON.stringify(args), function(data) {
-                        btn.find("i.fa").removeClass("fa-heart-o");
-                        btn.find("i.fa").addClass("fa-heart");
-                        loader.hide();
-                        // console.log(data)
-                    });
-                });
                 sendRequest("mini_profiles", "", renderMiniProfileCards);
             });
         },
         appAccess: function() {
             viewsContainer.empty();
             viewsContainer.load('./views/userAccess.html', function() {
-                var signInForm = $("#signin_form");
-                var signUpForm = $("#signup_form");
+                var signInForm = $("form[name=login]");
+                var signUpForm = $("form[name=register]");
 
                 signUpForm.hide();
                 signInForm.show();
                 $("header").hide();
                 $("footer").hide();
                 $("#toggle_reg").click(function () {
-                    signInForm.hide("slow");
-                    signUpForm.show("fast");
+                    signInForm.hide("fast");
+                    signUpForm.show("slow");
                 });
                 $("#toggle_log").click(function () {
-                    signUpForm.hide("slow");
-                    signInForm.show("fast");
+                    signUpForm.hide("fast");
+                    signInForm.show("slow");
                 });
                 /** USER REGISTRATION/LOGIN **/
-                $("form").submit(submitForm);
+                $("form.access_form").submit(submitForm);
                 loader.hide();
             });
         },
@@ -115,7 +104,7 @@ $(function() {
                     $(this).hide();
                 });
                 $("form[name=update]").submit(updateProfile);
-                $("#sign_out_btn").click(signOut);
+                $("button[name=sign_out]").click(signOut);
                 $("#profile_btn").click(function () {
                     $(this).find("i.fa").removeClass("fa-close");
                     $(this).find("i.fa").addClass("fa-user");
@@ -140,18 +129,23 @@ $(function() {
         var contentCont = $("#profiles");
         var profileCard = $(".mini_profile");
         var cardClone;
+        var toggleAffections;
         // LOOP THROUGH RECEIVED DATA
         for (var c = 0; c < data.length; c++) {
             cardClone = profileCard.clone(true);
             /**> FIND AND FILL FILE INFO ELEMENTS */
             cardClone.find('p.profile_username').text(data[c].username);
+            console.log(data[c].affections);
             cardClone.attr("id", data[c].id);
-            /**> ADD TO PAGE */
+            toggleAffections = cardClone.find('.theme_toggle :checkbox');
+            toggleAffections.attr("checked", (data[c].affections > 0));
+            toggleAffections.change(changeAffections);
             contentCont.append(cardClone);
             cardClone = null;
         }
         /* REMOVE TEMPLATE */
         profileCard.remove();
+        // $('input[name=profile_like]').change(changeAffections);
         $('.profile_info').click(openModalProfile);
         $('.modal_close').click(closeModalProfile);
         $("#app_loader_cont").css("display", "none");
@@ -216,6 +210,18 @@ $(function() {
     }
     function signOut() {
         sendRequest("logout", "", appControllers.appAccess);
+    }
+    function changeAffections() {
+        var btn = $(this).filter('[name=profile_like]');
+        console.log(btn);
+        var action = btn.attr("checked");
+        var profileID = btn.parents('div.card_container').attr("id");
+        var args = {"recID" : profileID, "action" : action};
+        console.log(args);
+        /*sendRequest("like_user", JSON.stringify(args), function(data) {
+         alert("Affections changed");
+         loader.hide();
+         });*/
     }
 
     appControllers.initialize();

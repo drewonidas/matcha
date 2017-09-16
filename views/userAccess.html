@@ -1,8 +1,8 @@
 
-<div class="flex_container padding_16 page" id="app_access">
-    <div class="center col padding_16">
+<div class="flex_container page" id="app_access">
+    <!--<div class="full_width center form_container">-->
         <!-- LOGIN FORM -->
-        <form class="flex_col_container padding_16" id="signin_form" name="login" autocomplete="off">
+        <form class="flex_col_container padding_16 access_form" name="login" autocomplete="off">
             <h1>Login</h1>
 
             <br>
@@ -14,16 +14,16 @@
             <input type="password" name="password" id="password" placeholder="Password" maxlength="10" required>
 
             <br>
-            <input type="submit" name="login" id="submit_login" value="Sign in" class="btn">
+            <input type="submit" value="Sign in" class="btn theme_btn">
 
             <br>
             <div class="flex_container actions">
-                <a id="toggle_reg" class="theme_link">Not a member?</a>
-                <a class="theme_link">forgot password?</a>
+                <a id="toggle_reg" class="btn theme_link">Not a member?</a>
+                <a class="btn theme_link">forgot password?</a>
             </div>
         </form>
         <!-- REGISTRATION FORM -->
-        <form class="flex_col_container padding_16" id="signup_form" name="register" autocomplete="off">
+        <form class="flex_col_container padding_16 access_form" name="register" autocomplete="off">
             <h1>Register</h1>
 
             <br>
@@ -52,12 +52,12 @@
                    placeholder="Re-enter password" maxlength="10" required>
 
             <br>
-            <input type="submit" name="register" id="submit_reg" value="Sign me up">
+            <input type="submit" class="btn theme_btn" value="Sign me up">
 
             <br>
             <div class="flex_container actions">
-                <a id="toggle_log" class="theme_link">Already a member</a>
+                <a id="toggle_log" class="btn theme_link">Already a member</a>
             </div>
         </form>
-    </div>
+    <!--</div>-->
 </div>
