@@ -1,6 +1,6 @@
 <?php
 
-require("Modal.class.php");
+require("ModalService.php");
 $modal = new Modal();
 
 function verifyCredentials($username, $password) {

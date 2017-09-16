@@ -11,6 +11,7 @@
 // click events
 $(function() {
     // location.pathname = "server/matcha/";
+    /** VIEW-CONTROLLER **/
     var appData = {userProfile: ''};
     var viewsContainer = $("#main_content");
     var loader = $("#app_loader_cont");
@@ -115,6 +116,7 @@ $(function() {
         }
     };
 
+    /** CONTENT-CONTROLLER **/
     function changeAppState(data) {
         if (data === "notFound") {
             // $("#app_access").css("display", "block");

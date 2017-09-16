@@ -18,11 +18,11 @@ class Modal {
 
     public static function createDBConnection() {
         $dsn = $GLOBALS['DB_DSN'];
-        $uname = $GLOBALS['DB_USER'];
+        $user = $GLOBALS['DB_USER'];
         $pwd = $GLOBALS['DB_PASSWORD'];
         $new_conn = null;
         try {
-            $new_conn = new PDO($dsn, $uname, $pwd);
+            $new_conn = new PDO($dsn, $user, $pwd);
             // set the PDO error mode to exception
             $new_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {

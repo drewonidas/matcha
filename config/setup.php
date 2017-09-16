@@ -8,7 +8,7 @@
 @License: maDezynIzM.E. 2016
 */
 
-    require('../php/Services/Modal.class.php');
+    require('../php/Services/ModalService.php');
 
     function setupDBTables() {
         $conn = Modal::createDBConnection();

@@ -8,7 +8,7 @@
 @License: maDezynIzM.E. 2016
 */
     session_start();
-    require('Modal.class.php');
+    require('ModalService.php');
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (array_key_exists('uname', $_SESSION))
