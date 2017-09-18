@@ -4,11 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="font_awesome/css/font-awesome.min.css">
-        <link href='https://fonts.googleapis.com/css?family=Cinzel Decorative' rel='stylesheet'>
+        <!--<link href='https://fonts.googleapis.com/css?family=Cinzel Decorative' rel='stylesheet'>-->
         <link rel="stylesheet" href="css/style.css" media="screen">
         <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/appControllers.js"></script>
-        <script type="text/javascript" src="js/modal.js"></script>
+        <script type="text/javascript" src="js/requestController.js"></script>
+        <script type="text/javascript" src="js/viewController.js"></script>
+        <script type="text/javascript" src="js/appController.js"></script>
         <title>Matcha</title>
     </head>
     <body>
@@ -24,7 +25,7 @@
             </nav>
         </header>
 
-        <section id="main_content" class="views_container">
+        <section id="main_container" class="views_container">
             <!-- main container -->
         </section>
 
@@ -32,6 +33,16 @@
             <p>The Matcha Project</p>
             <p>maDezynIzM_E_ 2017</p>
         </footer>
+
+        <div id="message_dialog" class="flex_container modal dialog">
+            <div class="modal_content">
+                <p id="dialog_message" class="center"></p>
+                <br>
+                <button class="theme btn modal_close">
+                    OK
+                </button>
+            </div>
+        </div>
 
         <!-- LOADING ANIMATION/DISTRACTION FOR USERS -->
         <div class="flex_container modal full_size" id="app_loader_cont">

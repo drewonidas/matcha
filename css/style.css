@@ -129,6 +129,7 @@ textarea {width: 100%;resize: none;}
 	padding-top: 100px;
 	background-color: rgba(0,0,0,0.8);
 }
+.modal.dialog {background: none;}
 .modal_content {margin: auto; width: 50%;background-color: white;}
 .modal_content img {width: 100%;height: auto;max-width: 300px;flex-wrap: nowrap;}
 .modal_content .card {width: auto;max-width: 100%;height: auto;}
