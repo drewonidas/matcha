@@ -48,10 +48,12 @@ class Modal {
                         WHERE id = ?';
                 break;
             case 'get_all_users':
-                $sql = 'SELECT u.id, u.username, u.last_in,
+                $sql = 'SELECT * FROM users
+                        WHERE NOT id = ?';
+                /*$sql = 'SELECT u.id, u.username, u.last_in,
                         u.rating, u.image_id, COUNT(likes.id) AS affections
                         FROM users AS u
-                        LEFT JOIN likes ON likes.recipient_id = u.id';
+                        LEFT JOIN likes ON likes.recipient_id = u.id';*/
                 break;
             case 'get_profile_info':
                 $sql = 'SELECT username, first_name, last_name,

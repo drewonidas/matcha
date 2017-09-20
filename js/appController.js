@@ -33,13 +33,14 @@ var AppController = function() {
         dialogMsg: function(msg) {
             appController.messageDialog.find("message_dialog").text("msg");
             appController.messageDialog.show();
+            $('.modal_close').parents('.modal').hide();
         },
         changeAppState: function(data) {
             if (data === "notFound") {
                 // $("#app_access").css("display", "block");// location.hash = "/";
                 alert("User input error!!");
-            } else {
                 var k = appController.viewController.home();
+            } else {
                 console.log(k);
             }
             appController.loadingAnimation.hide();

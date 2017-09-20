@@ -51,9 +51,6 @@ function openModalProfile() {
         loader.hide();
     });
 }
-function closeModalProfile() {
-    $('.modal_close').parents('.modal').hide();
-}
 function submitForm(event) {
     event.preventDefault();
     var tmp = $(this).find("input:valid").serializeArray();

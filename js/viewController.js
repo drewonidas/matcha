@@ -41,9 +41,9 @@ var ViewController = function() {
                 $(this).find("i.fa").replace("fa-user", "fa-close");
 
                 viewController.profile();
-                return "home";
             });
             // sendRequest("mini_profiles", "", renderMiniProfileCards);
+            return "home";
         },
         appAccess: function() {
             var signInForm = $("form[name=login]");
