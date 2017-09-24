@@ -19,7 +19,13 @@
                 <h1 class="logo_text"> ATCHA</h1>
             </div>
             <nav class="flex_container">
-                <a id="profile_btn" class="btn theme_link">
+                <a class="btn theme_link">
+                    <span><i class="fa fa-bell"></i></span>
+                </a>
+                <a class="btn theme_link sign_out_btn">
+                    <span><i class="fa fa-sign-out"></i></span>
+                </a>
+                <a id="profile_btn" class="btn theme_link" href="#/profile">
                     <span><i class="fa fa-user"></i></span>
                 </a>
             </nav>
@@ -29,20 +35,11 @@
             <!-- main container -->
         </section>
 
+        <a class="btn circle theme_dark action_btn"><i class="fa fa-inbox"></i></a>
         <footer class="flex_container">
             <p>The Matcha Project</p>
             <p>maDezynIzM_E_ 2017</p>
         </footer>
-
-        <div id="message_dialog" class="flex_container modal dialog">
-            <div class="modal_content">
-                <p id="dialog_message" class="center"></p>
-                <br>
-                <button class="theme btn modal_close">
-                    OK
-                </button>
-            </div>
-        </div>
 
         <!-- LOADING ANIMATION/DISTRACTION FOR USERS -->
         <div class="flex_container modal full_size" id="app_loader_cont">

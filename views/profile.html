@@ -3,7 +3,15 @@
     <div class="flex_col_container half_width">
         <h1 class="profile_username center padding_long"></h1>
         <div class="flex_col_container card">
-            <img src="imgs/app/avt.svg" id="profile_img" class="circle"/>
+            <div class="flex_col_container margin_4">
+                <img src="imgs/app/avt.svg" id="profile_img" class="circle"/>
+                <span>
+                    <label for="img_upload" class="btn theme_btn full_width img_upload" style="display: none">
+                        change
+                    </label>
+                    <input id="img_upload" type="file" accept="image/*" hidden>
+                </span>
+            </div>
             <div class="flex_col_container padding_8">
                 <p>Likes: <span class="profile_likes"> 19 </span></p>
                 <p>Matches: <span class="profile_matches"> 9 </span></p>
@@ -11,7 +19,6 @@
             </div>
             <div class="flex_col_container account_actions padding_8 full_width">
                 <button name="settings" class="theme full_width">Settings</button>
-                <button name="sign_out" class="theme_btn full_width">Sign-out</button>
             </div>
         </div>
     </div>

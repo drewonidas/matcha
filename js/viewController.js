@@ -11,14 +11,21 @@ var ViewController = function() {
     var viewController = {
         mainContainer: null,
         currentView: null,
+        externalEvents: null,
+        profileCard: null,
         init: function () {
             viewController.mainContainer = $("#main_container");
             viewController.loadView("login");
+        },
+        bindEvents: function (events) {
+            /** FORM SUBMISSION EVENT **/
+            viewController.externalEvents = events;
         },
         loadView: function(viewName) {
             viewController.mainContainer.empty();
             switch (viewName) {
                 case "":
+                case "home":
                     viewController.mainContainer.load('./views/home.html', viewController.home);
                     break;
                 case "login":
@@ -28,22 +35,31 @@ var ViewController = function() {
                 case "profile":
                     viewController.mainContainer.load('./views/profile.html', viewController.profile);
                     break;
+                case "search":
+                    // viewController.search();
+                    viewController.mainContainer.load('./views/home.html', viewController.search);
+                    break;
                 default:
                     break;
             }
+            viewController.currentView = viewName;
         },
         home: function() {
             $("header").show();
             $("footer").show();
+            viewController.profileCard = $(".mini_profile");
             $("#profile_btn").click(function () {
-                // $(this).find("i.fa").removeClass("fa-user");
-                // $(this).find("i.fa").addClass("fa-close");
-                $(this).find("i.fa").replace("fa-user", "fa-close");
-
+                $(this).find("i.fa").removeClass("fa-user");
+                $(this).find("i.fa").addClass("fa-close");
+                $(this).attr("href", "#/profile");
                 viewController.profile();
             });
-            // sendRequest("mini_profiles", "", renderMiniProfileCards);
-            return "home";
+            /*$('#search.open').click(function() {
+                $('#profiles').empty();
+                $(this).find("i.fa").removeClass("fa-search");
+                $(this).find("i.fa").addClass("fa-close");
+                console.log("search bithes!!!!");
+            });*/
         },
         appAccess: function() {
             var signInForm = $("form[name=login]");
@@ -61,38 +77,51 @@ var ViewController = function() {
                 signUpForm.hide("fast");
                 signInForm.show("slow");
             });
-            /** USER REGISTRATION/LOGIN **/
-            $("form.access_form").submit(submitForm);
+            $("form.access_form").submit(viewController.externalEvents['formSubmit']);
         },
         profile: function () {
             var actions = $("#edit_actions");
             var btnEdit = actions.find("button[name=edit]");
             var btnSave = actions.find("button[name=save]");
             var btnCancel = actions.find("button[name=cancel]");
+            var btnUpload = $('.img_upload');
             var inputs = $(".info");
 
             btnEdit.click(function () {
                 inputs.attr("disabled", false);
                 btnSave.show();
                 btnCancel.show();
+                btnUpload.show();
                 $(this).hide();
             });
             btnCancel.click(function () {
                 inputs.attr("disabled", true);
                 btnSave.hide();
                 btnEdit.show();
+                btnUpload.hide();
                 $(this).hide();
             });
-            $("form[name=update]").submit(updateProfile);
-            $("button[name=sign_out]").click(signOut);
             $("#profile_btn").click(function () {
-                // $(this).find("i.fa").removeClass("fa-close");
-                // $(this).find("i.fa").addClass("fa-user");
-                $(this).find("i.fa").replace("fa-close", "fa-user");
-
-                viewController.home();
+                $(this).find("i.fa").removeClass("fa-close");
+                $(this).find("i.fa").addClass("fa-user");
+                $(this).attr("href", "#/");
             });
-            // sendRequest("user_profile", "", renderProfilePage);
+            $('form[name=update]').submit(function (event) {
+                event.preventDefault();
+                viewController.externalEvents['updateProfile']($(this));
+                inputs.attr("disabled", true);
+                btnSave.hide();
+                btnEdit.show();
+            });
+        },
+        search: function () {
+            console.log("searching niiigaz");
+            var searchToggle = $('#search');
+            searchToggle.find("i.fa").removeClass("fa-search");
+            searchToggle.find("i.fa").addClass("fa-close");
+            searchToggle.attr("href", "#/");
+            $('h1.page_title').hide();
+            $('form[name=search]').show();
         }
     };
     viewController.init();

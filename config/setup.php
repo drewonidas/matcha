@@ -81,7 +81,7 @@
                     user_id INT(6) UNSIGNED NOT NULL)";
             $conn->exec($sql);
             echo 'Table notifications created<br/>' . PHP_EOL;
-            echo 'Matcha database created successfully<br/>' . PHP_EOL;
+            echo 'App database created successfully<br/>' . PHP_EOL;
             echo '<a href="/server/matcha/index.html">Run app</a>';
             $conn = null;
         }

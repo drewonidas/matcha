@@ -1,7 +1,15 @@
 <div id="browser_page" class="flex_col_container page home">
     <!-- PAGE TITLE -->
     <div class="flex_container full_width intro_container">
-        <h1 class="center">Singles near you</h1>
+        <h1 class="center flex_3 page_title">Singles near you</h1>
+        <div class="flex_col_container">
+            <a id="search" class="btn theme_transparant open" href="#/search">
+                <i class="fa fa-search"></i>
+            </a>
+            <form name="search" class="flex_container padding_8" style="display: none">
+                <input type="text" name="search" placeholder="Enter keyword">
+            </form>
+        </div>
     </div>
 
     <!-- CONTAINER FOR MINI PROFILE CARDS -->

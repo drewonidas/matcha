@@ -50,14 +50,14 @@ header {
 nav {align-self: flex-end;margin-right: 0;flex-wrap: nowrap;-webkit-flex-wrap: nowrap;}
 .branding {align-self: flex-start; margin-left: 2%;}
 .branding, nav {width: auto;height: 100%;max-height: 100%;}
-.branding .brand_logo_sm {height: 95%; width: auto;}
+.branding .brand_logo_sm {height: 95%;width: auto;}
 /**!! MAIN VIEW CONTAINER !!**/
 .home {background-color: rgba(255,255,255,0.7);}
 .views_container {height: 86%;}
 /**!! LOGIN/REGISTRATION !!**/
 .page {height: 100%;max-height: 100%;max-width: 1000px;}
 /**!! FOOTER !!**/
-footer {height: 7%; background: black; color: white;}
+footer {height: 7%;background: black;color: white;}
 /**!! BASIC BUTTONS !!**/
 footer, input, .logo_text {color: white;}
 button, h1, h2, h3, p, a, input, .btn {text-align: center;}
@@ -71,8 +71,13 @@ button, h1, h2, h3, p, a, input, .btn {text-align: center;}
 }
 .btn {text-transform: uppercase;}
 button:hover, a:hover, .branding:hover, .btn:hover {cursor: pointer;}
-.btn i, button i {font-size: 24px;}
-nav .btn {padding: 16px;}
+.btn i, button i {font-size: 24px;padding: 6px;}
+nav .btn {padding: 8px; height: 100%;}
+.action_btn {position: fixed; bottom: 70px;padding: 6px;right: 20px;
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);}
+.action_btn:hover {
+	box-shadow: 0 9px 15px 0 rgba(0,0,0,0.2),0 9px 25px 0 rgba(0,0,0,0.14);
+}
 /** BASIC FORMS **/
 form {border-radius: 2px;background-color: transparent;}
 form.access_form {
@@ -114,8 +119,7 @@ textarea {width: 100%;resize: none;}
 .mini_profiles_view .card {
 	max-width: 250px;min-width: 200px;max-height: 400px;min-height: 300px;}
 .mini_profiles_view .card .card_title {
-    max-width: 250px;min-width: 200px;
-    position: absolute;background-color: rgba(0,0,0,0.6);}
+    width: 100%;background-color: rgba(0,0,0,0.6);}
 .mini_profiles_view .card .profile_info:hover {cursor: pointer;}
 .mini_profiles_view .card:hover {
 	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);}
@@ -140,14 +144,14 @@ textarea {width: 100%;resize: none;}
 /**!! SIGNED-IN USER PROFILE !!**/
 .profile_view {background-color: rgba(255,255,255,0.9);color: black;}
 .profile_view .card {width: auto;height: auto;padding: 8px;}
-.profile_view .card img.circle {max-width: 300px; max-height: 300px;}
+.profile_view .card img.circle {max-width: 300px;max-height: 300px;}
 .profile_view form {color: black;}
-.profile_view label {width: 30%;font-weight: bold;}
+.profile_view label {width: 100%;font-weight: bold;}
 .profile_view input, .profile_view textarea {
-	width: 60%;
 	color: black;
 	border-bottom: 1px solid #992030;
 	text-align: left;
+	background-color: transparent;
 }
 .profile_view textarea {margin: 8px auto 0;width: 100%;resize: none;}
 .profile_view input:disabled, .profile_view textarea:disabled {border: none;}
@@ -169,6 +173,7 @@ textarea {width: 100%;resize: none;}
 /** THEME CLASSES **/
 /*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);*/
 .theme {color: #992030;background: white;border: 2px solid transparent;}
+.theme_transparant {color: #992030;background-color: transparent;}
 .theme:hover {background: #992030; color: white;}
 .theme_link {color: white;background: none;border-bottom: 2px solid transparent;}
 .theme_link:hover {color: #992030;background: white;}
@@ -177,9 +182,14 @@ textarea {width: 100%;resize: none;}
 .theme_btn {color: white;background-color: #992030;}
 .theme_btn:hover {
 	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);}
+.theme_dark {color: white;background-color: #4c1018;}
 .theme_toggle input[type=checkbox] + i {
 	color: slategrey;background-color: transparent;}
 .theme_toggle:hover + i, .theme_toggle input[type=checkbox]:checked + i {color: #992030;}
+
+.padding_long {padding: 24px 8px;}
+.padding_16 {padding: 16px;}
+.padding_8 {padding: 9px;}
 /**!! ANIMATIONS AND TRANSITIONS !!**/
 @keyframes spin {
 	0% {transform: rotate(0deg);}
