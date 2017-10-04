@@ -5,8 +5,24 @@ $modal = new Modal();
 
 function verifyCredentials($username, $password) {
     $args = array($username, $password);
-    $sql = Modal::generate_sql('verify_user_cred');
+    $sql = Modal::generate_sql('get_user_info');
     $data = $GLOBALS['modal']->get_db_data($sql, $args);
+    return $data;
+}
+
+function logUserIn($username) {
+    $args = array($username);
+    $sql = Modal::generate_sql('verify_user_cred');
+    $data = $GLOBALS['modal']->change_db_data($sql, $args);
+//    if ($data)
+    return $data;
+}
+
+function signOutUser($userId) {
+    $args = array($userId);
+    $sql = Modal::generate_sql('sign_user_out');
+    $data = $GLOBALS['modal']->change_db_data($sql, $args);
+//    if ($data)
     return $data;
 }
 
@@ -52,4 +68,11 @@ function likeUserProfile($args, $action) {
 
     $result = $GLOBALS['modal']->change_db_data($sql, $args);
     return ($result);
+}
+
+function searchUsers($args) {
+    $sql = Modal::generate_sql('get_all_users');
+    $args = array($args);
+    $data = $GLOBALS['modal']->get_db_data($sql, $args);
+    return ($data);
 }

@@ -10,14 +10,13 @@
 
 $(function() {
     var app = new AppController();
+    $(window).on('hashchange', app.run);
     $(document).ajaxStart(function() {
-        // $('.page').hide();
         $("#app_loader_cont").show();
     });
     $(document).ajaxComplete(function () {
         $("#app_loader_cont").hide();
     });
-    $(window).on('hashchange', app.run);
 });
 
 /** VIEW-CONTROLLER **/
@@ -35,8 +34,11 @@ var AppController = function() {
             appController.viewController = new ViewController();
             appController.requestController = new RequestController();
             var events = {};
+            /** TODO: CHECK IF THIS IS IN USE, REMOVE IF NOT **/
             events['formSubmit'] = appController.submitForm;
             events['updateProfile'] = appController.requestController.updateProfile;
+            events['searchProfiles'] = appController.requestController.searchMembers;
+            events['changeAffections'] = appController.requestController.changeAffections;
             appController.viewController.bindEvents(events);
             appController.requestController.sendRequest("status", "", function (data) {
                 if (data !== "notFound")
@@ -65,17 +67,20 @@ var AppController = function() {
                 // appController.dialogMsg("data");
                 // appController.viewController.loadView("home");
                 window.location.hash = "/";
-                console.log(data);
+                // console.log(data);
             }
             // appController.loadingAnimation.hide();
         },
         signOut: function () {
           appController.requestController.sendRequest("logout", "", function () {
-              alert("You have successfully logged out");
               window.location.hash = "/login";
+              alert("You have successfully logged out");
           })
+        } ,
+        userLongLangPosition: function() {
+            console.log("location tracking!!!");
         },
-        run: function () {
+        run: function() {
             /** TODO: IMPLEMENT SWITCHER TO CONTROL HASH CHANGES **/
             var tmp = window.location.hash.split("/")[1];
             appController.viewController.loadView(tmp);

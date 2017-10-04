@@ -54,6 +54,20 @@ var ViewController = function() {
                 $(this).attr("href", "#/profile");
                 viewController.profile();
             });
+            $('.action_btn').click(function (event) {
+                event.preventDefault();
+                $('.chat_space form[name=chat]').toggle();
+                $('.chat_space form ul li').click(function (event) {
+                    event.preventDefault();
+                    $('.chat_space form .contacts').hide();
+                    $('.chat_space form .messages').show(function () {
+                        $(this).find('button').click(function () {
+                            $(this).parents('.messages').hide();
+                            $('.chat_space form .contacts').show();
+                        });
+                    });
+                });
+            });
             /*$('#search.open').click(function() {
                 $('#profiles').empty();
                 $(this).find("i.fa").removeClass("fa-search");
@@ -101,7 +115,7 @@ var ViewController = function() {
                 btnUpload.hide();
                 $(this).hide();
             });
-            $("#profile_btn").click(function () {
+            $('#profile_btn').click(function () {
                 $(this).find("i.fa").removeClass("fa-close");
                 $(this).find("i.fa").addClass("fa-user");
                 $(this).attr("href", "#/");
@@ -113,15 +127,40 @@ var ViewController = function() {
                 btnSave.hide();
                 btnEdit.show();
             });
+            $('#img_upload').change(function () {
+                console.log('so far so good!');
+                var newImage = $(this)[0].files;
+                console.log(newImage);
+                $('#slot_1').src = newImage[0].name;
+            });
+            $('.gps_location').click(function (event) {
+                event.preventDefault();
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        console.log(position);
+                        var coordinates = position.coords.latitude + ',' + position.coords.longitude;
+                        var geocodeAddress = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
+                            + coordinates + "&key=AIzaSyBq_EtziXDEQHJN4TjQMwYUMgNTxCNXrEs";
+                        console.log(geocodeAddress);
+                    })
+                }
+            });
         },
         search: function () {
             console.log("searching niiigaz");
             var searchToggle = $('#search');
+            var searchForm = $('form[name=search]');
             searchToggle.find("i.fa").removeClass("fa-search");
             searchToggle.find("i.fa").addClass("fa-close");
             searchToggle.attr("href", "#/");
-            $('h1.page_title').hide();
-            $('form[name=search]').show();
+            // $('form[name=search] input').focus();
+            // $('h1.page_title').hide();
+            searchForm.show();
+            searchForm.submit(function (event) {
+                event.preventDefault();
+                console.log('search initiated');
+                viewController.externalEvents['searchProfiles']($(this));
+            });
         }
     };
     viewController.init();

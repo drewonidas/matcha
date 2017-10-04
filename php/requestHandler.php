@@ -27,6 +27,7 @@
             $userData = verifyCredentials($username, $password);
 
             if (count($userData) > 0) {
+                logUserIn($username);
                 $response = json_encode($userData[0]);
                 $_SESSION['currUser'] = $response;
             }
@@ -36,6 +37,9 @@
                 $response = $_SESSION['currUser'];
             break;
         case 'logout':
+            $user = json_decode($_SESSION['currUser']);
+            $userID = $user->id;
+            $response = json_encode(signOutUser($userID));
             session_destroy();
             break;
         case 'mini_profiles':
@@ -69,11 +73,13 @@
             $user = json_decode($_SESSION['currUser']);
             $senderID = $user->id;
             $recipientID = $args['recID'];
-//            $action = $args['action'];
-            var_dump($args);
-            exit();
+            $action = $args['action'];
             $params = array($senderID, $recipientID);
             $response = json_encode(likeUserProfile($params, $action));
+            break;
+        case 'search':
+            $criteria = $args['usernames'];
+            $response = json_encode(searchUsers($criteria));
             break;
         default:
             break;

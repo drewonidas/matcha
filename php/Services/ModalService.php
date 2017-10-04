@@ -35,32 +35,44 @@ class Modal {
         $sql = '';
         switch ($data_set) {
             case 'verify_user_cred':
-                $sql = 'SELECT id, username, image_id
+                $sql = 'UPDATE users
+                        SET last_in=CURRENT_TIMESTAMP, status="online"
+                        WHERE username = ?';
+                break;
+            case 'sign_user_out':
+                $sql = 'UPDATE users
+                        SET last_in=CURRENT_TIMESTAMP, status="offline"
+                        WHERE id = ?';
+                break;
+            case 'get_user_info':
+                $sql = 'SELECT id, username
                         FROM users
                         WHERE username = ?
                         AND password = ?';
-                break;
-            case 'get_user_profile':
-                $sql = 'SELECT username, email, first_name, last_name,
-                        gender, sexual_pref, bio, interests, location,
-                        last_in, rating, image_id
-                        FROM users
-                        WHERE id = ?';
-                break;
-            case 'get_all_users':
-                $sql = 'SELECT * FROM users
-                        WHERE NOT id = ?';
-                /*$sql = 'SELECT u.id, u.username, u.last_in,
-                        u.rating, u.image_id, COUNT(likes.id) AS affections
-                        FROM users AS u
-                        LEFT JOIN likes ON likes.recipient_id = u.id';*/
                 break;
             case 'get_profile_info':
                 $sql = 'SELECT username, first_name, last_name,
                         gender, sexual_pref, bio, interests, location,
                         last_in, rating, image_id
-                        FROM users
+                        FROM profile_details
                         WHERE id = ?';
+                break;
+            case 'get_all_users':
+                $sql = 'SELECT members.id, members.username, members.status, members.rating
+                        FROM profile_details AS members, profile_details AS user
+                        WHERE user.id = ?
+                        AND members.id <> user.id
+                        AND members.rating <= user.rating
+                        AND LOCATE(members.gender, user.sexual_pref) <> 0';
+                break;
+            case 'get_user_profile':
+                $sql = 'SELECT *
+                        FROM profile_details
+                        WHERE id = ?';
+                break;
+            case 'search_users':
+                $sql = 'SELECT * FROM mini_profiles
+                        WHERE username = like %?%';
                 break;
             case 'get_comm':
                 $sql = 'SELECT * FROM comments

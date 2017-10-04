@@ -1,15 +1,26 @@
 <div id="browser_page" class="flex_col_container page home">
     <!-- PAGE TITLE -->
     <div class="flex_container full_width intro_container">
-        <h1 class="center flex_3 page_title">Singles near you</h1>
-        <div class="flex_col_container">
-            <a id="search" class="btn theme_transparant open" href="#/search">
-                <i class="fa fa-search"></i>
-            </a>
-            <form name="search" class="flex_container padding_8" style="display: none">
-                <input type="text" name="search" placeholder="Enter keyword">
+        <!--<div class="flex_col_container flex_1 padding_8">-->
+        <!--<h1 class="center flex_3 page_title">Singles near you</h1>-->
+        <a id="search" class="btn theme_transparent pos_right" href="#/search">
+            <i class="fa fa-search"></i>
+        </a>
+        <form name="search" class="flex_container full_width" style="display: none">
+                <label class="flex_container flex_2">
+                    <input type="text" name="search" placeholder="Enter keyword" style="color: #4c1018;" class="criteria">
+                    <input type="submit" value="search" class="btn theme" style="width: auto">
+                </label>
+                <fieldset class="flex_container flex_1">
+                    <legend>Search:</legend>
+                    Usernames
+                    <input type="checkbox" value="username" name="usernames" title="usernames" class="criteria" checked>
+                    <!--First-names<input type="checkbox" value="first_name">
+                    Last-names<input type="checkbox" value="last_name">
+                    location<input type="checkbox" value="location">-->
+                </fieldset>
             </form>
-        </div>
+        <!--</div>-->
     </div>
 
     <!-- CONTAINER FOR MINI PROFILE CARDS -->
@@ -24,6 +35,14 @@
                     </div>
                 </div>
                 <div class="flex_container card_actions pos_right">
+                    <label>
+                        <b>status:</b>
+                        <input type="checkbox" name="status" hidden disabled>
+                        <span>
+                            <i class="fa-square-o"></i>
+                        </span>
+                        <span class="status_text"></span>
+                    </label>
                     <label class="btn theme_toggle">
                         <input type="checkbox" name="profile_like" hidden>
                         <i class="fa fa-heart"></i>
@@ -36,7 +55,7 @@
 <!-- PROFILE VIEWING MODAL -->
 <div class="modal full_size">
     <!-- MODAL'S CONTENT CONTAINER -->
-    <div class="flex_col_container modal_content">
+    <div id="" class="flex_col_container modal_content card_container">
         <button class="theme btn modal_close">
             <i class="fa fa-close"></i>
         </button>
@@ -64,9 +83,10 @@
                 </div>
                 <br>
                 <div class="padding_8">
-                    <button class="theme btn">
+                    <label class="btn theme_toggle">
+                        <input type="checkbox" name="profile_like" hidden>
                         <i class="fa fa-heart"></i>
-                    </button>
+                    </label>
                 </div>
             </div>
         </div>

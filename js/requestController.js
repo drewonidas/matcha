@@ -1,18 +1,4 @@
 /** CONTENT-CONTROLLER **/
-/*
-function changeAffections() {
-    var btn = $(this).filter('[name=profile_like]');
-    console.log(btn);
-    var action = btn.attr("checked");
-    var profileID = btn.parents('div.card_container').attr("id");
-    var args = {"recID" : profileID, "action" : action};
-    console.log(args);
-    /!*sendRequest("like_user", JSON.stringify(args), function(data) {
-     alert("Affections changed");
-     loader.hide();
-     });*!/
-}
-*/
 
 var RequestController = function() {
     var requestController = {
@@ -26,6 +12,7 @@ var RequestController = function() {
                     if (status === "success") {
                         try {
                             var data = JSON.parse(response);
+                            console.log(response);
                             func(data);
                         } catch (e) {
                             alert('Something went wrong :(... sorry');
@@ -50,16 +37,18 @@ var RequestController = function() {
                 cardClone = profileCard.clone(true);
                 /**> FIND AND FILL FILE INFO ELEMENTS */
                 cardClone.find('p.profile_username').text(data[c].username);
+                if (data[c].status === 'online')
+                    cardClone.find('input[name=status]').attr("checked", true);
+                cardClone.find('span.status_text').text(data[c].status);
                 cardClone.attr("id", data[c].id);
-                toggleAffections = cardClone.find('.theme_toggle :checkbox');
-                toggleAffections.attr("checked", (data[c].affections > 0));
-                // toggleAffections.change(changeAffections);
+                toggleAffections = cardClone.find('input[name=profile_like]');
+                // toggleAffections.attr("checked", (data[c].affections > 0));
+                toggleAffections.change(requestController.changeAffections);
                 contentCont.append(cardClone);
                 cardClone = null;
             }
             /** REMOVE TEMPLATE **/
             profileCard.remove();
-            // $('input[name=profile_like]').change(changeAffections);
             $('.profile_info').click(requestController.renderProfileModal);
             $('.modal_close').click(function () {
                 $('.modal_close').parents('.modal').hide();
@@ -92,11 +81,15 @@ var RequestController = function() {
                     $('span.info_sex').text(profile.gender);
                     $('span.info_pref').text(profile.sexual_pref);
                     $('textarea.info_bio').text(profile.bio);
+                    // console.log(profileID);
+                    // $('.card_container').attr("id", profileID);
+                    // $('input[name=profile_like]').change(requestController.changeAffections);
                 });
         },
         updateProfile: function(form) {
             var tmp = form.find(".info").serializeArray();
-            var profileImage = ;
+            var newImage = $('#img_upload')[0].files;
+            console.log(newImage);
             var args = {};
             $.each(tmp, function(i, field) {
                 args[field.name] = field.value;
@@ -106,6 +99,31 @@ var RequestController = function() {
                     if (data === true)
                         alert("Your profile update was successful");
                 })
+        },
+        searchMembers: function(form) {
+            var tmp = form.find("input.criteria").serializeArray();
+            var args = {};
+            $.each(tmp, function(i, field) {
+                args[field.name] = field.value;
+            });
+            console.log(args);
+            requestController.sendRequest(form.attr("name"),
+                JSON.stringify(args), function(data) {
+                    if (data !== "notFound") {
+                        console.log(data);
+                    }
+                });
+        },
+        changeAffections: function () {
+            var btn = $(this);
+            var action = btn[0].checked;/*attr("checked");*/
+            console.log(action);
+            var profileID = btn.parents('div.card_container').attr("id");
+            var args = {"recID" : profileID, "action" : action.toString()};
+            console.log(args);
+            requestController.sendRequest("like_user", JSON.stringify(args), function(data) {
+                alert("Affections changed");
+            });
         }
     };
     requestController.init();

@@ -35,7 +35,53 @@
             <!-- main container -->
         </section>
 
-        <a class="btn circle theme_dark action_btn"><i class="fa fa-inbox"></i></a>
+        <div class="chat_space flex_col_container padding_4">
+            <form name="chat" class="flex_col_container full_width" style="display: none;">
+                <div class="flex_container full_width contacts">
+                    <ul class="contacts_list full_width">
+                        <li class="padding_4">
+                            <img src="imgs/app/avt.svg" class="circle" style="width: 56px; height: auto">
+                            <div class="flex_inline_container">
+                                <p>Jane</p>
+                                <p>Accountant</p>
+                            </div>
+                        </li>
+                        <li class="padding_4">
+                            <img src="imgs/app/avt.svg" class="circle" style="width: 56px; height: auto">
+                            <div class="flex_inline_container">
+                                <span>Jane</span><br>
+                                <span>Accountant</span>
+                            </div>
+                        </li>
+                        <li class="padding_4">
+                            <img src="imgs/app/avt.svg" class="circle" style="width: 56px; height: auto">
+                            <div class="flex_inline_container">
+                                <span>Jane</span><br>
+                                <span>Accountant</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex_col_container full_width messages" style="display: none;">
+                    <header>
+                        <button class="btn padding_4"><i class="fa fa-arrow-left"></i></button>
+                        <span style="color: white">Jane</span>
+                    </header>
+                    <div class="full_width flex_col_container scrollable">
+                        <p class="chat_bubble pos_right"> blah blah </p>
+                        <p class="chat_bubble pos_right"> blah blah </p>
+                        <p class="chat_bubble pos_left"> blah blah </p>
+                        <p class="chat_bubble pos_right"> blah blah </p>
+                        <p class="chat_bubble pos_left"> blah blah </p>
+                    </div>
+                    <div class="padding_4 new_message_bar">
+                        <input type="text" placeholder="Your message" style="color: black">
+                        <input type="submit" class="theme_btn">
+                    </div>
+                </div>
+            </form>
+            <a class="btn circle theme_dark action_btn pos_right padding_8"><i class="fa fa-inbox"></i></a>
+        </div>
         <footer class="flex_container">
             <p>The Matcha Project</p>
             <p>maDezynIzM_E_ 2017</p>
@@ -45,5 +91,8 @@
         <div class="flex_container modal full_size" id="app_loader_cont">
             <div id="loader"></div>
         </div>
+        <!--<script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq_EtziXDEQHJN4TjQMwYUMgNTxCNXrEs&callback=initMap">
+        </script>-->
     </body>
 </html>
