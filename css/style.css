@@ -64,7 +64,7 @@ nav {align-self: flex-end;margin-right: 0;flex-wrap: nowrap;-webkit-flex-wrap: n
 .intro_container {height: 15%;max-height: 15%;}
 .mini_profiles_view {min-height: 85%;max-height: 85%;overflow-y: auto;}
 /**!! LOGIN/REGISTRATION !!**/
-.page {height: 100%;max-height: 100%;max-width: 1000px;}
+.page {height: 100%;max-height: 100%;max-width: 85%;}
 /**!! FOOTER !!**/
 footer {height: 7%;background: black;color: white;}
 /**!! BASIC BUTTONS !!**/
@@ -174,22 +174,23 @@ form[name=search] input[name=search] {border-bottom: 2px solid #992030;}
 	animation: spin 2s linear infinite;
 }
 /**!! CHAT SPACE STYLES !!**/
-.chat_space {position: fixed; bottom: 70px;padding: 6px;right: 20px;width: 350px; }
-.chat_space form {
+.chat_space {position: fixed; bottom: 70px;padding: 6px;right: 20px;width: 360px;}
+.chat_space .chat {
 	width: 100%;
-	min-width: 300px;
-	background-color: white;
+	background-color: transparent;
 	margin-bottom: 10px;
 	border: 1px solid #4c1018;
+	height: 400px;
 }
-.chat_space form ul {list-style-type: none;padding: 4px;}
-.chat_space form ul li {
+.chat_space .chat ul {list-style-type: none;padding: 4px;height: 100%;background-color: white;}
+.chat_space .chat ul li {
 	margin: 8px auto;
 	border-right: 5px solid transparent;
 	border-bottom: 1px solid transparent;
+	background-color: white;
 	transition: all 0.5s;
 }
-.chat_space form ul li:hover {border-color: rgb(205, 44, 65);cursor: pointer;}
+.chat_space .chat ul li:hover {border-color: rgb(205, 44, 65);cursor: pointer;}
 .chat_space .chat_bubble {
 	background-color: white;
 	color: black;
@@ -198,10 +199,14 @@ form[name=search] input[name=search] {border-bottom: 2px solid #992030;}
 	min-width: 35%;
 	max-width: 80%;
 	border: 1px solid #cd2c41;
-	border-radius: 5px;
+	border-radius: 10px;
 }
-.action_btn, .chat_space form {box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);}
-.chat_space form .new_message_bar {border-top: 2px solid #4c1018;}
+.action_btn, .chat_space .chat {box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);}
+.chat_space .chat .message_bubbles {background-color: #cd2c41;}
+.chat_space .chat .message_bubbles .chat_bubble.pos_right {border-bottom-right-radius: 0;}
+.chat_space .chat .message_bubbles .chat_bubble.pos_left {border-bottom-left-radius: 0;}
+.chat_space .chat .new_message_bar {border-top: 2px solid #4c1018;}
+.chat_space .chat .new_message_bar input[type=text] {border-bottom: 2px solid #4c1018;}
 .action_btn:hover {box-shadow: 0 9px 15px 0 rgba(0,0,0,0.2),0 9px 25px 0 rgba(0,0,0,0.14);}
 /** THEME CLASSES **/
 /*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);*/

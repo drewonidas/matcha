@@ -59,26 +59,21 @@ var AppController = function() {
         },
         signInUp: function(data) {
             if (data === "notFound") {
-                // $("#app_access").css("display", "block");// location.hash = "/";
                 alert("Incorrect details. Please try again!");
                 console.log(data);
             } else {
                 console.log("good shit happened");
-                // appController.dialogMsg("data");
-                // appController.viewController.loadView("home");
-                window.location.hash = "/";
-                // console.log(data);
+                appController.loadApp();
             }
-            // appController.loadingAnimation.hide();
         },
         signOut: function () {
           appController.requestController.sendRequest("logout", "", function () {
               window.location.hash = "/login";
               alert("You have successfully logged out");
           })
-        } ,
-        userLongLangPosition: function() {
-            console.log("location tracking!!!");
+        },
+        loadApp: function () {
+            window.location.hash = "/";
         },
         run: function() {
             /** TODO: IMPLEMENT SWITCHER TO CONTROL HASH CHANGES **/
@@ -106,4 +101,29 @@ var AppController = function() {
     };
     appController.init();
     return appController;
+};
+
+var ChatController = function () {
+    var chatController = {
+        msgBubbleContainer: null,
+        contact_bubble: null,
+        userMsgBubble: null,
+        chatMsgBubble: null,
+        init: function () {
+            var chatDialog = $('.chat_space .chat');
+            chatController.msgBubbleContainer = chatDialog.find('.message_bubbles');
+            chatController.userMsgBubble = $('<p class="chat_bubble pos_right"></p>');
+            chatController.chatMsgBubble = $('<p class="chat_bubble pos_left"></p>');
+        },
+        loadContactList: function (dataFunc) {
+            dataFunc("contacts", "", function (data) {
+                console.log(data);
+            });
+        },
+        loadChat: function (data) {
+
+        }
+    };
+    chatController.init();
+    return chatController;
 };

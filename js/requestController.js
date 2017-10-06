@@ -114,6 +114,20 @@ var RequestController = function() {
                     }
                 });
         },
+        sendChatMessage: function (form) {
+            var newMessage = form.find('input:valid');
+            var args = {};
+            $.each(newMessage, function(i, field) {
+                args[field.name] = field.value;
+            });
+            console.log(args);
+            requestController.sendRequest(form.attr("name"),
+                JSON.stringify(args), function(data) {
+                    if (data !== "notFound") {
+                        console.log(data);
+                    }
+                });
+        },
         changeAffections: function () {
             var btn = $(this);
             var action = btn[0].checked;/*attr("checked");*/

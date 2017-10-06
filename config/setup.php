@@ -39,47 +39,54 @@
             // create IMGS table
             $sql = "CREATE TABLE IF NOT EXISTS images (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                    img VARCHAR(128) NOT NULL,
-                    date DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    user_id INT(6) UNSIGNED NOT NULL)";
+                    img_data VARCHAR(128) NOT NULL,
+                    creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    owner_id INT(6) UNSIGNED NOT NULL,
+                    FOREIGN KEY fk_owner(owner_id)
+                    REFERENCES users(id)
+                    ON UPDATE CASCADE
+                    ON DELETE CASCADE)";
             $conn->exec($sql);
             echo 'Table images created<br/>' . PHP_EOL;
 
-            // create likes table
-            $sql = "CREATE TABLE IF NOT EXISTS likes (
+            // create Connections table
+            $sql = "CREATE TABLE IF NOT EXISTS connections (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                    Like_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    sender_id INT(6) UNSIGNED NOT NULL,
-                    recipient_id INT(6) UNSIGNED NOT NULL)";
-            $conn->exec($sql);
-            echo 'Table comments created<br/>' . PHP_EOL;
-
-            // create chats table
-            $sql = "CREATE TABLE IF NOT EXISTS chats (
-                    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                    creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
                     user1_id INT(6) UNSIGNED NOT NULL,
-                    user2_id INT(6) UNSIGNED NOT NULL)";
+                    user2_id INT(6) UNSIGNED NOT NULL,
+                    status BOOLEAN DEFAULT false,
+                    FOREIGN KEY fk_users(user1_id)
+                    REFERENCES users(id)
+                    ON UPDATE CASCADE
+                    ON DELETE CASCADE)";
             $conn->exec($sql);
-            echo 'Table chats created<br/>' . PHP_EOL;
+            echo 'Table connections created<br/>' . PHP_EOL;
 
             // create Messages table
             $sql = "CREATE TABLE IF NOT EXISTS messages (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                    msg_text VARCHAR(128) NOT NULL,
-                    msg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    text VARCHAR(128) NOT NULL,
+                    send_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    author_id INT(6) UNSIGNED NOT NULL,
                     chat_id INT(6) UNSIGNED NOT NULL,
-                    sender_id INT(6) UNSIGNED NOT NULL,
-                    recipient_id INT(6) UNSIGNED NOT NULL)";
+                    FOREIGN KEY fk_chat(chat_id)
+                    REFERENCES connections(id)
+                    ON UPDATE CASCADE
+                    ON DELETE CASCADE)";
             $conn->exec($sql);
             echo 'Table messages created<br/>' . PHP_EOL;
 
             // create Notifications table
             $sql = "CREATE TABLE IF NOT EXISTS notifications (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                    notification_text VARCHAR(128) NOT NULL,
-                    about_id INT(6) UNSIGNED NOT NULL,
-                    notification_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    user_id INT(6) UNSIGNED NOT NULL)";
+                    notification_type VARCHAR (16) DEFAULT NULL,
+                    creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    owner_id INT(6) UNSIGNED NOT NULL,
+                    FOREIGN KEY fk_notification_owner(owner_id)
+                    REFERENCES users(id)
+                    ON UPDATE NO ACTION 
+                    ON DELETE NO ACTION)";
             $conn->exec($sql);
             echo 'Table notifications created<br/>' . PHP_EOL;
 
@@ -90,30 +97,42 @@
             $conn->exec($sql);
             echo 'Table notifications created<br/>' . PHP_EOL;
 
-            // create HOME VIEW
+            /** CREATE VIEWS FOR 'SELECT'-TYPE QUERIES **/
+
+            /*// create HOME VIEW
             $sql = "CREATE VIEW mini_profiles AS
                     SELECT u.id, u.username, u.status, u.rating
                     FROM users AS u";
             $conn->exec($sql);
-            echo 'VIEW mini_profiles created<br/>' . PHP_EOL;
+            echo 'VIEW mini_profiles created<br/>' . PHP_EOL;*/
 
             // create profile_details VIEW
-            $sql = "CREATE VIEW profile_details AS
+            $sql = "CREATE VIEW profiles AS
                     SELECT id, username, email, first_name, last_name,
                     gender, sexual_pref, bio, interests, location,
                     last_in, rating, image_id, status
                     FROM users";
             $conn->exec($sql);
-            echo 'VIEW profile_details created<br/>' . PHP_EOL;
+            echo 'VIEW profiles created<br/>' . PHP_EOL;
 
-            // create profile_details VIEW
+            $sql = "CREATE PROCEDURE IF NOT EXISTS GetContactList(
+                      IN currUser INT(6),
+                      OUT matches INT(6))
+                    BEGIN
+                      SELECT id, username, last_in, rating, image_id, status
+                      FROM users
+                      WHERE rating > 3;
+                    END";
+            $conn->exec($sql);
+            echo 'Procedure profiles created<br/>' . PHP_EOL;
+/*            // create profile_details VIEW
             $sql = "CREATE VIEW user_likes AS
-                    SELECT id, username, email, first_name, last_name,
+                    SELECT id, username, first_name, last_name,
                     gender, sexual_pref, bio, interests, location,
-                    last_in, rating, image_id, status
+                    last_in, rating, status, 
                     FROM users";
             $conn->exec($sql);
-            echo 'VIEW profile_details created<br/>' . PHP_EOL;
+            echo 'VIEW profile_details created<br/>' . PHP_EOL;*/
 
             // CREATE DUMMY DATA
             $sql = "INSERT INTO users (username, email, password,

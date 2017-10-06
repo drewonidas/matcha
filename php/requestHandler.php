@@ -81,6 +81,11 @@
             $criteria = $args['usernames'];
             $response = json_encode(searchUsers($criteria));
             break;
+        case 'contacts':
+            $user = json_decode($_SESSION['currUser']);
+            $userID = $user->id;
+            $response = json_encode(getContactList($userID));
+            break;
         default:
             break;
     }

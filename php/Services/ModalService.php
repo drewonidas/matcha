@@ -68,7 +68,7 @@ class Modal {
             case 'get_user_profile':
                 $sql = 'SELECT *
                         FROM profile_details
-                        WHERE id = ?';
+                        WHERE id = ? ';
                 break;
             case 'search_users':
                 $sql = 'SELECT * FROM mini_profiles

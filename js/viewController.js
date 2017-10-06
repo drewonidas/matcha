@@ -20,6 +20,20 @@ var ViewController = function() {
         bindEvents: function (events) {
             /** FORM SUBMISSION EVENT **/
             viewController.externalEvents = events;
+            $('.action_btn').click(function (event) {
+                event.preventDefault();
+                $('.chat_space .chat').toggle();
+                $('.chat_space .chat ul li').click(function (event) {
+                    event.preventDefault();
+                    $('.chat_space .chat .contacts').hide();
+                    $('.chat_space .chat .messages').show(function () {
+                        $(this).find('button').click(function () {
+                            $(this).parents('.messages').hide();
+                            $('.chat_space .chat .contacts').show();
+                        });
+                    });
+                });
+            });
         },
         loadView: function(viewName) {
             viewController.mainContainer.empty();
@@ -53,20 +67,6 @@ var ViewController = function() {
                 $(this).find("i.fa").addClass("fa-close");
                 $(this).attr("href", "#/profile");
                 viewController.profile();
-            });
-            $('.action_btn').click(function (event) {
-                event.preventDefault();
-                $('.chat_space form[name=chat]').toggle();
-                $('.chat_space form ul li').click(function (event) {
-                    event.preventDefault();
-                    $('.chat_space form .contacts').hide();
-                    $('.chat_space form .messages').show(function () {
-                        $(this).find('button').click(function () {
-                            $(this).parents('.messages').hide();
-                            $('.chat_space form .contacts').show();
-                        });
-                    });
-                });
             });
             /*$('#search.open').click(function() {
                 $('#profiles').empty();

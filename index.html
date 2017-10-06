@@ -36,9 +36,9 @@
         </section>
 
         <div class="chat_space flex_col_container padding_4">
-            <form name="chat" class="flex_col_container full_width" style="display: none;">
-                <div class="flex_container full_width contacts">
-                    <ul class="contacts_list full_width">
+            <div class="flex_col_container full_width chat" style="display: none;">
+                <div class="flex_container full_size contacts">
+                    <ul class="contacts_list full_width scrollable">
                         <li class="padding_4">
                             <img src="imgs/app/avt.svg" class="circle" style="width: 56px; height: auto">
                             <div class="flex_inline_container">
@@ -62,24 +62,28 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex_col_container full_width messages" style="display: none;">
-                    <header>
-                        <button class="btn padding_4"><i class="fa fa-arrow-left"></i></button>
+                <div class="flex_col_container full_size messages" style="display: none;">
+                    <div class="flex_container full_width" style="background-color: #4c1018">
+                        <button class="btn theme_link padding_4 pos_left"><i class="fa fa-arrow-left"></i></button>
                         <span style="color: white">Jane</span>
-                    </header>
-                    <div class="full_width flex_col_container scrollable">
+                    </div>
+                    <div class="message_bubbles full_width scrollable flex_1">
                         <p class="chat_bubble pos_right"> blah blah </p>
                         <p class="chat_bubble pos_right"> blah blah </p>
                         <p class="chat_bubble pos_left"> blah blah </p>
                         <p class="chat_bubble pos_right"> blah blah </p>
                         <p class="chat_bubble pos_left"> blah blah </p>
+                        <p class="chat_bubble pos_left"> blah blah </p>
+                        <p class="chat_bubble pos_left"> blah blah </p>
+                        <p class="chat_bubble pos_left"> blah blah </p>
+                        <p class="chat_bubble pos_left"> blah blah </p>
                     </div>
-                    <div class="padding_4 new_message_bar">
-                        <input type="text" placeholder="Your message" style="color: black">
-                        <input type="submit" class="theme_btn">
-                    </div>
+                    <form name="new_message" class="new_message_bar padding_4">
+                        <input type="text" placeholder="Your message" style="color: black" required>
+                        <input type="submit" class="btn theme_btn">
+                    </form>
                 </div>
-            </form>
+            </div>
             <a class="btn circle theme_dark action_btn pos_right padding_8"><i class="fa fa-inbox"></i></a>
         </div>
         <footer class="flex_container">
