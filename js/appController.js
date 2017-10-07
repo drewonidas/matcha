@@ -27,9 +27,13 @@ var AppController = function() {
         loadingAnimation: null,
         messageDialog: null,
         init: function() {
+            /** RESET URI ('RELOAD' THE PAGE, ESSENTIALLY) **/
             window.location.hash = "";
+
+            /** STORE REFERENCE TO APP LEVEL DOM/DOM-FUNCTIONALITY **/
             appController.loadingAnimation = $("#app_loader_cont");
             appController.messageDialog = $("#message_dialog");
+
             /** INITIALIZE CONTROLLERS **/
             appController.viewController = new ViewController();
             appController.requestController = new RequestController();
@@ -40,11 +44,13 @@ var AppController = function() {
             events['searchProfiles'] = appController.requestController.searchMembers;
             events['changeAffections'] = appController.requestController.changeAffections;
             appController.viewController.bindEvents(events);
+
+            /** CHECK FOR SESSION STATUS - CHECK IF USER ALREADY LOGGED IN **/
             appController.requestController.sendRequest("status", "", function (data) {
-                if (data !== "notFound")
-                    window.location.hash = "/";
-                else
-                    window.location.hash = "/login";
+                if (data !== "notFound") // ACTIVE SESSION FOUND
+                    window.location.hash = "/"; // LOAD APP HOME
+                else // NO ACTIVE SESSION FOUND
+                    window.location.hash = "/login"; // LOAD APP LOGIN
             });
         },
         submitForm: function(event) {

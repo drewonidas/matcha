@@ -54,12 +54,12 @@ class Modal {
                 $sql = 'SELECT username, first_name, last_name,
                         gender, sexual_pref, bio, interests, location,
                         last_in, rating, image_id
-                        FROM profile_details
+                        FROM profiles
                         WHERE id = ?';
                 break;
             case 'get_all_users':
                 $sql = 'SELECT members.id, members.username, members.status, members.rating
-                        FROM profile_details AS members, profile_details AS user
+                        FROM profiles AS members, profiles AS user
                         WHERE user.id = ?
                         AND members.id <> user.id
                         AND members.rating <= user.rating
@@ -71,7 +71,7 @@ class Modal {
                         WHERE id = ?';
                 break;
             case 'search_users':
-                $sql = 'SELECT * FROM mini_profiles
+                $sql = 'SELECT * FROM profiles
                         WHERE username = like %?%';
                 break;
             case 'get_comm':

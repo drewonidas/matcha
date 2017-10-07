@@ -90,12 +90,12 @@
             $conn->exec($sql);
             echo 'Table notifications created<br/>' . PHP_EOL;
 
-            // create Notifications table
+            // create Tags table
             $sql = "CREATE TABLE IF NOT EXISTS tags (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                     interest_tag VARCHAR(128) NOT NULL)";
             $conn->exec($sql);
-            echo 'Table notifications created<br/>' . PHP_EOL;
+            echo 'Table tags created<br/>' . PHP_EOL;
 
             /** CREATE VIEWS FOR 'SELECT'-TYPE QUERIES **/
 
