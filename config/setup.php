@@ -120,7 +120,7 @@
                       OUT matches INT(6))
                     BEGIN
                       SELECT id, username, last_in, rating, image_id, status
-                      FROM users
+                      FROM profiles
                       WHERE rating > 3;
                     END";
             $conn->exec($sql);
