@@ -98,20 +98,12 @@
             echo 'Table tags created<br/>' . PHP_EOL;
 
             /** CREATE VIEWS FOR 'SELECT'-TYPE QUERIES **/
-
-            /*// create HOME VIEW
-            $sql = "CREATE VIEW mini_profiles AS
-                    SELECT u.id, u.username, u.status, u.rating
-                    FROM users AS u";
-            $conn->exec($sql);
-            echo 'VIEW mini_profiles created<br/>' . PHP_EOL;*/
-
             // create profile_details VIEW
             $sql = "CREATE VIEW profiles AS
-                    SELECT id, username, email, first_name, last_name,
-                    gender, sexual_pref, bio, interests, location,
-                    last_in, rating, image_id, status
-                    FROM users";
+                      SELECT id, username, email, first_name, last_name,
+                       gender, sexual_pref, bio, interests, location,
+                       last_in, rating, image_id, status
+                      FROM users";
             $conn->exec($sql);
             echo 'VIEW profiles created<br/>' . PHP_EOL;
 
@@ -125,14 +117,6 @@
                     END";
             $conn->exec($sql);
             echo 'Procedure profiles created<br/>' . PHP_EOL;
-/*            // create profile_details VIEW
-            $sql = "CREATE VIEW user_likes AS
-                    SELECT id, username, first_name, last_name,
-                    gender, sexual_pref, bio, interests, location,
-                    last_in, rating, status, 
-                    FROM users";
-            $conn->exec($sql);
-            echo 'VIEW profile_details created<br/>' . PHP_EOL;*/
 
             // CREATE DUMMY DATA
             $sql = "INSERT INTO users (username, email, password,
