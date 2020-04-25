@@ -7,7 +7,8 @@
 @Last modified time: Thursday, November 10, 2016 2:35 AM
 @License: maDezynIzM.E. 2016
 */
-require('../config/database.php');
+
+require('/app/config/database.php');
 
 class Modal {
     private $_connection;

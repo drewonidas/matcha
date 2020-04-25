@@ -10,5 +10,5 @@
 
     $DB_DSN = 'mysql:host=localhost;dbname=matcha_db';
     $DB_USER = 'root';
-    $DB_PASSWORD = 'qwerty';
+    $DB_PASSWORD = '';
 ?>

@@ -8,8 +8,8 @@
     @License: maDezynIzM.E. 2016
     */
 
-    require('database.php');
-    require('setup.php');
+    require('/app/config/database.php');
+    require('/app/config/setup.php');
 
     $servername = 'localhost';
     $db_handler = null;

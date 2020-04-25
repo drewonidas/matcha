@@ -8,7 +8,7 @@
 @License: maDezynIzM.E. 2016
 */
 
-    require('../php/Services/ModalService.php');
+    require('/app/php/Services/ModalService.php');
 
     function setupDBTables() {
         $conn = Modal::createDBConnection();
@@ -107,7 +107,7 @@
             $conn->exec($sql);
             echo 'VIEW profiles created<br/>' . PHP_EOL;
 
-            $sql = "CREATE PROCEDURE IF NOT EXISTS GetContactList(
+            /*$sql = "CREATE PROCEDURE IF NOT EXISTS GetContactList(
                       IN currUser INT(6),
                       OUT matches INT(6))
                     BEGIN
@@ -117,6 +117,7 @@
                     END";
             $conn->exec($sql);
             echo 'Procedure profiles created<br/>' . PHP_EOL;
+             */
 
             // CREATE DUMMY DATA
             $sql = "INSERT INTO users (username, email, password,
