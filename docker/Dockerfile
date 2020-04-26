@@ -1,6 +1,7 @@
 FROM mattrayner/lamp:latest-1804
-WORKDIR /
-COPY app/ .
-RUN php /app/config/install.php
+
+COPY --chown=root app /app
 EXPOSE 80
+
 CMD ["/run.sh"]
+
