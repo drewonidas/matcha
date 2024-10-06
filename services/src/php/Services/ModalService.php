@@ -158,6 +158,7 @@ class Modal {
             $resultData = $tmp->fetchAll();
             $tmp->closeCursor();
         } catch(PDOException $e) {
+            error_log('Error: . $e->getMessage()', 0, null, null);
             echo 'Error: ' . $e->getMessage();
         }
         return ($resultData);

@@ -4,7 +4,7 @@ var RequestController = function() {
     var requestController = {
         serverPage: null,
         init: function () {
-            requestController.serverPage = "php/requestHandler.php";
+            requestController.serverPage = "http://localhost:8081/php/requestHandler.php";
         },
         sendRequest: function(reqType, args, func) {
             $.post(requestController.serverPage, "reqType=" + reqType + "&args=" + args,

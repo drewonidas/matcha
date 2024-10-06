@@ -1,0 +1,28 @@
+name: matcha
+
+services:
+  webapp:
+    build: ./webapp
+    environment:
+      env_file: "local.env"
+    ports:
+      - "8080:80"
+    networks:
+      - front-tier
+      - back-tier
+    depends_on:
+      - backend
+
+  backend:
+    build: ./services
+    environment:
+      env_file: "local.env"
+    ports:
+      - "8081:80"
+    networks:
+      - back-tier
+
+networks:
+  front-tier: {}
+  back-tier: {}
+
