@@ -8,7 +8,7 @@
 @License: maDezynIzM.E. 2016
 */
 
-require('/app/config/database.php');
+require($_ENV["BASE_PATH"] . 'config/database.php');
 
 class Modal {
     private $_connection;
@@ -28,6 +28,9 @@ class Modal {
             $new_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
             echo 'something went wrong:' . $e->getMessage() . '<br/>';
+            echo 'trace:' . print_r($e->getTrace()) . '<br/>';
+            error_log('Connection to db failed: ' . $e->getMessage());
+
         }
         return ($new_conn);
     }

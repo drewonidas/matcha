@@ -8,7 +8,7 @@
 @License: maDezynIzM.E. 2016
 */
 
-    $DB_DSN = 'mysql:host=localhost;dbname=matcha_db';
+    $DB_DSN = 'mysql:host=' . $_ENV["DATABASE_HOST"] . ';dbname=' . $_ENV["DATABASE_NAME"];
     $DB_USER = 'root';
-    $DB_PASSWORD = '';
+    $DB_PASSWORD = $_ENV["MYSQL_ROOT_PASSWORD"];
 ?>

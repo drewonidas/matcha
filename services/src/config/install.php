@@ -8,8 +8,8 @@
     @License: maDezynIzM.E. 2016
     */
 
-    require('/app/config/database.php');
-    require('/app/config/setup.php');
+    require('database.php');
+    require('setup.php');
 
     $servername = 'localhost';
     $db_handler = null;
@@ -28,7 +28,7 @@
         // create the tables
         setupDBTables();
     } catch (PDOException $e) {
-        echo 'Connection to db failed: ' . $e->getMessage() . '<br/>';
+        error_log('Connection to db failed: ' . $e->getMessage());
     }
 
 ?>

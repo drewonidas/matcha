@@ -8,7 +8,7 @@
 @License: maDezynIzM.E. 2016
 */
 
-    require('/app/php/Services/ModalService.php');
+    require($_ENV["BASE_PATH"] . 'php/Services/ModalService.php');
 
     function setupDBTables() {
         $conn = Modal::createDBConnection();

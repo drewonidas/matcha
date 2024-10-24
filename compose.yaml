@@ -3,26 +3,47 @@ name: matcha
 services:
   webapp:
     build: ./webapp
-    environment:
-      env_file: "local.env"
+    env_file: local.env
     ports:
       - "8080:80"
-    networks:
-      - front-tier
-      - back-tier
     depends_on:
+      - database
       - backend
+    develop:
+      watch:
+        - action: sync
+          path: ./webapp/src
+          target: /usr/share/nginx/html
 
   backend:
     build: ./services
-    environment:
-      env_file: "local.env"
+    env_file: local.env
     ports:
       - "8081:80"
     networks:
       - back-tier
+    depends_on:
+      - database
+    develop:
+      watch:
+        - action: sync
+          path: ./services/src
+          target: /var/www/html
+  
+  database:
+    image: mysql
+    restart: always
+    env_file: local.env
+    ports:
+      - "3306:3306"
+    networks:
+      - back-tier
+    volumes:
+      - db_storage:/var/lib/mysql
 
 networks:
   front-tier: {}
   back-tier: {}
 
+volumes:
+  db_storage:

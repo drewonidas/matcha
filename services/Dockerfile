@@ -1,4 +1,8 @@
-FROM mattrayner/lamp:latest-1804
-COPY ./src /app
-EXPOSE 80
-CMD ["/run.sh"]
+FROM php:8.2-apache
+
+RUN docker-php-ext-install pdo pdo_mysql
+
+WORKDIR /var/www/html
+COPY ./src .
+
+RUN php ./config/install.php
