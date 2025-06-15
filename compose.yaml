@@ -2,6 +2,7 @@ name: matcha
 
 services:
   webapp:
+    container_name: matcha_frontend
     build: ./webapp
     env_file: local.env
     ports:
@@ -16,6 +17,7 @@ services:
           target: /usr/share/nginx/html
 
   backend:
+    container_name: matcha_backend
     build: ./services
     env_file: local.env
     ports:
@@ -31,19 +33,26 @@ services:
           target: /var/www/html
   
   database:
+    container_name: matcha_database
     image: mysql
     restart: always
     env_file: local.env
     ports:
       - "3306:3306"
     networks:
-      - back-tier
+      back-tier:
+        ipv4_address: 172.16.238.10
+
     volumes:
       - db_storage:/var/lib/mysql
 
 networks:
   front-tier: {}
-  back-tier: {}
+  back-tier:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"
 
 volumes:
   db_storage:

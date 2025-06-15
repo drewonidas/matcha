@@ -178,6 +178,7 @@ class Modal {
                 }
             }
         } catch(PDOException $e) {
+            error_log('Error: ' . $e->getMessage(), 0, null, null);
             echo 'Error: ' . $e->getMessage();
         }
         return ($tmp->execute());
